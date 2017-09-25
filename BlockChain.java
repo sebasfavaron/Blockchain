@@ -5,17 +5,17 @@ import java.util.ArrayList;
  */
 public class BlockChain<T> {
 
-    ArrayList<Block<T>> cadena;
+    Block<T>[] cadena;
     int index;
 
     public BlockChain(){
-        cadena=new ArrayList<>();
+        cadena=new Block[0];
         index=0;
     }
 
     public void add(T elem){
-        if(cadena.isEmpty()){
-            cadena.add(new Block<T>(++index,))
+        if(cadena.length==0){
+            cadena[cadena.length]= new Block<>();
         }
     }
 
@@ -26,7 +26,7 @@ public class BlockChain<T> {
         Hexa prev;
         Hexa hash;
 
-        public Block(int index,){
+        public Block() {
 
         }
     }
