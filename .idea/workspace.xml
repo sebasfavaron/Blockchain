@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="930ae407-b0d8-4b86-acc9-60505ac48672" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/vcs.xml" />
       <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/Blockchain.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/BlockChain.java" afterPath="$PROJECT_DIR$/BlockChain.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -209,12 +204,20 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1506360718159</updated>
-      <workItem from="1506360722079" duration="208000" />
+      <workItem from="1506360722079" duration="292000" />
     </task>
+    <task id="LOCAL-00001" summary="ola">
+      <created>1506360960625</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1506360960625</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="208000" />
+    <option name="totallyTimeSpent" value="292000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="24" width="1855" height="1056" extended-state="6" />
@@ -255,6 +258,10 @@
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="ola" />
+    <option name="LAST_COMMIT_MESSAGE" value="ola" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
