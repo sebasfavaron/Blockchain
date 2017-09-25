@@ -9,8 +9,8 @@ public class MyLinkedList<S> implements Iterable<S> {
     private Node first;
     private int length;
 
-    public Node getFirst(){
-        return first;
+    public Node get(int i){
+        for()
     }
     private class MyIterator implements Iterator<S> {
         private Node current;
