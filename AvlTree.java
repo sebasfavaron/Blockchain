@@ -218,6 +218,25 @@ public class AvlTree<T> {
         }
     }
 
+    public void print() {
+        printRec(this.root);
+        System.out.println();
+    }
+
+    private void printRec(AvlNode tree) {
+        if(tree == null)
+            return;
+        System.out.print(tree.elem);
+        if(tree.left != null || tree.right != null)
+            System.out.print("(");
+        printRec(tree.left);
+        if(tree.left != null && tree.right != null)
+            System.out.print(",");
+        printRec(tree.right);
+        if(tree.left != null || tree.right != null)
+            System.out.print(")");
+    }
+
     private class AvlNode {
 
         AvlNode left, right;
