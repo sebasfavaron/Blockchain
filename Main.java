@@ -35,7 +35,6 @@ public class Main {
         */
         System.out.println("Preorder traversal" +
                 " of constructed tree is : ");
-        tree.preOrder(tree.root);
         tree.print();
     }
 }
