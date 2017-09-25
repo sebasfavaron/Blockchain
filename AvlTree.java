@@ -16,7 +16,7 @@ public class AvlTree<T> {
         this.cmp=cmp;
     }
 
-    int height(AvlNode<T> N) {
+    int height(AvlNode N) {
         if (N == null)
             return 0;
 
@@ -30,7 +30,7 @@ public class AvlTree<T> {
 
     // A utility function to right rotate subtree rooted with y
     // See the diagram given above.
-    AvlNode<T> rightRotate(AvlNode<T> y) {
+    AvlNode rightRotate(AvlNode y) {
         AvlNode x = y.left;
         AvlNode T2 = x.right;
 
@@ -48,7 +48,7 @@ public class AvlTree<T> {
 
     // A utility function to left rotate subtree rooted with x
     // See the diagram given above.
-    AvlNode<T> leftRotate(AvlNode x) {
+    AvlNode leftRotate(AvlNode x) {
         AvlNode y = x.right;
         AvlNode T2 = y.left;
 
@@ -65,7 +65,7 @@ public class AvlTree<T> {
     }
 
     // Get Balance factor of node N
-    int getBalance(AvlNode<T> N) {
+    int getBalance(AvlNode N) {
         if (N == null)
             return 0;
 
@@ -77,7 +77,7 @@ public class AvlTree<T> {
         preOrderHash(root);
         System.out.println(this.hash);
     }
-    private AvlNode<T> insertR(AvlNode<T> node, T key) {
+    private AvlNode insertR(AvlNode node, T key) {
 
         /* 1.  Perform the normal BST insertion */
         if (node == null)
@@ -132,7 +132,7 @@ public class AvlTree<T> {
     }
 
 
-    private AvlNode<T> removeR(AvlNode<T> node, T key) {
+    private AvlNode removeR(AvlNode node, T key) {
 
         /* 1.  Perform the normal BST delete */
         if (node == null)
@@ -150,7 +150,7 @@ public class AvlTree<T> {
             else if (node.right == null)
                 return node.left;
             else {
-                node.elem = minValue((AvlNode<T>) node.right);
+                node.elem = minValue(node.right);
                 node.right = removeR(node.right, node.elem);
             }
         }
@@ -189,12 +189,12 @@ public class AvlTree<T> {
         return node;
 
     }
-    private<T> T minValue(AvlNode<T> node)
+    private T minValue(AvlNode node)
     {
         T minv = node.elem;
         while (node.left != null)
         {
-            minv = (T) node.left.elem;
+            minv = node.left.elem;
             node = node.left;
         }
         return minv;
@@ -209,7 +209,7 @@ public class AvlTree<T> {
             preOrder(node.right);
         }
     }
-    void preOrderHash(AvlNode<T> node) {
+    void preOrderHash(AvlNode node) {
         if (node != null) {
             Integer aux=node.elem.hashCode();
             this.hash=hash+Integer.toHexString(aux);
@@ -218,7 +218,7 @@ public class AvlTree<T> {
         }
     }
 
-    private class AvlNode <T>{
+    private class AvlNode {
 
         AvlNode left, right;
 
