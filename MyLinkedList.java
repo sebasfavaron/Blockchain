@@ -59,6 +59,11 @@ public class MyLinkedList<S> implements Iterable<S> {
     }
     public MyLinkedList(){
         this.first = null;
+        this.length=0;
+    }
+
+    public int getLength(){
+        return this.length;
     }
 
     public boolean isEmpty() {

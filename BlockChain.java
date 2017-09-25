@@ -19,9 +19,9 @@ public class BlockChain<T> {
     }
 
     public void add(T elem){
-        if(){
+        if(cadena.getLength()==0){
             cadena.add( new Block(elem,cmp));
-            cadena.getFirst();
+            //cadena.get();
         }
     }
 
