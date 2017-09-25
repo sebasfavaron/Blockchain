@@ -7,6 +7,7 @@ import java.util.NoSuchElementException;
  */
 public class MyLinkedList<S> implements Iterable<S> {
     private Node first;
+    private int length;
 
     public Node getFirst(){
         return first;
@@ -78,6 +79,7 @@ public class MyLinkedList<S> implements Iterable<S> {
     }
 
     public boolean add(S s) {
+        length++;
         if(first == null) {
             first = new Node(s);
             return true;
