@@ -9,8 +9,18 @@ public class MyLinkedList<S> implements Iterable<S> {
     private Node first;
     private int length;
 
-    public Node get(int i){
-        for()
+    /**
+     * Gets the S element in the i-th Node or null if i>length
+     * @param i, position in the List
+     */
+    public S get(int i){
+        int index = 0;
+        for(S elem : this){
+            index++;
+            if(i==index)
+                return elem;
+        }
+        return null;
     }
     private class MyIterator implements Iterator<S> {
         private Node current;
@@ -57,6 +67,7 @@ public class MyLinkedList<S> implements Iterable<S> {
             return next;
         }
     }
+
     public MyLinkedList(){
         this.first = null;
         this.length=0;
