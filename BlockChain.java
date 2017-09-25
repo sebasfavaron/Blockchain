@@ -6,7 +6,7 @@ import java.util.Comparator;
  */
 public class BlockChain<T> {
 
-    private Block[] cadena;
+    private MyLinkedList<Block> cadena;
     private int index;
     private Comparator<T> cmp;
     private Integer zero;
@@ -19,9 +19,9 @@ public class BlockChain<T> {
     }
 
     public void add(T elem){
-        if(cadena.length==0){
-            cadena[cadena.length]= new Block(elem,cmp);
-            cadena[cadena.length-1].mine();
+        if(){
+            cadena.add( new Block(elem,cmp));
+            cadena.getFirst();
         }
     }
 
