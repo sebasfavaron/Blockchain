@@ -42,7 +42,17 @@ public class BlockChain<T> {
             this.prev="0";
         }
         public void mine(){
-
+            String aux = "";
+            for(int i=0; i<zero; i++){
+                aux = aux.concat("0");
+            }
+            System.out.println(aux);
+            while(hash.substring(0,zero).equals(aux)){
+                updateHash();
+            }
+        }
+        private void updateHash(){
+            return;
         }
     }
 }

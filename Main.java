@@ -7,7 +7,7 @@ import java.util.Comparator;
  */
 public class Main {
     public static void main(String[]args){
-        AvlTree<Integer> tree = new AvlTree<Integer>(new Comparator<Integer>() {
+        AvlTree<Integer> tree = new AvlTree<>(new Comparator<Integer>() {
             @Override
             public int compare(Integer o1, Integer o2) {
                 return o2-o1;
@@ -36,5 +36,13 @@ public class Main {
         System.out.println("Preorder traversal" +
                 " of constructed tree is : ");
         tree.print();
+        BlockChain<Integer> blockChain = new BlockChain<>(new Comparator<Integer>() {
+            @Override
+            public int compare(Integer o1, Integer o2) {
+                return o1-o2;
+            }
+        });
+        blockChain.add(1);
+
     }
 }
