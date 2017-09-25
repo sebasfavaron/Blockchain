@@ -11,7 +11,6 @@ public class BlockChain<T> {
     Comparator<T> cmp;
     Integer zero;
     public BlockChain(Comparator<T> cmp,Integer zero){
-        cadena=new Block[0];
         index=0;
         this.cmp=cmp;
         this.zero=zero;
@@ -19,7 +18,7 @@ public class BlockChain<T> {
 
     public void add(T elem){
         if(cadena.length==0){
-            cadena[cadena.length]= new Block<>(elem,cmp);
+            cadena[cadena.length]= new Block(elem,cmp);
             cadena[cadena.length-1].mine();
         }
     }
