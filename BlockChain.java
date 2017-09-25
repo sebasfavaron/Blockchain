@@ -10,10 +10,12 @@ public class BlockChain<T> {
     int index;
     Comparator<T> cmp;
     Integer zero;
-    public BlockChain(Comparator<T> cmp,Integer zero){
+    public BlockChain(Comparator<T> cmp){
         index=0;
         this.cmp=cmp;
-        this.zero=zero;
+    }
+    public void zeros(Integer cero){
+        this.zero=cero;
     }
 
     public void add(T elem){
