@@ -6,7 +6,7 @@ import java.util.Comparator;
  */
 public class BlockChain<T> {
 
-    Block[] cadena;
+    Block<T>[] cadena;
     int index;
     Comparator<T> cmp;
     public BlockChain(Comparator<T> cmp){
@@ -17,11 +17,11 @@ public class BlockChain<T> {
 
     public void add(T elem){
         if(cadena.length==0){
-            cadena[cadena.length]= new Block(elem,cmp);
+            cadena[cadena.length]= new Block<>(elem,cmp);
         }
     }
 
-    private class Block {
+    private class Block<T> {
         int indice;
         int nonce;
         String datos;
