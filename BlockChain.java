@@ -6,7 +6,7 @@ import java.util.Comparator;
  */
 public class BlockChain<T> {
 
-    Block<T>[] cadena;
+    Block[] cadena;
     int index;
     Comparator<T> cmp;
     public BlockChain(Comparator<T> cmp){
@@ -21,7 +21,7 @@ public class BlockChain<T> {
         }
     }
 
-    private class Block<T> {
+    private class Block {
         int indice;
         int nonce;
         String datos;
