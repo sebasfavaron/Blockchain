@@ -7,7 +7,7 @@ import java.util.Comparator;
  */
 public class Main {
     public static void main(String[]args){
-        AvlTree tree = new AvlTree(new Comparator<Integer>() {
+        AvlTree<Integer> tree = new AvlTree<Integer>(new Comparator<Integer>() {
             @Override
             public int compare(Integer o1, Integer o2) {
                 return o1-o2;
