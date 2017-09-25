@@ -15,6 +15,8 @@ public class MyLinkedList<S> implements Iterable<S> {
      */
     public S get(int i){
         int index = 0;
+        if(i>=length)
+            throw new IndexOutOfBoundsException();
         for(S elem : this){
             index++;
             if(i==index)
