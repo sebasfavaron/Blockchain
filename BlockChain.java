@@ -21,13 +21,13 @@ public class BlockChain<T> {
     public void add(T elem){
         if(cadena.getLength()==0){
             cadena.add( new Block(elem,cmp));
-            //cadena.get();
+            cadena.get(0);
         }
     }
 
     private class Block {
         private int indice;
-        private int nOnce;
+        private int nonce;
         private String datos;
         private T data;
         private String prev;

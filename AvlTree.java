@@ -253,7 +253,7 @@ public class AvlTree<T> {
 
             elem = n;
 
-            height = 0;
+            height = 1;
 
         }
     }
