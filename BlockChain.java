@@ -1,11 +1,23 @@
+import java.util.ArrayList;
+
 /**
  * Created by navi on 23/09/17.
  */
 public class BlockChain<T> {
 
-    Block[] blocks;
+    ArrayList<Block<T>> cadena;
+    int index;
 
-    public void insert(){}
+    public BlockChain(){
+        cadena=new ArrayList<>();
+        index=0;
+    }
+
+    public void add(T elem){
+        if(cadena.isEmpty()){
+            cadena.add(new Block<T>(++index,))
+        }
+    }
 
     private class Block<T> {
         int indice;
@@ -14,7 +26,7 @@ public class BlockChain<T> {
         Hexa prev;
         Hexa hash;
 
-        public Block(){
+        public Block(int index,){
 
         }
     }

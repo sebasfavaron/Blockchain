@@ -77,13 +77,6 @@ public class AvlTree<T> {
         preOrderHash(root);
         System.out.println(this.hash);
     }
-    public void remove(T elem){
-        //root=removeR(root,elem); falta implementacion
-        this.hash="";
-        preOrderHash(root);
-        System.out.println(this.hash);
-    }
-
     private AvlNode<T> insertR(AvlNode<T> node, T key) {
 
         /* 1.  Perform the normal BST insertion */
@@ -131,6 +124,81 @@ public class AvlTree<T> {
         return node;
     }
 
+    public void remove(T elem){
+        root=removeR(root,elem);
+        this.hash="";
+        preOrderHash(root);
+        System.out.println(this.hash);
+    }
+
+
+    private AvlNode<T> removeR(AvlNode<T> node, T key) {
+
+        /* 1.  Perform the normal BST delete */
+        if (node == null)
+            return node;
+
+        if (cmp.compare(key,node.elem)>0) {
+            node.left = removeR(node.left, key);
+        }
+        else if (cmp.compare(key,node.elem)<0) {
+            node.right = removeR(node.right, key);
+        }
+        else {
+            if (node.left == null)
+                return node.right;
+            else if (node.right == null)
+                return node.left;
+            else {
+                node.elem = minValue((AvlNode<T>) node.right);
+                node.right = removeR(node.right, node.elem);
+            }
+        }
+
+        /* 2. Update height of this ancestor node */
+        node.height = 1 + max(height(node.left),
+                height(node.right));
+
+        /* 3. Get the balance factor of this ancestor
+              node to check whether this node became
+              unbalanced */
+        int balance = getBalance(node);
+
+        // If this node becomes unbalanced, then there
+        // are 4 cases Left Left Case
+        if (balance > 1 && cmp.compare(key,node.elem)>0)
+            return rightRotate(node);
+
+        // Right Right Case
+        if (balance < -1 && cmp.compare(key,node.elem)<0)
+            return leftRotate(node);
+
+        // Left Right Case
+        if (balance > 1 && cmp.compare(key,node.elem)>0) {
+            node.left = leftRotate(node.left);
+            return rightRotate(node);
+        }
+
+        // Right Left Case
+        if (balance < -1 && cmp.compare(key,node.elem)<0) {
+            node.right = rightRotate(node.right);
+            return leftRotate(node);
+        }
+
+
+        return node;
+
+    }
+    private<T> T minValue(AvlNode<T> node)
+    {
+        T minv = node.elem;
+        while (node.left != null)
+        {
+            minv = (T) node.left.elem;
+            node = node.left;
+        }
+        return minv;
+    }
     // A utility function to print preorder traversal
     // of the tree.
     // The function also prints height of every node
