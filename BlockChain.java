@@ -9,15 +9,18 @@ public class BlockChain<T> {
     Block[] cadena;
     int index;
     Comparator<T> cmp;
-    public BlockChain(Comparator<T> cmp){
+    Integer zero;
+    public BlockChain(Comparator<T> cmp,Integer zero){
         cadena=new Block[0];
         index=0;
         this.cmp=cmp;
+        this.zero=zero;
     }
 
     public void add(T elem){
         if(cadena.length==0){
             cadena[cadena.length]= new Block<>(elem,cmp);
+            cadena[cadena.length-1].mine();
         }
     }
 
@@ -36,6 +39,9 @@ public class BlockChain<T> {
             this.tree=new AvlTree<T>(cmp);
             this.tree.insert(elem);
             this.prev="0";
+        }
+        public void mine(){
+
         }
     }
 }
