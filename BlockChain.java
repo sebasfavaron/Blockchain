@@ -15,7 +15,7 @@ public class BlockChain<T> {
 
     public void add(T elem){
         if(cadena.length==0){
-            cadena[cadena.length]= new Block<>();
+            cadena[cadena.length]= new Block<>(elem);
         }
     }
 
@@ -25,8 +25,9 @@ public class BlockChain<T> {
         T data;
         Hexa prev;
         Hexa hash;
+        AvlTree<T> tree;
 
-        public Block() {
+        public Block(T elem) {
 
         }
     }
