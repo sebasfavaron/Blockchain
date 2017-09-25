@@ -6,16 +6,16 @@ import java.util.Comparator;
  */
 public class BlockChain<T> {
 
-    Block[] cadena;
-    int index;
-    Comparator<T> cmp;
-    Integer zero;
+    private Block[] cadena;
+    private int index;
+    private Comparator<T> cmp;
+    private Integer zero;
     public BlockChain(Comparator<T> cmp){
         index=0;
         this.cmp=cmp;
     }
-    public void zeros(Integer cero){
-        this.zero=cero;
+    public void zeros(Integer zero){
+        this.zero=zero;
     }
 
     public void add(T elem){
@@ -26,18 +26,18 @@ public class BlockChain<T> {
     }
 
     private class Block {
-        int indice;
-        int nonce;
-        String datos;
-        T data;
-        String prev;
-        String hash;
-        AvlTree<T> tree;
+        private int indice;
+        private int nOnce;
+        private String datos;
+        private T data;
+        private String prev;
+        private String hash;
+        private AvlTree<T> tree;
 
         public Block(T elem,Comparator<T> cmp) {
             this.indice=++index;
             this.data=elem;
-            this.tree=new AvlTree<T>(cmp);
+            this.tree=new AvlTree<>(cmp);
             this.tree.insert(elem);
             this.prev="0";
         }

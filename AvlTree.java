@@ -8,15 +8,15 @@ import java.util.List;
  * Created by navi on 23/09/17.
  */
 public class AvlTree<T> {
-    AvlNode root;
-    Comparator <T> cmp;
-    String hash;
+    private AvlNode root;
+    private Comparator <T> cmp;
+    private String hash;
 
     public AvlTree(Comparator<T> cmp){
         this.cmp=cmp;
     }
 
-    int height(AvlNode N) {
+    public int height(AvlNode N) {
         if (N == null)
             return 0;
 
@@ -24,13 +24,13 @@ public class AvlTree<T> {
     }
 
     // A utility function to get maximum of two integers
-    int max(int a, int b) {
+    private int max(int a, int b) {
         return (a > b) ? a : b;
     }
 
     // A utility function to right rotate subtree rooted with y
     // See the diagram given above.
-    AvlNode rightRotate(AvlNode y) {
+    private AvlNode rightRotate(AvlNode y) {
         AvlNode x = y.left;
         AvlNode T2 = x.right;
 
@@ -48,7 +48,7 @@ public class AvlTree<T> {
 
     // A utility function to left rotate subtree rooted with x
     // See the diagram given above.
-    AvlNode leftRotate(AvlNode x) {
+    private AvlNode leftRotate(AvlNode x) {
         AvlNode y = x.right;
         AvlNode T2 = y.left;
 
@@ -65,7 +65,7 @@ public class AvlTree<T> {
     }
 
     // Get Balance factor of node N
-    int getBalance(AvlNode N) {
+    public int getBalance(AvlNode N) {
         if (N == null)
             return 0;
 
@@ -202,14 +202,14 @@ public class AvlTree<T> {
     // A utility function to print preorder traversal
     // of the tree.
     // The function also prints height of every node
-    void preOrder(AvlNode node) {
+    public void preOrder(AvlNode node) {
         if (node != null) {
             System.out.print(node.elem + " ");
             preOrder(node.left);
             preOrder(node.right);
         }
     }
-    void preOrderHash(AvlNode node) {
+    public void preOrderHash(AvlNode node) {
         if (node != null) {
             Integer aux=node.elem.hashCode();
             this.hash=hash+Integer.toHexString(aux);
