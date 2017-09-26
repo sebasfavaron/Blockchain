@@ -19,7 +19,7 @@ public class MyLinkedList<S> implements Iterable<S> {
             throw new IndexOutOfBoundsException();
         for(S elem : this){
             index++;
-            if(i==index)
+            if(i == index)
                 return elem;
         }
         return null;
@@ -72,10 +72,10 @@ public class MyLinkedList<S> implements Iterable<S> {
 
     public MyLinkedList(){
         this.first = null;
-        this.length=0;
+        this.length = 0;
     }
 
-    public int getLength(){
+    public int length(){
         return this.length;
     }
 
@@ -98,12 +98,13 @@ public class MyLinkedList<S> implements Iterable<S> {
 
     public boolean add(S s) {
         length++;
+        if(s == null)
+            return false;
         if(first == null) {
             first = new Node(s);
             return true;
         }
         Node current = first;
-        MyIterator it = iterator();
         while(current.next != null){
             current = current.next;
         }
@@ -111,55 +112,23 @@ public class MyLinkedList<S> implements Iterable<S> {
         return true;
     }
 
-    public void reverse(){
-        if(first.next != null)
-            reverseRec(first, first.next);
-    }
-    public void reverseRec(Node n, Node next){
-        Node aux;
-        if(n == first){
-            aux = next.next;
-            next.next = first;
-            first.next = null;
-            reverseRec(next, aux);
-        }
-        else if(next != null) {
-            aux = next.next;
-            next.next = n;
-            reverseRec(next, aux);
-        }
-        else{
-            first = n;
-        }
-    }
     /**
-     * Le da funcionalidad de cola, saca el primer nodo (poniendo al segundo como primero
+     * Le da funcionalidad de cola, saca el primer nodo (poniendo al segundo como primero)
      * y devuelve el elemento del primer nodo.
      * @return 1st element
      */
     public S removeFirst(){
         if(first == null)
             return null;
+        length--;
         S ret = first.element;
         first = first.next;
         return ret;
-    }
-
-    public int size(){
-        int size = 0;
-        for(S elem : this){
-            size++;
-        }
-        return size;
     }
 
     public void print(){
         for(S elem : this){
             System.out.println(elem);
         }
-    }
-
-    public boolean addAll(Collection<? extends S> c) {
-        return false;
     }
 }

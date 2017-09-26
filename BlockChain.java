@@ -19,7 +19,7 @@ public class BlockChain<T> {
     }
 
     public void add(T elem){
-        if(cadena.getLength()==0){
+        if(cadena.length() == 0){
             cadena.add( new Block(elem,cmp));
             cadena.get(0);
         }
@@ -47,6 +47,8 @@ public class BlockChain<T> {
                 aux = aux.concat("0");
             }
             System.out.println(aux);
+
+            //checks if hash starts with the required amount of zeroes, updates it if it doesn't
             while(hash.substring(0,zero).equals(aux)){
                 updateHash();
             }
