@@ -22,6 +22,7 @@ public class Main {
         tree.insert(3);
 
 
+
         /* The constructed AVL Tree would be
              30
             /  \

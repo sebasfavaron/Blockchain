@@ -75,7 +75,8 @@ public class AvlTree<T> {
         root=insertR(root,elem);
         this.hash="";
         preOrderHash(root);
-        System.out.println(this.hash);
+        System.out.println("HASH: "+this.hash);
+        System.out.println("INTEGER: "+Long.parseLong(this.hash, 16));
     }
     private AvlNode insertR(AvlNode node, T key) {
 

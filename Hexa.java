@@ -4,6 +4,7 @@
 public class Hexa {
     public String hexaNumber;
     public Integer intNumber;
+
     public Hexa(Integer a){
         intNumber=a;
         hexaNumber=Integer.toHexString(a);
@@ -18,5 +19,16 @@ public class Hexa {
             return true;
         }
         return false;
+    }
+    public void add(String otro){
+        Integer aux;
+        aux=Integer.parseInt(otro, 16);
+        intNumber+=aux;
+        hexaNumber=Integer.toHexString(intNumber);
+
+    }
+    public void add(Integer otro){
+        intNumber+=otro;
+        hexaNumber=Integer.toHexString(intNumber);
     }
 }
