@@ -4,6 +4,7 @@
 public class Hexa {
     public String hexaNumber;
     public Integer intNumber;
+    public Long aLong;
 
     public Hexa(Integer a){
         intNumber=a;
@@ -11,7 +12,7 @@ public class Hexa {
     }
     public Hexa(String a){
         hexaNumber=a;
-        intNumber=Integer.parseInt(a, 16) ;
+        //intNumber=Integer.parseInt(a, 16) ;
     }
     public void inc(){
         intNumber++;
