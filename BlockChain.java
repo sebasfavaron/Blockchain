@@ -25,6 +25,12 @@ public class BlockChain<T> {
         }
         cadena.add(new Block(elem,Integer.toHexString(cadena.get(cadena.length()-1).hashCode()),cadena.get(cadena.length()-1).tree));
     }
+    public void print(){
+        for (Block a:cadena) {
+            a.print();
+            System.out.println("-------------------------");
+        }
+    }
 
     private class Block {
         private Integer indice;
