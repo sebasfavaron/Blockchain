@@ -1,3 +1,6 @@
+import java.util.DoubleSummaryStatistics;
+import java.util.StringJoiner;
+
 /**
  * Created by navi on 23/09/17.
  */
@@ -9,17 +12,24 @@ public class Hexa {
         intNumber=a;
         hexaNumber=Integer.toHexString(a);
     }
+    public Hexa(String a){
+        hexaNumber=a;
+        intNumber=Integer.parseInt(a, 16) ;
+    }
     public void inc(){
         intNumber++;
         hexaNumber=Integer.toHexString(intNumber);
     }
-    public boolean check(){
+    public boolean check(int zeros){
         char[]numero= hexaNumber.toCharArray();
-        if (numero[0]==0&&numero[1]==0&&numero[2]==0&&numero[3]==0){
-            return true;
+        for (int i =0;i<zeros;i++){
+            if (numero[i]==0){
+                return false;
+            }
         }
-        return false;
+        return true;
     }
+
     public void add(String otro){
         Integer aux;
         aux=Integer.parseInt(otro, 16);
@@ -30,5 +40,11 @@ public class Hexa {
     public void add(Integer otro){
         intNumber+=otro;
         hexaNumber=Integer.toHexString(intNumber);
+    }
+    public String getHexaNumber(){
+        return this.hexaNumber;
+    }
+    public Integer getIntNumber(){
+        return this.intNumber;
     }
 }

@@ -20,48 +20,47 @@ public class BlockChain<T> {
 
     public void add(T elem){
         if(cadena.length() == 0){
-            cadena.add( new Block(elem,cmp));
-            cadena.get(0);
+            cadena.add( new Block(elem,"0",new AvlTree(cmp)));
+            cadena.get(0).mine();
         }
+        cadena.add(new Block(elem,Integer.toHexString(cadena.get(cadena.length()-1).hashCode()),cadena.get(cadena.length()-1).tree));
     }
 
     private class Block {
-        private int indice;
-        private int nonce;
+        private Integer indice;
+        private Integer nonce;
         private String datos;
         private T data;
-        private String prev;
-        private String hash;
+        private Hexa prev;
+        private Hexa hash;
         private AvlTree<T> tree;
 
-        public Block(T elem,Comparator<T> cmp) {
+        public Block(T elem,String prev,AvlTree tree) {
             this.indice = ++index;
             this.data = elem; //queremos poner al elem directo o un mensaje onda "insert 'elem'"?
-            this.tree = new AvlTree<>(cmp);
+            this.tree = tree;
             this.tree.insert(elem);
-            this.prev = "0";
+            this.prev =new Hexa(prev);
+            this.hash=new Hexa((int) (Math.pow(2,(double)indice.hashCode())*Math.pow(3,nonce.hashCode())*Math.pow(5,tree.hashCode())*Math.pow(7,data.hashCode())*Math.pow(11,prev.hashCode())));
         }
         public void mine(){
-            String aux = "";
-            for(int i=0; i<amountZeroes; i++){
-                aux = aux.concat("0");
-            }
-
             //checks if hash starts with the required amount of zeroes, updates it if it doesn't
-            while(hash.substring(0,amountZeroes).equals(aux)){
-                hash = ((Integer) hashCode()).toString(); //lo hice re villero, fijense como hacerlo bien. no se porque hash es String y no int
+            while (hash.check(amountZeroes)){
                 nonce++;
-                System.out.println(hash);
+                hash.add(nonce);
             }
         }
         //Calculates the hash
         public int hashCode(){
-            int result = 1;
-            result = 31 * result + indice;
-            result = 31 * result + nonce;
-            result = 31 * result + data.hashCode();
-            result = 31 * result + prev.hashCode();
-            return result;
+            return hash.intNumber;
+        }
+        public void print(){
+            System.out.println("Index = "+ indice);
+            System.out.println("Nonce = "+ nonce);
+            System.out.println("Data = "+ datos);
+            System.out.println("Previous = "+ prev);
+            System.out.println("HashCode = "+ hash);
+            tree.print();
         }
     }
 }

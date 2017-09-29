@@ -238,6 +238,10 @@ public class AvlTree<T> {
             System.out.print(")");
     }
 
+    public int hashCode(){
+        return Integer.parseInt(this.hash, 16);
+    }
+
     private class AvlNode {
 
         AvlNode left, right;
