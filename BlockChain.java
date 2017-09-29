@@ -13,6 +13,7 @@ public class BlockChain<T> {
     public BlockChain(Comparator<T> cmp){
         index=0;
         this.cmp=cmp;
+        this.cadena=new MyLinkedList<>();
     }
     public void setAmountZeroes(Integer amountZeroes){
         this.amountZeroes = amountZeroes;
@@ -48,6 +49,7 @@ public class BlockChain<T> {
             this.tree.insert(elem);
             this.prev =new Hexa(prev);
             this.hash=new Hexa((int) (Math.pow(2,(double)indice.hashCode())*Math.pow(3,nonce.hashCode())*Math.pow(5,tree.hashCode())*Math.pow(7,data.hashCode())*Math.pow(11,prev.hashCode())));
+            mine();
         }
         public void mine(){
             //checks if hash starts with the required amount of zeroes, updates it if it doesn't

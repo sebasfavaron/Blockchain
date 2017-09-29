@@ -39,7 +39,10 @@ public class Main {
                 return o1-o2;
             }
         });
+        blockChain.setAmountZeroes(2);
         //blockChain.add(1);
-
+        blockChain.add(1);
+        blockChain.add(2);
+        blockChain.print();
     }
 }
