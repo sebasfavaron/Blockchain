@@ -23,7 +23,7 @@ public class Hexa {
     public boolean check(int zeros){
         char[]numero= hexaNumber.toCharArray();
         for (int i =0;i<zeros;i++){
-            if (numero[i]==0){
+            if (numero[i]=='0'){
                 return false;
             }
         }

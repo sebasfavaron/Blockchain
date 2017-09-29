@@ -14,7 +14,7 @@ public class MyLinkedList<S> implements Iterable<S> {
      * @param i, position in the List
      */
     public S get(int i){
-        int index = 0;
+        int index = -1;
         if(i>=length)
             throw new IndexOutOfBoundsException();
         for(S elem : this){

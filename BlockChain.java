@@ -22,7 +22,7 @@ public class BlockChain<T> {
     public void add(T elem){
         if(cadena.length() == 0){
             cadena.add( new Block(elem,"0",new AvlTree(cmp)));
-            cadena.get(0).mine();
+            cadena.get(cadena.length()-1).mine();
         }
         cadena.add(new Block(elem,Integer.toHexString(cadena.get(cadena.length()-1).hashCode()),cadena.get(cadena.length()-1).tree));
     }
@@ -48,7 +48,8 @@ public class BlockChain<T> {
             this.tree = tree;
             this.tree.insert(elem);
             this.prev =new Hexa(prev);
-            this.hash=new Hexa((int) (Math.pow(2,(double)indice.hashCode())*Math.pow(3,nonce.hashCode())*Math.pow(5,tree.hashCode())*Math.pow(7,data.hashCode())*Math.pow(11,prev.hashCode())));
+            this.nonce=0;
+            this.hash=new Hexa((int) (Math.pow(2,(double)indice.hashCode())*Math.pow(5,tree.hashCode())*Math.pow(7,data.hashCode())*Math.pow(11,prev.hashCode())));
             mine();
         }
         public void mine(){
