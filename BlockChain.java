@@ -11,9 +11,9 @@ public class BlockChain<T> {
     private Comparator<T> cmp;
     private Integer amountZeroes;
     public BlockChain(Comparator<T> cmp){
-        index=0;
-        this.cmp=cmp;
-        this.cadena=new ArrayList<>();
+        index = 0;
+        this.cmp = cmp;
+        this.cadena = new ArrayList<>();
     }
     public void setAmountZeroes(Integer amountZeroes){
         this.amountZeroes = amountZeroes;
@@ -21,8 +21,8 @@ public class BlockChain<T> {
 
     public void add(T elem){
         if(cadena.size() == 0){
-            cadena.add( new Block(elem,"0",new AvlTree(cmp)));
-        }else {
+            cadena.add( new Block(elem,"0", new AvlTree<>(cmp)));
+        } else {
             cadena.add(new Block(elem, Integer.toHexString(cadena.get(cadena.size() - 1).hashCode()), cadena.get(cadena.size() - 1).tree));
         }
     }
@@ -42,14 +42,14 @@ public class BlockChain<T> {
         private Hexa hash;
         private AvlTree<T> tree;
 
-        public Block(T elem,String prev,AvlTree tree) {
+        public Block(T elem,String prev,AvlTree<T> tree) {
             this.indice = ++index;
             this.data = elem; //queremos poner al elem directo o un mensaje onda "insert 'elem'"?
             this.tree = tree;
             this.tree.insert(elem);
-            this.prev =new Hexa(prev);
-            this.nonce=0;
-            this.hash=new Hexa((int) (Math.pow(2,(double)indice.hashCode())*Math.pow(5,tree.hashCode())*Math.pow(7,data.hashCode())*Math.pow(11,prev.hashCode())));
+            this.prev = new Hexa(prev);
+            this.nonce = 0;
+            this.hash = new Hexa((int) (Math.pow(2,(double)indice.hashCode())*Math.pow(5,tree.hashCode())*Math.pow(7,data.hashCode())*Math.pow(11,prev.hashCode())));
             mine();
         }
         public void mine(){
