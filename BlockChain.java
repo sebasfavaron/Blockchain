@@ -6,25 +6,25 @@ import java.util.Comparator;
  */
 public class BlockChain<T> {
 
-    private MyLinkedList<Block> cadena;
+    private ArrayList<Block> cadena;
     private int index;
     private Comparator<T> cmp;
     private Integer amountZeroes;
     public BlockChain(Comparator<T> cmp){
         index=0;
         this.cmp=cmp;
-        this.cadena=new MyLinkedList<>();
+        this.cadena=new ArrayList<>();
     }
     public void setAmountZeroes(Integer amountZeroes){
         this.amountZeroes = amountZeroes;
     }
 
     public void add(T elem){
-        if(cadena.length() == 0){
+        if(cadena.size() == 0){
             cadena.add( new Block(elem,"0",new AvlTree(cmp)));
-            cadena.get(cadena.length()-1).mine();
+        }else {
+            cadena.add(new Block(elem, Integer.toHexString(cadena.get(cadena.size() - 1).hashCode()), cadena.get(cadena.size() - 1).tree));
         }
-        cadena.add(new Block(elem,Integer.toHexString(cadena.get(cadena.length()-1).hashCode()),cadena.get(cadena.length()-1).tree));
     }
     public void print(){
         for (Block a:cadena) {
@@ -56,7 +56,7 @@ public class BlockChain<T> {
             //checks if hash starts with the required amount of zeroes, updates it if it doesn't
             while (hash.check(amountZeroes)){
                 nonce++;
-                hash.add(nonce);
+                hash.inc();
             }
         }
         //Calculates the hash
@@ -66,7 +66,7 @@ public class BlockChain<T> {
         public void print(){
             System.out.println("Index = "+ indice);
             System.out.println("Nonce = "+ nonce);
-            System.out.println("Data = "+ datos);
+            System.out.println("Data = "+ data);
             System.out.println("Previous = "+ prev);
             System.out.println("HashCode = "+ hash);
             tree.print();

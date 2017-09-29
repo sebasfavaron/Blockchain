@@ -1,6 +1,3 @@
-import java.util.DoubleSummaryStatistics;
-import java.util.StringJoiner;
-
 /**
  * Created by navi on 23/09/17.
  */
@@ -28,6 +25,11 @@ public class Hexa {
             }
         }
         return true;
+    }
+
+    public String toString(){
+
+        return "HASH= "+hexaNumber.toString();
     }
 
     public void add(String otro){

@@ -40,7 +40,6 @@ public class Main {
             }
         });
         blockChain.setAmountZeroes(2);
-        //blockChain.add(1);
         blockChain.add(1);
         blockChain.add(2);
         blockChain.print();
