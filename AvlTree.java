@@ -86,10 +86,10 @@ public class AvlTree<T> {
         if (node == null)
             return (new AvlNode(key));
 
-        if (cmp.compare(key,node.elem)>0)
-            node.left = insertR(node.left, key);
-        else if (cmp.compare(key,node.elem)<0)
+        if (cmp.compare(key,node.elem)>0)  //key is bigger than node, add it to the right subtree
             node.right = insertR(node.right, key);
+        else if (cmp.compare(key,node.elem)<0) //key is smaller than node, add it to the left subtree
+            node.left = insertR(node.left, key);
         else // Duplicate keys not allowed
             return node;
 
@@ -103,22 +103,23 @@ public class AvlTree<T> {
         int balance = getBalance(node);
 
         // If this node becomes unbalanced, then there
-        // are 4 cases Left Left Case
-        if (balance > 1 && cmp.compare(key,node.elem)>0)
+        // are 4 cases:
+        // Left Left Case
+        if (balance > 1 && cmp.compare(key,node.left.elem)<0) //left subtree bigger than right subtree && new elem smaller than left child
             return rightRotate(node);
 
         // Right Right Case
-        if (balance < -1 && cmp.compare(key,node.elem)<0)
+        if (balance < -1 && cmp.compare(key,node.right.elem)>0) //right subtree bigger than left subtree && new elem bigger than right child
             return leftRotate(node);
 
         // Left Right Case
-        if (balance > 1 && cmp.compare(key,node.elem)>0) {
+        if (balance > 1 && cmp.compare(key,node.left.elem)>0) {//left subtree bigger than right subtree && new elem bigger than left child
             node.left = leftRotate(node.left);
             return rightRotate(node);
         }
 
         // Right Left Case
-        if (balance < -1 && cmp.compare(key,node.elem)<0) {
+        if (balance < -1 && cmp.compare(key,node.right.elem)<0) {//right subtree bigger than left subtree && new elem smaller than right child
             node.right = rightRotate(node.right);
             return leftRotate(node);
         }
@@ -142,10 +143,10 @@ public class AvlTree<T> {
             return node;
 
         if (cmp.compare(key,node.elem)>0) {
-            node.left = removeR(node.left, key);
+            node.right = removeR(node.right, key);
         }
         else if (cmp.compare(key,node.elem)<0) {
-            node.right = removeR(node.right, key);
+            node.left = removeR(node.left, key);
         }
         else {
             if (node.left == null)
@@ -262,6 +263,9 @@ public class AvlTree<T> {
 
             height = 1;
 
+        }
+        public String toString(){
+            return elem.toString();
         }
     }
 }

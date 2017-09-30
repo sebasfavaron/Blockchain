@@ -10,16 +10,17 @@ public class Main {
         AvlTree<Integer> tree = new AvlTree<>(new Comparator<Integer>() {
             @Override
             public int compare(Integer o1, Integer o2) {
-                return o2-o1;
+                return o1-o2;
             }
         });
 
         /* Constructing tree given in the above figure */
         tree.insert(5);
         tree.insert(7);
-        tree.insert(2);
-        tree.insert(4);
         tree.insert(3);
+        tree.insert(4);
+        tree.insert(2);
+        tree.remove(7);
 
 
 
