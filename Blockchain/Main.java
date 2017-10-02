@@ -7,9 +7,16 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[]args){
 
-    	paramsManager(args);
-    	
-    	
+    	//paramsManager(args);
+    	BlockChain<Integer> blockChain = new BlockChain<>(new Comparator<Integer>() {
+			@Override
+			public int compare(Integer o1, Integer o2) {
+				return o1-o2;
+			}
+		});
+    	blockChain.add(1);
+    	blockChain.setAmountZeroes(2);
+
 //    	AvlTree<Integer> tree = new AvlTree<>(new Comparator<Integer>() {
 //            @Override
 //            public int compare(Integer o1, Integer o2) {

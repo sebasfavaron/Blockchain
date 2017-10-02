@@ -40,7 +40,7 @@ public class BlockChain<T> {
 
     public void add(T elem){
         if(cadena.size() == 0){
-            cadena.add( new Block(elem,"0", new AvlTree<>(cmp)));
+            cadena.add(new Block(elem,"0", new AvlTree<>(cmp)));
         } else {
             cadena.add(new Block(elem, Integer.toHexString(cadena.get(cadena.size() - 1).hashCode()), cadena.get(cadena.size() - 1).tree));
         }
@@ -55,7 +55,7 @@ public class BlockChain<T> {
     	}
     	
     	for (Block each: cadena) {
-    		if (!each.hash.hexaNumber.startsWith(zeroes)) {
+    		if (!each.hash.getHexaNumber().startsWith(zeroes)) {
     			return false;
     		}
     		if (!each.prev.getHexaNumber().equals(ref)) {
@@ -97,13 +97,14 @@ public class BlockChain<T> {
         public void mine(){
             //checks if hash starts with the required amount of zeroes, updates it if it doesn't
             while (hash.check(amountZeroes)){
-                nonce++;
                 hash.inc();
             }
+            nonce = hash.getNonce();
+            System.out.println("Found!");
         }
         //Calculates the hash
         public int hashCode(){
-            return hash.intNumber;
+            return hash.getIntNumber();
         }
         public void print(){
             System.out.println("Index = "+ indice);

@@ -2,20 +2,24 @@
  * Created by navi on 23/09/17.
  */
 public class Hexa {
-    public String hexaNumber;
-    public Integer intNumber;
-    public Long aLong;
+    private String hexaNumber;
+    private Integer intNumber;
+    private int nonce;
+    private Long aLong;
 
     public Hexa(Integer a) {
+        nonce = 1;
         intNumber = a;
         hexaNumber = Integer.toHexString(a);
     }
     public Hexa(String a) {
+        nonce = 1;
         hexaNumber = a;
         //intNumber=Integer.parseInt(a, 16) ;
     }
     public void inc() {
-        intNumber++;
+        nonce++;
+        intNumber *= 31; // igual a hacer intNumber = intNumber/(pow(31,nonce-1)*pow(31,nonce)
         hexaNumber = Integer.toHexString(intNumber);
     }
     public boolean check(int zeros) {
@@ -26,6 +30,10 @@ public class Hexa {
             }
         }
         return true;
+    }
+
+    public int getNonce() {
+        return nonce;
     }
 
     public String toString(){
