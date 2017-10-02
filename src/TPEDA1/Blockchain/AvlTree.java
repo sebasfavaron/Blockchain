@@ -66,6 +66,26 @@ public class AvlTree<T> {
         return y;
     }
 
+    public boolean contains(T elem) {
+    	return contains(root, elem);
+
+    }
+    
+    private boolean contains(AvlNode current, T elem) {
+    	
+    	if (current == null) {
+    		return false;
+    	}
+    	
+    	int value = cmp.compare(current.elem, elem);
+    	if (value < 0) {
+    		return contains(current.right, elem);
+    	} else if (value > 0) {
+    		return contains(current.left, elem);
+    	} else {
+    		return true;
+    	}
+    }
     // Get Balance factor of node N
     public int getBalance(AvlNode N) {
         if (N == null)

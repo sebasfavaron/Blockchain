@@ -12,11 +12,29 @@ public class BlockChain<T> {
     private int index;
     private Comparator<T> cmp;
     private Integer amountZeroes;
+    
     public BlockChain(Comparator<T> cmp){
         index = 0;
         this.cmp = cmp;
         this.cadena = new ArrayList<>();
     }
+    
+    public boolean modifyByIndex(int index, T file) {
+    	if (index + 1 > cadena.size()) {
+    		return false;
+    	}
+    	
+    	for (int i = 0; i < cadena.size(); i++) {
+    		if (i == index) {
+    			Block aux = cadena.get(index);
+    			cadena.set(index, new Block(file, aux.prev.getHexaNumber(), aux.tree));
+    		}
+    		
+    	}
+    	
+    	return true;
+    }
+    
     public void setAmountZeroes(Integer amountZeroes){
         this.amountZeroes = amountZeroes;
     }
@@ -28,6 +46,29 @@ public class BlockChain<T> {
             cadena.add(new Block(elem, Integer.toHexString(cadena.get(cadena.size() - 1).hashCode()), cadena.get(cadena.size() - 1).tree));
         }
     }
+    
+    public boolean isValid() {
+    	String ref = "0";
+    	String zeroes = "";
+    	
+    	for (int i = 0; i < amountZeroes; i ++) {
+    		zeroes += "0";
+    	}
+    	
+    	for (Block each: cadena) {
+    		if (!each.hash.hexaNumber.startsWith(zeroes)) {
+    			return false;
+    		}
+    		if (!each.prev.getHexaNumber().equals(ref)) {
+    			return false;
+    		}
+    		ref = each.hash.getHexaNumber();
+    		
+    	}
+    	
+    	return true;
+    }
+    
     public void print(){
         for (Block a:cadena) {
             a.print();
