@@ -1,4 +1,3 @@
-package TPEDA1.Blockchain;
 /**
  * Created by navi on 23/09/17.
  */
@@ -7,19 +6,19 @@ public class Hexa {
     public Integer intNumber;
     public Long aLong;
 
-    public Hexa(Integer a){
+    public Hexa(Integer a) {
         intNumber = a;
         hexaNumber = Integer.toHexString(a);
     }
-    public Hexa(String a){
+    public Hexa(String a) {
         hexaNumber = a;
         //intNumber=Integer.parseInt(a, 16) ;
     }
-    public void inc(){
+    public void inc() {
         intNumber++;
         hexaNumber = Integer.toHexString(intNumber);
     }
-    public boolean check(int zeros){
+    public boolean check(int zeros) {
         char[] number = hexaNumber.toCharArray();
         for (int i=0; i<zeros; i++){
             if (number[i]!='0'){

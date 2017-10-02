@@ -1,5 +1,3 @@
-package TPEDA1.Blockchain;
-
 import java.util.Comparator;
 import java.util.Scanner;
 
