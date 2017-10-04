@@ -37,6 +37,18 @@ public class BlockChain<T> {
     	return true;
     }
     
+    public ArrayList<Integer> getBlockIndexes(int elem) {
+    	ArrayList<Integer> ret = new ArrayList<>();
+    	
+    	for (Block each: cadena) {
+    		if (each.elem.equals(elem)) {
+    			ret.add(each.indice);
+    		}
+    	}
+    	
+    	return ret;
+    }
+    
     public void setAmountZeroes(Integer amountZeroes){
         this.amountZeroes = amountZeroes;
     }
@@ -72,6 +84,7 @@ public class BlockChain<T> {
     }
     
     public void print(){
+    	tree.print();
         for (Block a:cadena) {
             a.print();
             System.out.println("-------------------------");
@@ -85,8 +98,11 @@ public class BlockChain<T> {
     private class Block {
         private Integer indice;
         private Integer nonce;
-        private String datos;
+        //private String datos;
+        //En data se guarda la info de la operacion
         private String data;
+        //En elem se guarda el dato concreto
+        private T elem;
         private Hexa prev;
         private Hexa hash;
         private AvlTree<T> tree;
@@ -97,7 +113,9 @@ public class BlockChain<T> {
             this.indice = ++index;
             this.data = data; //queremos poner al elem directo o un mensaje onda "insert 'elem'"?
             this.tree = tree;
-            this.tree.insert(elem);
+            this.elem = elem;
+            //Por ahora comentado hasta que se decida que hacer
+            //this.tree.insert(elem);
             this.prev = new Hexa(prev);
             this.nonce = 0;
             this.hash = new Hexa((int) (Math.pow(2,(double)indice.hashCode())*Math.pow(5,tree.hashCode())*Math.pow(7,data.hashCode())*Math.pow(11,prev.hashCode())));
@@ -121,7 +139,7 @@ public class BlockChain<T> {
             System.out.println("Data = "+ data);
             System.out.println("Previous = "+ prev);
             System.out.println("HashCode = "+ hash);
-            tree.print();
+            //tree.print();
         }
     }
 }

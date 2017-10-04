@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[]args){
 
-//    	paramsManager(args);
+    	paramsManager(args);
 
     	
 //    	AvlTree<Integer> tree = new AvlTree<>(new Comparator<Integer>() {
@@ -83,17 +83,17 @@ public class Main {
         	String command = commands[0];
         	
 			switch (command) {
-				case "quit" :
+				case "help":
+					System.out.println("");
+				break;
+
+				case "quit":
 					isRunning = false;
 				break;
 				
-				/*case "zeros":
-					if (commands.length != 2 || !commands[1].matches("\\d+")) {
-						System.out.println("Operation failed, please enter a valid command");
-					} else {
-						blockChain.setAmountZeroes(Integer.parseInt(commands[1]));
-					}
-					break;*/
+				case "print state":
+					System.out.println(blockChain);
+				break;
 				
 				case "add":
 					if (commands.length != 2) {
@@ -103,7 +103,7 @@ public class Main {
 						String data = "Insert " + commands[1];
 						// This could be modified to support generic classes
 						if (blockChain.getTree().contains(Integer.parseInt(commands[1]))) {
-							System.out.println("Insertion failed, the avl tree already contains element " + commands[1]);
+							System.out.println("Insertion failed, the avl tree already contains the element " + commands[1]);
 							data += " failed";
 						} else {
 							blockChain.getTree().insert(Integer.parseInt(commands[1]));
@@ -136,9 +136,7 @@ public class Main {
 						if (!blockChain.getTree().contains(Integer.parseInt(commands[1]))) {
 							System.out.println("The avl tree does not contains the element " + commands[1]);
 						} else {
-							// It is necessary to modify the block/blockchain class to support a data field for fast search,
-							// or else use regexp and iterate over the BC which is a bad idea.
-							//System.out.println(blockChain.getBlockIndexes(commands[1]));
+							System.out.println(blockChain.getBlockIndexes(Integer.parseInt(commands[1])));
 							String data = "check " + commands[1] + " - true";
 							blockChain.add(Integer.parseInt(commands[1]), data);
 						}
