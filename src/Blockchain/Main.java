@@ -1,3 +1,5 @@
+package Blockchain;
+
 import java.util.Comparator;
 import java.util.Scanner;
 
@@ -7,9 +9,9 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[]args){
 
-    	paramsManager(args);
+//    	paramsManager(args);
 
-
+    	
 //    	AvlTree<Integer> tree = new AvlTree<>(new Comparator<Integer>() {
 //            @Override
 //            public int compare(Integer o1, Integer o2) {
