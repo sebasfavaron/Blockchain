@@ -1,4 +1,4 @@
-package Blockchain;
+package src.Blockchain;
 
 import org.omg.CORBA.PUBLIC_MEMBER;
 
