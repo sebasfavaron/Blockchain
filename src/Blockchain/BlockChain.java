@@ -1,4 +1,3 @@
-package Blockchain;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -9,10 +8,14 @@ import java.util.Comparator;
 public class BlockChain<T> {
 
     private ArrayList<Block> cadena;
+    private int index;
     private Comparator<T> cmp;
     private Integer amountZeroes;
+    private AvlTree<T> tree;
     
     public BlockChain(Comparator<T> cmp){
+        index = 0;
+        this.tree = new AvlTree<>(cmp);
         this.cmp = cmp;
         this.cadena = new ArrayList<>();
     }
@@ -25,7 +28,7 @@ public class BlockChain<T> {
     	for (int i = 0; i < cadena.size(); i++) {
     		if (i == index) {
     			Block aux = cadena.get(index);
-    			cadena.set(index, new Block(file, aux.prev.getHexaNumber(), aux.tree));
+    			cadena.set(index, new Block(file, aux.prev.getHexaNumber(), aux.tree, aux.data));
     		}
     		
     	}
@@ -37,11 +40,11 @@ public class BlockChain<T> {
         this.amountZeroes = amountZeroes;
     }
 
-    public void add(T elem){
+    public void add(T elem, String data){
         if(cadena.size() == 0){
-            cadena.add(new Block(elem,"0", new AvlTree<>(cmp)));
+            cadena.add(new Block(elem,"0", tree, data));
         } else {
-            cadena.add(new Block(elem, Integer.toHexString(cadena.get(cadena.size() - 1).hashCode()), cadena.get(cadena.size() - 1).tree));
+            cadena.add(new Block(elem, Integer.toHexString(cadena.get(cadena.size() - 1).hashCode()), tree, data));
         }
     }
     
@@ -74,18 +77,24 @@ public class BlockChain<T> {
         }
     }
 
+    public AvlTree<T> getTree() {
+        return tree;
+    }
+
     private class Block {
         private Integer indice;
         private Integer nonce;
         private String datos;
-        private T data;
+        private String data;
         private Hexa prev;
         private Hexa hash;
         private AvlTree<T> tree;
 
-        public Block(T elem,String prev,AvlTree<T> tree) {
-            this.indice = cadena.size();
-            this.data = elem; //queremos poner al elem directo o un mensaje onda "insert 'elem'"?
+        //todo: el arbol esta hard-codeado para insertar solamente. No podemos buscar ni remover. Podriamos hacer una u otra
+        // en base a la data que nos entra (si dice Removed algo hacemos remove)
+        public Block(T elem, String prev, AvlTree<T> tree, String data) {
+            this.indice = ++index;
+            this.data = data; //queremos poner al elem directo o un mensaje onda "insert 'elem'"?
             this.tree = tree;
             this.tree.insert(elem);
             this.prev = new Hexa(prev);

@@ -1,5 +1,3 @@
-package Blockchain;
-
 import org.omg.CORBA.PUBLIC_MEMBER;
 
 import java.util.Comparator;
