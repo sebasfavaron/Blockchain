@@ -7,15 +7,8 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[]args){
 
-    	//paramsManager(args);
-    	BlockChain<Integer> blockChain = new BlockChain<>(new Comparator<Integer>() {
-			@Override
-			public int compare(Integer o1, Integer o2) {
-				return o1-o2;
-			}
-		});
-    	blockChain.add(1);
-    	blockChain.setAmountZeroes(2);
+    	paramsManager(args);
+
 
 //    	AvlTree<Integer> tree = new AvlTree<>(new Comparator<Integer>() {
 //            @Override
@@ -65,25 +58,19 @@ public class Main {
     	
         // Using integer as standard up to new requirements    
         // The data of the block isn't always a string?
-        BlockChain<String> blockChain = new BlockChain<>(new Comparator<String>() {
-            @Override
-            public int compare(String o1, String o2) {
-                return o1.compareTo(o2);
-            }
-        });
+        BlockChain<Integer> blockChain = new BlockChain<>(new Comparator<Integer>() {
+			@Override
+			public int compare(Integer o1, Integer o2) {
+				return o1-o2;
+			}
+		});
         
-        AvlTree<Integer> tree = new AvlTree<>(new Comparator<Integer>() {
-            @Override
-            public int compare(Integer o1, Integer o2) {
-                return o1-o2;
-            }
-        });
-        
-        if (args.length == 2 && args[0] == "zeros") {
+        if (args.length == 2 && args[0].equals("zeros")) {
         	// Check if it is passing a number as the second parameter
         	if (args[1].matches("\\d+")) {
-                blockChain.setAmountZeroes(Integer.parseInt(args[1]));        		
-        	}
+                blockChain.setAmountZeroes(Integer.parseInt(args[1]));
+				System.out.println("Amount of zeros set");
+			}
         }
         
         Scanner sc = new Scanner(System.in);
@@ -98,60 +85,60 @@ public class Main {
 					isRunning = false;
 				break;
 				
-				case "zeros": 
-					if (commands.length != 2) {
-						System.out.println("Opeartion failed, please enter a valid command");
+				/*case "zeros":
+					if (commands.length != 2 || !commands[1].matches("\\d+")) {
+						System.out.println("Operation failed, please enter a valid command");
 					} else {
 						blockChain.setAmountZeroes(Integer.parseInt(commands[1]));
 					}
-				break;
+					break;*/
 				
 				case "add":
 					if (commands.length != 2) {
-						System.out.println("Opeartion failed, please enter a valid command");
+						System.out.println("Operation failed, please enter a valid command");
 					} else {
 						// The data of the block isn't always a string?
 						String data = "Insert " + commands[1];
 						// This could be modified to support generic classes
-						if (tree.contains(Integer.parseInt(commands[1]))) {
+						if (blockChain.getTree().contains(Integer.parseInt(commands[1]))) {
 							System.out.println("Insertion failed, the avl tree already contains element " + commands[1]);
 							data += " failed";
 						} else {
-							tree.insert(Integer.parseInt(commands[1]));
+							blockChain.getTree().insert(Integer.parseInt(commands[1]));
 						}
-						blockChain.add(data);
+						blockChain.add(Integer.parseInt(commands[1]), data);
 					}
 	            break;
 	  
 				case "remove": 
 					if (commands.length != 2) {
-						System.out.println("Opeartion failed, please enter a valid command");
+						System.out.println("Operation failed, please enter a valid command");
 					} else {
 						String data = "Remove " + commands[1];
 						// This could be modified to support generic classes
-						if (!tree.contains(Integer.parseInt(commands[1]))) {
+						if (!blockChain.getTree().contains(Integer.parseInt(commands[1]))) {
 							System.out.println("Insertion failed, the avl tree does not contains the element " + commands[1]);
 							data += " failed";
 						} else {
-							tree.remove(Integer.parseInt(commands[1]));
+							blockChain.getTree().remove(Integer.parseInt(commands[1]));
 						}
-						blockChain.add(data);
+						blockChain.add(Integer.parseInt(commands[1]), data);
 					}
 	            break;
 	  
 				case "lookup": 
 					if (commands.length != 2) {
-						System.out.println("Opeartion failed, please enter a valid command");
+						System.out.println("Operation failed, please enter a valid command");
 					} else {
 						// This could be modified to support generic classes
-						if (!tree.contains(Integer.parseInt(commands[1]))) {
+						if (!blockChain.getTree().contains(Integer.parseInt(commands[1]))) {
 							System.out.println("The avl tree does not contains the element " + commands[1]);
 						} else {
-							// It is necessary to modify the block/blockchain class to suppor a data field for fast search, 
+							// It is necessary to modify the block/blockchain class to support a data field for fast search,
 							// or else use regexp and iterate over the BC which is a bad idea.
 							//System.out.println(blockChain.getBlockIndexes(commands[1]));
 							String data = "check " + commands[1] + " - true";
-							blockChain.add(data);
+							blockChain.add(Integer.parseInt(commands[1]), data);
 						}
 					}	           
 					break;
@@ -162,18 +149,19 @@ public class Main {
 	  
 				case "modify": 
 					if (commands.length < 3) {
-						System.out.println("Opeartion failed, please enter a valid command");
+						System.out.println("Operation failed, please enter a valid command");
 					} else {
 						
 						int index = Integer.parseInt(commands[1]);
-						
-						boolean success = blockChain.modifyByIndex(index, commands[2]);
+
+						// la comento porque no se que seria T file que pide, ya que nuestro T son Integers
+						/*boolean success = blockChain.modifyByIndex(index, commands[2]);
 						
 						if (success) {
 							System.out.println("Block data modified successfully");
 						} else {
 							System.out.println("The blockchain could not reach the required index");
-						}
+						}*/
 					}
 	            break;
 	  
