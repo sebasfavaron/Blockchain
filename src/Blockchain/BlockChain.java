@@ -1,4 +1,4 @@
-package TPEDA1.Blockchain;
+package Blockchain;
 
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -9,25 +9,64 @@ import java.util.Comparator;
 public class BlockChain<T> {
 
     private ArrayList<Block> cadena;
-    private int index;
     private Comparator<T> cmp;
     private Integer amountZeroes;
+    
     public BlockChain(Comparator<T> cmp){
-        index = 0;
         this.cmp = cmp;
         this.cadena = new ArrayList<>();
     }
+    
+    public boolean modifyByIndex(int index, T file) {
+    	if (index + 1 > cadena.size()) {
+    		return false;
+    	}
+    	
+    	for (int i = 0; i < cadena.size(); i++) {
+    		if (i == index) {
+    			Block aux = cadena.get(index);
+    			cadena.set(index, new Block(file, aux.prev.getHexaNumber(), aux.tree));
+    		}
+    		
+    	}
+    	
+    	return true;
+    }
+    
     public void setAmountZeroes(Integer amountZeroes){
         this.amountZeroes = amountZeroes;
     }
 
     public void add(T elem){
         if(cadena.size() == 0){
-            cadena.add( new Block(elem,"0", new AvlTree<>(cmp)));
+            cadena.add(new Block(elem,"0", new AvlTree<>(cmp)));
         } else {
             cadena.add(new Block(elem, Integer.toHexString(cadena.get(cadena.size() - 1).hashCode()), cadena.get(cadena.size() - 1).tree));
         }
     }
+    
+    public boolean isValid() {
+    	String ref = "0";
+    	String zeroes = "";
+    	
+    	for (int i = 0; i < amountZeroes; i ++) {
+    		zeroes += "0";
+    	}
+    	
+    	for (Block each: cadena) {
+    		if (!each.hash.getHexaNumber().startsWith(zeroes)) {
+    			return false;
+    		}
+    		if (!each.prev.getHexaNumber().equals(ref)) {
+    			return false;
+    		}
+    		ref = each.hash.getHexaNumber();
+    		
+    	}
+    	
+    	return true;
+    }
+    
     public void print(){
         for (Block a:cadena) {
             a.print();
@@ -45,7 +84,7 @@ public class BlockChain<T> {
         private AvlTree<T> tree;
 
         public Block(T elem,String prev,AvlTree<T> tree) {
-            this.indice = ++index;
+            this.indice = cadena.size();
             this.data = elem; //queremos poner al elem directo o un mensaje onda "insert 'elem'"?
             this.tree = tree;
             this.tree.insert(elem);
@@ -57,13 +96,14 @@ public class BlockChain<T> {
         public void mine(){
             //checks if hash starts with the required amount of zeroes, updates it if it doesn't
             while (hash.check(amountZeroes)){
-                nonce++;
                 hash.inc();
             }
+            nonce = hash.getNonce();
+            System.out.println("Found!");
         }
         //Calculates the hash
         public int hashCode(){
-            return hash.intNumber;
+            return hash.getIntNumber();
         }
         public void print(){
             System.out.println("Index = "+ indice);

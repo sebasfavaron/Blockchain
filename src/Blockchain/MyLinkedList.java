@@ -1,4 +1,5 @@
-package TPEDA1.Blockchain;
+package Blockchain;
+
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
