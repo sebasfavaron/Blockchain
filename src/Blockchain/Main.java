@@ -164,6 +164,8 @@ public class Main {
 						}*/
 					}
 	            break;
+		    default:
+				System.out.println("Wrong command, please try again");
 	  
 			}    	
         }    	
