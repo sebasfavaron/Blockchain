@@ -89,7 +89,7 @@ public class Main {
 			switch (command) {
 				case "help":
 					System.out.println("Comand list:");
-					System.out.println("help\nquit\nprint state\nadd N°\n remove N°\nlookup N°\nvalidate\n");
+					System.out.println("help\nquit\nprint state\nadd N°\nremove N°\nlookup N°\nvalidate\n");
 				break;
 
 				case "quit":
