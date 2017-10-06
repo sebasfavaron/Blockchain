@@ -7,7 +7,6 @@ public class Hexa {
     private String concatData;
     private String hexaNumber;
     private int nonce;
-    private Long aLong;
 
     public Hexa(String concatData) {
         nonce = 1;
@@ -68,19 +67,4 @@ public class Hexa {
         return this.concatData;
     }
 
-    /*public void add(String otro){
-        Integer aux;
-        aux = Integer.parseInt(otro, 16);
-        intNumber += aux;
-        hexaNumber = Integer.toHexString(intNumber);
-
-    }
-    public void add(Integer otro){
-        intNumber += otro;
-        hexaNumber = Integer.toHexString(intNumber);
-    }
-    public Integer getIntNumber(){
-        return this.intNumber;
-    }
-    */
 }

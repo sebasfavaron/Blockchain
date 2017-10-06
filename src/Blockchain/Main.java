@@ -1,5 +1,7 @@
 package src.Blockchain;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.Comparator;
 import java.util.Scanner;
 
@@ -163,18 +165,23 @@ public class Main {
 					if (commands.length < 3) {
 						System.out.println("Operation failed, please enter a valid command");
 					} else {
-						
-						int index = Integer.parseInt(commands[1]);
+                        {
+                            int index = Integer.parseInt(commands[1]);
 
-						// la comento porque no se que seria T file que pide, ya que nuestro T son Integers
-						/*boolean success = blockChain.modifyByIndex(index, commands[2]);
-						
-						if (success) {
-							System.out.println("Block data modified successfully");
-						} else {
-							System.out.println("The blockchain could not reach the required index");
-						}*/
-					}
+                            File file = new File(commands[2]);
+                            boolean success = false;
+                            try {
+                                success = blockChain.modifyByIndex(index, file);
+                            } catch (FileNotFoundException e) {
+                                System.out.println(e);
+                            }
+                            if (success) {
+                                System.out.println("Block data modified successfully");
+                            } else {
+                                System.out.println("The blockchain could not reach the required index");
+                            }
+                        }
+                    }
 	            break;
 		    default:
 				System.out.println("Wrong command, please try again");

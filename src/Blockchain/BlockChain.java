@@ -2,10 +2,13 @@ package src.Blockchain;
 
 import com.sun.xml.internal.messaging.saaj.util.Base64;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.nio.charset.StandardCharsets;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Scanner;
 
 /**
  * Created by navi on 23/09/17.
@@ -25,19 +28,13 @@ public class BlockChain<T> {
         this.cadena = new ArrayList<>();
     }
     
-    public boolean modifyByIndex(int index, T file) {
+    public boolean modifyByIndex(int index, File file) throws FileNotFoundException {
     	if (index + 1 > cadena.size()) {
     		return false;
     	}
-    	
-    	for (int i = 0; i < cadena.size(); i++) {
-    		if (i == index) {
-    			Block aux = cadena.get(index);
-    			cadena.set(index, new Block(aux.prevHexa, aux.data, aux.elem));
-    		}
-    		
-    	}
-    	
+        Scanner sc = new Scanner(file);
+        cadena.get(index-1).data=sc.nextLine();
+        cadena.get(index-1).rehash();
     	return true;
     }
 
@@ -84,7 +81,7 @@ public class BlockChain<T> {
     	
     	return true;
     }
-    
+
     public void print(){
         for (Block block:cadena) {
             System.out.println(block);
@@ -127,6 +124,11 @@ public class BlockChain<T> {
             }
             nonce = hash.getNonce();
             System.out.println("Found! "+hash.getHexaNumber());
+        }
+
+        public void rehash(){
+            String concatData = indice.toString() + data + prevHexa + "." + nonce.toString(); //le pongo un '.' para reemplazar el nonce mas facil
+            this.hash = new Hexa(concatData);
         }
 
         public String toString(){
