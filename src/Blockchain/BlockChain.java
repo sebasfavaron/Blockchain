@@ -29,7 +29,7 @@ public class BlockChain<T> {
     }
     
     public boolean modifyByIndex(int index, File file) throws FileNotFoundException {
-    	if (index + 1 > cadena.size()) {
+    	if (index > cadena.size()) {
     		return false;
     	}
         Scanner sc = new Scanner(file);
