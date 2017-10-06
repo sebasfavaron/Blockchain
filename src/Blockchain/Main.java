@@ -91,8 +91,9 @@ public class Main {
 					isRunning = false;
 				break;
 				
-				case "print state":
-					System.out.println(blockChain);
+				case "print":
+					if(commands[1].equals("state"))
+						blockChain.print();
 				break;
 				
 				case "add":
@@ -136,6 +137,8 @@ public class Main {
 						if (!blockChain.getTree().contains(Integer.parseInt(commands[1]))) {
 							System.out.println("The avl tree does not contains the element " + commands[1]);
 						} else {
+							// It is necessary to modify the block/blockchain class to support a data field for fast search,
+							// or else use regexp and iterate over the BC which is a bad idea.
 							System.out.println(blockChain.getBlockIndexes(Integer.parseInt(commands[1])));
 							String data = "check " + commands[1] + " - true";
 							blockChain.add(Integer.parseInt(commands[1]), data);
