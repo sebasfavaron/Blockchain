@@ -242,23 +242,23 @@ public class AvlTree<T> {
         }
     }
 
-    public void print() {
-        printRec(this.root);
-        System.out.println();
+    public String print() {
+        return printRec(this.root, "");
     }
 
-    private void printRec(AvlNode tree) {
+    private String printRec(AvlNode tree, String ret) {
         if(tree == null)
-            return;
-        System.out.print(tree.elem);
+            return ret;
+        ret += tree.elem;
         if(tree.left != null || tree.right != null)
-            System.out.print("(");
-        printRec(tree.left);
+            ret += "(";
+        ret += printRec(tree.left, "");
         if(tree.left != null && tree.right != null)
-            System.out.print(",");
-        printRec(tree.right);
+            ret += ",";
+        ret += printRec(tree.right, "");
         if(tree.left != null || tree.right != null)
-            System.out.print(")");
+            ret += ")";
+        return ret;
     }
 
     public int hashCode(){
