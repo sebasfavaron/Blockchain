@@ -74,17 +74,22 @@ public class Main {
 				System.out.println("Amount of zeros set");
 			}
         }
+        System.out.println("To operate the Blockchain you must use the following comands:");
+        System.out.println("Comand list:");
+        System.out.println("help\nquit\nprint state\nadd N°\nremove N°\nlookup N°\nvalidate\n");
+
         
         Scanner sc = new Scanner(System.in);
         
         while(isRunning) {
-        	
+            System.out.println("What do you want to do next?(insert comand)");
         	String[] commands = sc.nextLine().split(" ");
         	String command = commands[0];
         	
 			switch (command) {
 				case "help":
-					System.out.println("");
+					System.out.println("Comand list:");
+					System.out.println("help\nquit\nprint state\nadd N°\n remove N°\nlookup N°\nvalidate\n");
 				break;
 
 				case "quit":
