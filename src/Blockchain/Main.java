@@ -73,7 +73,11 @@ public class Main {
                 blockChain.setAmountZeroes(Integer.parseInt(args[1]));
 				System.out.println("Amount of zeros set");
 			}
+        }else {
+            System.out.println("when you execute the program: ./main zeros N°");
+            return;
         }
+
         System.out.println("To operate the Blockchain you must use the following comands:");
         System.out.println("Comand list:");
         System.out.println("help\nquit\nprint state\nadd N°\nremove N°\nlookup N°\nvalidate\n");
