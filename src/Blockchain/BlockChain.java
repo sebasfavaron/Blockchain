@@ -1,3 +1,4 @@
+package src.Blockchain;
 
 import com.sun.xml.internal.messaging.saaj.util.Base64;
 
@@ -32,12 +33,22 @@ public class BlockChain<T> {
     	for (int i = 0; i < cadena.size(); i++) {
     		if (i == index) {
     			Block aux = cadena.get(index);
-    			cadena.set(index, new Block(aux.prevHexa, aux.data));
+    			cadena.set(index, new Block(aux.prevHexa, aux.data, aux.elem));
     		}
     		
     	}
     	
     	return true;
+    }
+
+    public ArrayList<Integer> getBlockIndexes(int elem) {
+        ArrayList<Integer> ret = new ArrayList<>();
+        for (Block each: cadena) {
+            if (each.elem.equals(elem)) {
+                ret.add(each.indice);
+            }
+        }
+        return ret;
     }
     
     public void setAmountZeroes(Integer amountZeroes){
@@ -46,9 +57,9 @@ public class BlockChain<T> {
 
     public void add(T elem, String data){
         if(cadena.size() == 0){
-            cadena.add(new Block("0", data));
+            cadena.add(new Block("0", data, elem));
         } else {
-            cadena.add(new Block(cadena.get(cadena.size() - 1).hash.getHexaNumber(), data));
+            cadena.add(new Block(cadena.get(cadena.size() - 1).hash.getHexaNumber(), data, elem));
         }
     }
     
@@ -76,9 +87,10 @@ public class BlockChain<T> {
     
     public void print(){
         for (Block block:cadena) {
-            block.print();
+            System.out.println(block);
             System.out.println("-------------------------");
         }
+        System.out.println("Tree: "+tree.print());
     }
 
     public AvlTree<T> getTree() {
@@ -91,9 +103,13 @@ public class BlockChain<T> {
         private String data;
         private String prevHexa;
         private Hexa hash;
+        private T elem;
 
-        public Block(String prevHexa, String data) {
+        public Block(String prevHexa, String data, T elem) {
+            //En elem se guarda el dato concreto
+            this.elem = elem;
             this.indice = ++index;
+            //En data se guarda la info de la operacion
             this.data = data;
             this.prevHexa = prevHexa;
             this.nonce = 0;
@@ -102,7 +118,6 @@ public class BlockChain<T> {
             this.hash = new Hexa(concatData);
             mine();
             System.out.println("ConcatData = "+hash.getConcatData());
-            print();
         }
 
         public void mine(){
@@ -114,13 +129,12 @@ public class BlockChain<T> {
             System.out.println("Found! "+hash.getHexaNumber());
         }
 
-        public void print(){
-            System.out.println("Index = "+ indice);
-            System.out.println("Nonce = "+ nonce);
-            System.out.println("Data = "+ data);
-            System.out.println("Previous = "+ prevHexa);
-            System.out.println("HashCode = "+ hash.getHexaNumber());
-            tree.print();
+        public String toString(){
+            return  "Index = "+ indice.toString() + '\n' + 
+                    "Nonce = "+ nonce.toString() + '\n' +
+                    "Data = "+ data+ '\n' +
+                    "Previous = "+ prevHexa+ '\n' +
+                    "HashCode = "+ hash.getHexaNumber()+ '\n';
         }
     }
 }
