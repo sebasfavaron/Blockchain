@@ -97,8 +97,6 @@ public class AvlTree<T> {
         root=insertR(root,elem);
         this.hash="";
         preOrderHash(root);
-        System.out.println("HASH: "+this.hash);
-        System.out.println("INTEGER: "+Long.parseLong(this.hash, 16));
     }
     private AvlNode insertR(AvlNode node, T key) {
 
@@ -148,11 +146,10 @@ public class AvlTree<T> {
         return node;
     }
 
-    public void remove(T elem){
-        root=removeR(root,elem);
-        this.hash="";
+    public void remove(T elem) {
+        root = removeR(root,elem);
+        this.hash = "";
         preOrderHash(root);
-        System.out.println(this.hash);
     }
 
 
@@ -160,7 +157,7 @@ public class AvlTree<T> {
 
         /* 1.  Perform the normal BST delete */
         if (node == null)
-            return node;
+            return null;
 
         if (cmp.compare(key,node.elem)>0) {
             node.right = removeR(node.right, key);
@@ -243,6 +240,8 @@ public class AvlTree<T> {
     }
 
     public String print() {
+        if(this.root == null)
+            return "empty";
         return printRec(this.root, "");
     }
 

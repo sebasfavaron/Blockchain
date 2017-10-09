@@ -69,32 +69,31 @@ public class Main {
 			}
 		});
         
-        if (args.length == 2 && args[0].equals("zeros")) {
+        if (args.length == 2 && args[0].equals("zeroes")) {
         	// Check if it is passing a number as the second parameter
         	if (args[1].matches("\\d+")) {
                 blockChain.setAmountZeroes(Integer.parseInt(args[1]));
-				System.out.println("Amount of zeros set");
+				System.out.println("Amount of zeroes ("+ args[1] +") set");
 			}
         }else {
-            System.out.println("when you execute the program: ./main zeros N°");
+            System.out.println("Please execute the program in the following format, where N° is the amount of zeroes: ./main zeroes N°");
             return;
         }
 
-        System.out.println("To operate the Blockchain you must use the following comands:");
-        System.out.println("Comand list:");
+        System.out.println("To operate the Blockchain you must use the following commands:");
         System.out.println("help\nquit\nprint state\nadd N°\nremove N°\nlookup N°\nvalidate\n");
 
         
         Scanner sc = new Scanner(System.in);
         
         while(isRunning) {
-            System.out.println("What do you want to do next?(insert comand)");
+            System.out.println("What do you want to do next?(insert command)");
         	String[] commands = sc.nextLine().split(" ");
         	String command = commands[0];
         	
 			switch (command) {
 				case "help":
-					System.out.println("Comand list:");
+					System.out.println("Command list:");
 					System.out.println("help\nquit\nprint state\nadd N°\nremove N°\nlookup N°\nvalidate\n");
 				break;
 
@@ -131,7 +130,7 @@ public class Main {
 						String data = "Remove " + commands[1];
 						// This could be modified to support generic classes
 						if (!blockChain.getTree().contains(Integer.parseInt(commands[1]))) {
-							System.out.println("Insertion failed, the avl tree does not contains the element " + commands[1]);
+							System.out.println("Remove failed, the avl tree does not contain the element " + commands[1]);
 							data += " failed";
 						} else {
 							blockChain.getTree().remove(Integer.parseInt(commands[1]));

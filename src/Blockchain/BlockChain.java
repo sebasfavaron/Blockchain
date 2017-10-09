@@ -4,7 +4,10 @@ import com.sun.xml.internal.messaging.saaj.util.Base64;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -32,10 +35,13 @@ public class BlockChain<T> {
     	if (index > cadena.size()) {
     		return false;
     	}
-        Scanner sc = new Scanner(file);
-        cadena.get(index-1).data=sc.nextLine();
+    	try {
+            cadena.get(index - 1).data = new String(Files.readAllBytes(Paths.get(file.getAbsolutePath())));
+        } catch (IOException e) {
+            System.out.println(e);
+        }
         cadena.get(index-1).rehash();
-    	return true;
+        return true;
     }
 
     public ArrayList<Integer> getBlockIndexes(int elem) {
@@ -76,7 +82,6 @@ public class BlockChain<T> {
     			return false;
     		}
     		ref = block.hash.getHexaNumber();
-    		
     	}
     	
     	return true;
@@ -84,8 +89,8 @@ public class BlockChain<T> {
 
     public void print(){
         for (Block block:cadena) {
-            System.out.println(block);
             System.out.println("-------------------------");
+            System.out.println(block);
         }
         System.out.println("Tree: "+tree.print());
     }
@@ -111,10 +116,8 @@ public class BlockChain<T> {
             this.prevHexa = prevHexa;
             this.nonce = 0;
             String concatData = indice.toString() + data + prevHexa + "." + nonce.toString(); //le pongo un '.' para reemplazar el nonce mas facil
-            System.out.println("ConcatData = "+concatData);
             this.hash = new Hexa(concatData);
             mine();
-            System.out.println("ConcatData = "+hash.getConcatData());
         }
 
         public void mine(){
@@ -123,7 +126,6 @@ public class BlockChain<T> {
                 hash.inc();
             }
             nonce = hash.getNonce();
-            System.out.println("Found! "+hash.getHexaNumber());
         }
 
         public void rehash(){
