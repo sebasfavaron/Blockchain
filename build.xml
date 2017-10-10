@@ -1,12 +1,12 @@
-<project name="HelloWorld" basedir="." default="main">
+<project name="Blockchain" basedir="." default="jar">
 
     <property name="src.dir"     value="src"/>
 
     <property name="build.dir"   value="build"/>
     <property name="classes.dir" value="${build.dir}/classes"/>
-    <property name="jar.dir"     value="${build.dir}/jar"/>
+    <property name="jar.dir"     value="."/>
 
-    <property name="main-class"  value="oata.HelloWorld"/>
+    <property name="main-class"  value="src.Blockchain.Main"/>
 
 
 
@@ -29,7 +29,11 @@
     </target>
 
     <target name="run" depends="jar">
-        <java jar="${jar.dir}/${ant.project.name}.jar" fork="true"/>
+        <java classname="${main-class}" fork="true" >
+            <classpath>
+               <path location="${jar.dir}/${ant.project.name}.jar" />
+            </classpath>
+        </java>
     </target>
 
     <target name="clean-build" depends="clean,jar"/>
