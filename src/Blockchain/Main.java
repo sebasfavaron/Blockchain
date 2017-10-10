@@ -93,16 +93,27 @@ public class Main {
         	
 			switch (command) {
 				case "help":
-					System.out.println("Command list:");
-					System.out.println("help\nquit\nprint state\nadd N°\nremove N°\nlookup N°\nvalidate\n");
+					if (commands.length != 1) {
+						System.out.println("Operation failed, please enter a valid command");
+					}else {
+						System.out.println("Command list:");
+						System.out.println("help\nquit\nprint state\nadd N°\nremove N°\nlookup N°\nvalidate\n");
+					}
 				break;
 
 				case "quit":
-					isRunning = false;
+					if (commands.length != 1) {
+						System.out.println("Operation failed, please enter a valid command");
+					}else {
+						isRunning = false;
+					}
 				break;
 				
 				case "print":
-					if(commands[1].equals("state"))
+					if(commands.length<=1 || !commands[1].equals("state")){
+						System.out.println("Operation failed, please enter a valid command");
+					}
+					else
 						blockChain.print();
 				break;
 				
@@ -156,8 +167,12 @@ public class Main {
 					}	           
 					break;
 	  
-				case "validate": 
-					System.out.println(blockChain.isValid());
+				case "validate":
+					if (commands.length != 1) {
+						System.out.println("Operation failed, please enter a valid command");
+					}else {
+						System.out.println(blockChain.isValid());
+					}
 	            break;
 	  
 				case "modify": 
