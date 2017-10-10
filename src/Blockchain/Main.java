@@ -90,7 +90,7 @@ public class Main {
 						} else {
 							blockChain.getTree().insert(Integer.parseInt(commands[1]));
 						}
-						blockChain.add(Integer.parseInt(commands[1]), data);
+						blockChain.add(Integer.parseInt(commands[1]), data, blockChain.getTree().clone());
 					}
 	            break;
 	  
@@ -106,7 +106,7 @@ public class Main {
 						} else {
 							blockChain.getTree().remove(Integer.parseInt(commands[1]));
 						}
-						blockChain.add(Integer.parseInt(commands[1]), data);
+						blockChain.add(Integer.parseInt(commands[1]), data, blockChain.getTree().clone());
 					}
 	            break;
 	  
@@ -122,7 +122,7 @@ public class Main {
 							// or else use regexp and iterate over the BC which is a bad idea.
 							System.out.println(blockChain.getBlockIndexes(Integer.parseInt(commands[1])));
 							String data = "check " + commands[1] + " - true";
-							blockChain.add(Integer.parseInt(commands[1]), data);
+							blockChain.add(Integer.parseInt(commands[1]), data, blockChain.getTree().clone());
 						}
 					}	           
 					break;
@@ -160,7 +160,7 @@ public class Main {
 		    default:
 				System.out.println("Wrong command, please try again");
 	  
-			}    	
+			}
         }    	
     }
 }

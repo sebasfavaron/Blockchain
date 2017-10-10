@@ -260,6 +260,22 @@ public class AvlTree<T> {
         return ret;
     }
 
+    public AvlTree<T> clone() {
+        AvlTree<T> tree = new AvlTree<>(cmp);
+        tree.root = cloneR(root);
+        return tree;
+    }
+
+    public AvlNode cloneR(AvlNode tree) {
+        AvlNode left = null;
+        AvlNode right = null;
+        if(tree.left != null)
+            left = cloneR(tree.left);
+        if(tree.right != null)
+            right = cloneR(tree.right);
+        return new AvlNode(tree.elem, left, right);
+    }
+
     public int hashCode(){
         return Integer.parseInt(this.hash, 16);
     }
@@ -267,21 +283,21 @@ public class AvlTree<T> {
     private class AvlNode {
 
         AvlNode left, right;
-
         T elem;
-
         int height;
 
-        public AvlNode(T n) {
-
+        public AvlNode(T elem) {
             left = null;
-
             right = null;
-
-            elem = n;
-
+            this.elem = elem;
             height = 1;
+        }
 
+        public AvlNode(T elem, AvlNode left, AvlNode right) {
+            this.left = left;
+            this.right = right;
+            this.elem = elem;
+            height = 1;
         }
         public String toString(){
             return elem.toString();

@@ -58,11 +58,11 @@ public class BlockChain<T> {
         this.amountZeroes = amountZeroes;
     }
 
-    public void add(T elem, String data){
+    public void add(T elem, String data, AvlTree<T> tree){
         if(cadena.size() == 0){
-            cadena.add(new Block("0", data, elem));
+            cadena.add(new Block("0", data, elem, tree));
         } else {
-            cadena.add(new Block(cadena.get(cadena.size() - 1).hash.getHexaNumber(), data, elem));
+            cadena.add(new Block(cadena.get(cadena.size() - 1).hash.getHexaNumber(), data, elem, tree));
         }
     }
     
@@ -105,9 +105,10 @@ public class BlockChain<T> {
         private String data;
         private String prevHexa;
         private Hexa hash;
+        private AvlTree<T> tree;
         private T elem;
 
-        public Block(String prevHexa, String data, T elem) {
+        public Block(String prevHexa, String data, T elem, AvlTree<T> tree) {
             //En elem se guarda el dato concreto
             this.elem = elem;
             this.indice = ++index;
@@ -115,6 +116,7 @@ public class BlockChain<T> {
             this.data = data;
             this.prevHexa = prevHexa;
             this.nonce = 0;
+            this.tree = tree;
             String concatData = indice.toString() + data + prevHexa + "." + nonce.toString(); //le pongo un '.' para reemplazar el nonce mas facil
             this.hash = new Hexa(concatData);
             mine();
@@ -133,12 +135,17 @@ public class BlockChain<T> {
             this.hash = new Hexa(concatData);
         }
 
+        public AvlTree<T> getTree() {
+            return tree;
+        }
+
         public String toString(){
             return  "Index = "+ indice.toString() + '\n' + 
                     "Nonce = "+ nonce.toString() + '\n' +
                     "Data = "+ data+ '\n' +
                     "Previous = "+ prevHexa+ '\n' +
-                    "HashCode = "+ hash.getHexaNumber()+ '\n';
+                    "HashCode = "+ hash.getHexaNumber()+ '\n' +
+                    "Tree = "+ tree.print();
         }
     }
 }
