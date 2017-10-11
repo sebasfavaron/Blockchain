@@ -1,4 +1,6 @@
-package src.Blockchain;
+package src;
+
+import src.Blockchain.BlockChain;
 
 import java.io.File;
 import java.io.FileNotFoundException;

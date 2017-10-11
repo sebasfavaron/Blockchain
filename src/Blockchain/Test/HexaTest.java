@@ -1,4 +1,4 @@
-package src.Blockchain;
+package src.Blockchain.Test;
 
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
@@ -7,43 +7,43 @@ import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
-import static org.junit.Assert.*;
+import src.Blockchain.Hexa;
 
 @RunWith(Arquillian.class)
-public class BlockChainTest {
+public class HexaTest {
     @Test
-    public void modifyByIndex() throws Exception {
+    public void inc() throws Exception {
     }
 
     @Test
-    public void getBlockIndexes() throws Exception {
+    public void check() throws Exception {
     }
 
     @Test
-    public void setAmountZeroes() throws Exception {
+    public void sha256() throws Exception {
     }
 
     @Test
-    public void add() throws Exception {
+    public void getNonce() throws Exception {
     }
 
     @Test
-    public void isValid() throws Exception {
+    public String toString() {
+        return null;
     }
 
     @Test
-    public void print() throws Exception {
+    public void getHexaNumber() throws Exception {
     }
 
     @Test
-    public void getTree() throws Exception {
+    public void getConcatData() throws Exception {
     }
 
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
-                .addClass(BlockChain.class)
+                .addClass(Hexa.class)
                 .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
     }
 
