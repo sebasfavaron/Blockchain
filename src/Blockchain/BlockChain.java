@@ -13,7 +13,9 @@ import java.util.Comparator;
 import java.util.Scanner;
 
 /**
- * Created by navi on 23/09/17.
+ * This class is an implementation of a Block Chain which is a is a continuously growing list of records, called blocks,
+ * which are linked and secured using cryptography.
+ * Each block typically contains a hash pointer as a link to a previous block where each block saves a data of type T
  */
 public class BlockChain<T> {
 
@@ -31,10 +33,10 @@ public class BlockChain<T> {
     }
 
     /**
-     *
-     * @param index
-     * @param file
-     * @return
+     * This method is used to modify an specific Block by his index with the data in the file
+     * @param index Index of the block that you want to modify
+     * @param file  File where to take the data
+     * @return Returns true if the block data was successfully changed else false
      * @throws FileNotFoundException
      */
     public boolean modifyByIndex(int index, File file) throws FileNotFoundException {
@@ -51,7 +53,7 @@ public class BlockChain<T> {
     }
 
     /**
-     *
+     *  (gabriel completar)
      * @param elem
      * @return
      */
@@ -66,8 +68,8 @@ public class BlockChain<T> {
     }
 
     /**
-     *
-     * @param amountZeroes
+     * This method is used to set the amount of zeros that his hexa has to have at the beginning
+     * @param amountZeroes Number of zeros to set
      */
     public void setAmountZeroes(Integer amountZeroes){
         this.amountZeroes = amountZeroes;
@@ -82,8 +84,8 @@ public class BlockChain<T> {
     }
 
     /**
-     *
-     * @return
+     *  This method is used to check if all block's hashes have the amount of zeros requested
+     * @return True if has the amount of zeros requested else false
      */
     public boolean isValid() {
     	String ref = "0";
@@ -118,8 +120,8 @@ public class BlockChain<T> {
     }
 
     /**
-     *
-     * @return
+     *  Return the AvlTree created
+     * @return AvlTree
      */
     public AvlTree<T> getTree() {
         return tree;
