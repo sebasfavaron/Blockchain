@@ -1,6 +1,6 @@
 package src;
 
-import src.Blockchain.Blockchain;
+import src.Blockchain.BlockChain;
 import src.Blockchain.AvlTree;
 
 import java.io.File;
