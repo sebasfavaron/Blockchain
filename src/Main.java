@@ -223,6 +223,7 @@ public class Main {
 			for(int j=7; j<blockLines.length; j++) {
 				blockData += blockLines[j];
 			}
+			bc.resetChain();
 			bc.add(elem, blockData, blockTree, nonce, hexa, prevHexa);
 		}
 		bc.setProperties(index, amountZeroes, tree);
