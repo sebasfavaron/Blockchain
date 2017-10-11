@@ -112,6 +112,10 @@ public class BlockChain<T> {
         this.tree = tree;
     }
 
+    public void resetChain() {
+        chain = new ArrayList<>();
+    }
+    
     private class Block {
         private Integer indice;
         private Integer nonce;
