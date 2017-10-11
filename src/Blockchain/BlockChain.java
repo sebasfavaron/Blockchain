@@ -1,6 +1,5 @@
 package src.Blockchain;
 
-import com.sun.xml.internal.messaging.saaj.util.Base64;
 
 import java.io.File;
 import java.io.FileNotFoundException;
