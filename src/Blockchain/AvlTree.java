@@ -7,7 +7,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Created by navi on 23/09/17.
+ * This class is a binary tree-type data structure which has the function of auto balancing in insertions and removals
+ * ensuring a temporal complexity of at least log(N) for searches additions and removals
  */
 public class AvlTree<T> {
     private AvlNode root;
@@ -19,9 +20,11 @@ public class AvlTree<T> {
     }
 
     /**
-     *
-     * @param N
-     * @return
+     * This method is used to determine the height of each node. Height is measured in a bottom-top method, leaf nodes
+     * have a height of 0 all other nodes are 1 unit higher than their highest child node.
+     * @param N node who's height is being determined.
+     * @return 0 if the node is a leaf (null node), else returns the height.
+     * @author
      */
     public int height(AvlNode N) {
         if (N == null)
@@ -31,21 +34,17 @@ public class AvlTree<T> {
     }
 
     /**
-     *
-     * @param a
-     * @param b
-     * @return
+     * This method is used to get maximum of two integers.
+     * @param a Integer being compared.
+     * @param b Integer being compared.
+     * @return a if a is bigger than b, else returns b.
+     * @author
      */
     // A utility function to get maximum of two integers
     private int max(int a, int b) {
         return (a > b) ? a : b;
     }
 
-    /**
-     *
-     * @param y
-     * @return
-     */
     // A utility function to right rotate subtree rooted with y
     // See the diagram given above.
     private AvlNode rightRotate(AvlNode y) {
@@ -88,9 +87,10 @@ public class AvlTree<T> {
     }
 
     /**
-     *
-     * @param elem
-     * @return
+     * This method is used to determine if a given element is contained in the data-structure.
+     * @param elem generic element that is being consulted.
+     * @return true if it is contained, else false.
+     * @author
      */
     public boolean contains(T elem) {
     	return contains(root, elem);
@@ -119,10 +119,16 @@ public class AvlTree<T> {
     	}
     }
 
+    public Comparator<T> getCmp() {
+        return cmp;
+    }
+
     /**
-     *
-     * @param N
-     * @return
+     * This method is used to assign a given node its balance value. The balance value is used to ensure that every node
+     * in the data-structure mantains the balancing criteria.
+     * @param N node being consulted.
+     * @return an int that represents the balance value.
+     * @author
      */
     // Get Balance factor of node N
     public int getBalance(AvlNode N) {
@@ -133,8 +139,9 @@ public class AvlTree<T> {
     }
 
     /**
-     *
-     * @param elem
+     * This method is used to insert a generic element into the data-structure.
+     * @param elem generic element being inserted.
+     * @author
      */
     public void insert(T elem){
         root=insertR(root,elem);
@@ -190,8 +197,9 @@ public class AvlTree<T> {
     }
 
     /**
-     *
-     * @param elem
+     * This method is used to remove a generic element into the data-structure.
+     * @param elem generic element being removed.
+     * @author
      */
     public void remove(T elem) {
         root = removeR(root,elem);
@@ -279,8 +287,9 @@ public class AvlTree<T> {
     }
 
     /**
-     *
-     * @param node
+     * This method is used to assign the data-structure its hashcode.
+     * @param node root of tree.
+     * @author
      */
     public void preOrderHash(AvlNode node) {
         if (node != null) {
@@ -292,8 +301,9 @@ public class AvlTree<T> {
     }
 
     /**
-     *
-     * @return
+     * This method is used to print the current state of the data-structure
+     * @return "empty" if no nodes have been instantiated, else returns the data-structure's state
+     * @author
      */
     public String print() {
         if(this.root == null)
@@ -323,9 +333,10 @@ public class AvlTree<T> {
     }
 
     /**
-     *
+     * TODO TUYO SEBAS
      * @param tree
      * @return
+     * @author
      */
     public AvlNode cloneR(AvlNode tree) {
         AvlNode left = null;
@@ -338,8 +349,9 @@ public class AvlTree<T> {
     }
 
     /**
-     *
+     * This method is used to consult the hashcode of the data-structure.
      * @return
+     * @author
      */
     public int hashCode(){
         return Integer.parseInt(this.hash, 16);
