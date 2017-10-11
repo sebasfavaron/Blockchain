@@ -1,6 +1,5 @@
 package src.Blockchain;
 
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -10,6 +9,7 @@ import java.nio.file.Paths;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -17,35 +17,33 @@ import java.util.Scanner;
  */
 public class BlockChain<T> {
 
-    private ArrayList<Block> cadena;
-    private int index;
-    private Comparator<T> cmp;
+    private Integer index;
     private Integer amountZeroes;
     private AvlTree<T> tree;
+    private List<Block> chain;
 
     public BlockChain(Comparator<T> cmp){
         index = 0;
         this.tree = new AvlTree<>(cmp);
-        this.cmp = cmp;
-        this.cadena = new ArrayList<>();
+        this.chain = new ArrayList<>();
     }
     
     public boolean modifyByIndex(int index, File file) throws FileNotFoundException {
-    	if (index > cadena.size()) {
+    	if (index > chain.size()) {
     		return false;
     	}
     	try {
-            cadena.get(index - 1).data = new String(Files.readAllBytes(Paths.get(file.getAbsolutePath())));
+            chain.get(index - 1).data = new String(Files.readAllBytes(Paths.get(file.getAbsolutePath())));
         } catch (IOException e) {
             System.out.println(e);
         }
-        cadena.get(index-1).rehash();
+        chain.get(index-1).rehash();
         return true;
     }
 
     public ArrayList<Integer> getBlockIndexes(int elem) {
         ArrayList<Integer> ret = new ArrayList<>();
-        for (Block each: cadena) {
+        for (Block each: chain) {
             if (each.elem.equals(elem)) {
                 ret.add(each.indice);
             }
@@ -58,13 +56,21 @@ public class BlockChain<T> {
     }
 
     public void add(T elem, String data, AvlTree<T> tree){
-        if(cadena.size() == 0){
-            cadena.add(new Block("0", data, elem, tree));
+        if(chain.size() == 0){
+            chain.add(new Block("0", data, elem, tree));
         } else {
-            cadena.add(new Block(cadena.get(cadena.size() - 1).hash.getHexaNumber(), data, elem, tree));
+            chain.add(new Block(chain.get(chain.size() - 1).hash.getHexaNumber(), data, elem, tree));
         }
     }
-    
+
+    public void add(T elem, String data, AvlTree<T> tree, Integer nonce, String hexa, String prevHexa){
+        if(chain.size() == 0){
+            chain.add(new Block("0", data, elem, tree, nonce, hexa));
+        } else {
+            chain.add(new Block(prevHexa, data, elem, tree, nonce, hexa));
+        }
+    }
+
     public boolean isValid() {
     	String ref = "0";
     	String zeroes = "";
@@ -73,7 +79,7 @@ public class BlockChain<T> {
     		zeroes += "0";
     	}
     	
-    	for (Block block: cadena) {
+    	for (Block block: chain) {
     		if (!block.hash.getHexaNumber().startsWith(zeroes)) {
     			return false;
     		}
@@ -86,16 +92,24 @@ public class BlockChain<T> {
     	return true;
     }
 
-    public void print(){
-        for (Block block:cadena) {
-            System.out.println("-------------------------");
-            System.out.println(block);
+    public String toString() {
+        StringBuilder ret = new StringBuilder();
+        for(Block block : chain) {
+            ret.append(block.toString()).append("-------------------------\n");
         }
-        System.out.println("Tree: "+tree.print());
+        ret.append("Index: "+index+"\n").append("AmountZeroes: "+amountZeroes+"\n").append("Tree: " + tree.print());
+        return ret.toString();
     }
 
     public AvlTree<T> getTree() {
         return tree;
+    }
+
+    // Overwrites all previous data
+    public void setProperties(Integer index, Integer amountZeroes, AvlTree<T> tree) {
+        this.index = index;
+        this.amountZeroes = amountZeroes;
+        this.tree = tree;
     }
 
     private class Block {
@@ -108,17 +122,27 @@ public class BlockChain<T> {
         private T elem;
 
         public Block(String prevHexa, String data, T elem, AvlTree<T> tree) {
-            //En elem se guarda el dato concreto
             this.elem = elem;
             this.indice = ++index;
-            //En data se guarda la info de la operacion
+            //Data stores the type of operation performed
             this.data = data;
             this.prevHexa = prevHexa;
-            this.nonce = 0;
             this.tree = tree;
+            this.nonce = 0;
             String concatData = indice.toString() + data + prevHexa + "." + nonce.toString(); //le pongo un '.' para reemplazar el nonce mas facil
             this.hash = new Hexa(concatData);
             mine();
+        }
+
+        public Block(String prevHexa, String data, T elem, AvlTree<T> tree, Integer nonce, String hexa) {
+            this.prevHexa = prevHexa;
+            //Data stores the type of operation performed
+            this.data = data;
+            this.elem = elem;
+            this.tree = tree;
+            this.nonce = nonce;
+            this.hash = new Hexa(hexa, nonce);
+            this.indice = ++index;
         }
 
         public void mine(){
@@ -139,12 +163,13 @@ public class BlockChain<T> {
         }
 
         public String toString(){
-            return  "Index = "+ indice.toString() + '\n' + 
-                    "Nonce = "+ nonce.toString() + '\n' +
-                    "Data = "+ data+ '\n' +
-                    "Previous = "+ prevHexa+ '\n' +
-                    "HashCode = "+ hash.getHexaNumber()+ '\n' +
-                    "Tree = "+ tree.print();
+            return "Index: "+ indice.toString() + '\n' +
+                   "Nonce: "+ nonce.toString() + '\n' +
+                   "Tree: "+ tree.print()+ '\n' +
+                   "Previous: "+ prevHexa+ '\n' +
+                   "HashCode: "+ hash.getHexaNumber()+ '\n' +
+                   "Elem: "+ elem.toString() + '\n' +
+                   "Data: "+ data + '\n';
         }
     }
 }
