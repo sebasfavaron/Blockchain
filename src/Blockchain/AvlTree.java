@@ -86,6 +86,7 @@ public class AvlTree<T> {
     		return true;
     	}
     }
+
     // Get Balance factor of node N
     public int getBalance(AvlNode N) {
         if (N == null)
@@ -93,11 +94,17 @@ public class AvlTree<T> {
 
         return height(N.left) - height(N.right);
     }
+
+    public Comparator<T> getCmp() {
+        return cmp;
+    }
+
     public void insert(T elem){
         root=insertR(root,elem);
         this.hash="";
         preOrderHash(root);
     }
+
     private AvlNode insertR(AvlNode node, T key) {
 
         /* 1.  Perform the normal BST insertion */
@@ -239,22 +246,30 @@ public class AvlTree<T> {
         }
     }
 
+    // Prints tree in one line. The format is elem(leftNode,rightNode) and if there is only one node: elem(leftNode l) or elem(rightNode r)
     public String print() {
         if(this.root == null)
             return "empty";
-        return printRec(this.root, "");
+        return printRec(this.root);
     }
 
-    private String printRec(AvlNode tree, String ret) {
+    private String printRec(AvlNode tree) {
+        String ret = "";
         if(tree == null)
             return ret;
         ret += tree.elem;
+        String left = printRec(tree.left);
+        String right = printRec(tree.right);
         if(tree.left != null || tree.right != null)
             ret += "(";
-        ret += printRec(tree.left, "");
-        if(tree.left != null && tree.right != null)
+        ret += left;
+        if(!left.equals("") && right.equals(""))
+            ret += "l";
+        else if(!left.equals("") && !right.equals(""))
             ret += ",";
-        ret += printRec(tree.right, "");
+        ret += right;
+        if(!right.equals("") && left.equals(""))
+            ret += "r";
         if(tree.left != null || tree.right != null)
             ret += ")";
         return ret;
@@ -266,7 +281,9 @@ public class AvlTree<T> {
         return tree;
     }
 
-    public AvlNode cloneR(AvlNode tree) {
+    private AvlNode cloneR(AvlNode tree) {
+        if(tree == null)
+            return null;
         AvlNode left = null;
         AvlNode right = null;
         if(tree.left != null)
@@ -278,6 +295,56 @@ public class AvlTree<T> {
 
     public int hashCode(){
         return Integer.parseInt(this.hash, 16);
+    }
+
+    // Generates a tree of integers from a string
+    public AvlTree<Integer> load(String s, Comparator<Integer> cmp) {
+        AvlTree<Integer> tree = new AvlTree<>(cmp);
+        tree.root = loadR(s);
+        return tree;
+    }
+
+    private AvlTree<Integer>.AvlNode loadR(String s) {
+        if(s.length() <= 0)
+            return null;
+        AvlTree<Integer>.AvlNode left = null, right = null;
+        if(s.contains("(")) {
+            int commaIndex = commaSearch(s);
+            if (commaIndex == -1) {
+                String child = s.substring(s.indexOf('(')+1, s.indexOf(')'));
+                if (child.charAt(child.length() - 1) == 'l')
+                    left = loadR(child.substring(0,child.length()-1));
+                else
+                    right = loadR(child.substring(0,child.length()-1));
+            }
+            else {
+                String lChild = s.substring(s.indexOf('(')+1,commaIndex);
+                String rChild = s.substring(commaIndex+1, s.lastIndexOf(')'));
+                left = loadR(lChild);
+                right = loadR(rChild);
+            }
+        }
+        int parenIndex = s.indexOf('(');
+        int elem = Integer.parseInt(s.substring(0,parenIndex == -1? s.length() : parenIndex));
+        AvlTree<Integer>.AvlNode node = new AvlTree<Integer>.AvlNode(elem, left, right);
+        return node;
+    }
+
+    //Searches for the comma dividing the greater sons in the tree represented in s
+    private int commaSearch(String s) {
+        int parenthesisWeight = 0;
+        char[] c = s.toCharArray();
+        for(int i=0; i<s.length(); i++) {
+            // weight of 1 means the index is looking at the first children
+            // (ex: 4(2(1),5) weight is 1 when looking at the 2, the comma and 5)
+            if(parenthesisWeight == 1 && c[i]==',')
+                return i;
+            if(c[i] == '(')
+                parenthesisWeight++;
+            if(c[i] == ')')
+                parenthesisWeight--;
+        }
+        return -1;
     }
 
     private class AvlNode {
