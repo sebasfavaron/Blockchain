@@ -1,4 +1,4 @@
-package src.Blockchain;
+package Blockchain;
 
 import java.util.ArrayList;
 import java.util.Comparator;

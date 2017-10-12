@@ -1,4 +1,4 @@
-package src.Blockchain;
+package Blockchain;
 
 /**
  * Created by navi on 23/09/17.
