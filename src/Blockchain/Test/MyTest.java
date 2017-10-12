@@ -27,5 +27,8 @@ public class MyTest {
     public void insertTest(){
         avlTree.insert(1);
         assertEquals(true,avlTree.contains(1));
+        avlTree.insert(2);
+        avlTree.insert(3);
+        assertEquals("2(1,3)",avlTree.print());
     }
 }
