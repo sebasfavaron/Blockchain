@@ -216,11 +216,16 @@ public class BlockChain<T> {
             this.concatData = concatData;
             hexaNumber = sha256(concatData);
         }
+        
+        //For the load operation
+        public Hexa(String hexaNumber, Integer nonce) {
+            this.hexaNumber = hexaNumber;
+            this.nonce = nonce;
+        }
 
         public void inc() {
             nonce++;
-            // Como el nonce esta al final de concatData, justo despues de un '.',
-            // lo siguiente corta el nonce anterior y concatena ahi el nuevo nonce
+            // To replace nonce just replace what's after the '.' with the new nonce
             concatData = concatData.substring(0, concatData.lastIndexOf(".") + 1) + nonce;
             hexaNumber = sha256(concatData);
         }
