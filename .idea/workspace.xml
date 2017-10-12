@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="930ae407-b0d8-4b86-acc9-60505ac48672" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Blockchain/Test/AvlTreeTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Blockchain/Test/BlockChainTest.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/Blockchain/Test/HexaTest.java" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Blockchain/Test/MyTest.java" afterPath="$PROJECT_DIR$/src/Blockchain/Test/MyTest.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -88,6 +90,7 @@
         <option value="$PROJECT_DIR$/src/Blockchain/AvlTree.java" />
         <option value="$PROJECT_DIR$/src/Blockchain/BlockChain.java" />
         <option value="$PROJECT_DIR$/src/Blockchain/Test/MyTest.java" />
+        <option value="$PROJECT_DIR$/src/Blockchain/Test/AvlTreeTest.java" />
       </list>
     </option>
   </component>
@@ -461,7 +464,7 @@
       <workItem from="1507768233583" duration="315000" />
       <workItem from="1507769012866" duration="184000" />
       <workItem from="1507769200671" duration="1312000" />
-      <workItem from="1507770931361" duration="1750000" />
+      <workItem from="1507770931361" duration="1893000" />
     </task>
     <task id="LOCAL-00001" summary="ola">
       <created>1506360960625</created>
@@ -750,11 +753,18 @@
       <option name="project" value="LOCAL" />
       <updated>1507771410337</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="More Test Cases">
+      <created>1507772709444</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1507772709444</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="49644000" />
+    <option name="totallyTimeSpent" value="49787000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -819,7 +829,8 @@
     <MESSAGE value="Test" />
     <MESSAGE value="Bug Fixed" />
     <MESSAGE value="ReHash done" />
-    <option name="LAST_COMMIT_MESSAGE" value="ReHash done" />
+    <MESSAGE value="More Test Cases" />
+    <option name="LAST_COMMIT_MESSAGE" value="More Test Cases" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -963,14 +974,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Blockchain/Test/AvlTreeTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1755">
@@ -999,6 +1002,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="611">
           <caret line="55" column="51" lean-forward="true" selection-start-line="55" selection-start-column="51" selection-end-line="55" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Blockchain/Test/AvlTreeTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="11" column="13" lean-forward="false" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
           <folding />
         </state>
       </provider>
