@@ -1,7 +1,7 @@
 package src;
 
-import Blockchain.BlockChain;
-import Blockchain.AvlTree;
+import src.Blockchain.BlockChain;
+import src.Blockchain.AvlTree;
 
 import java.io.File;
 import java.io.FileNotFoundException;
