@@ -66,7 +66,9 @@ public class MyTest {
     //BLOCKCHAIN TESTS
     @Test
     public void setAmountOfZerosTest(){
-
+        Integer four = new Integer(4);
+        blockChain.setAmountZeros(4);
+        assertEquals(blockChain.getAmountZeroes(), four);
     }
 
     @Test

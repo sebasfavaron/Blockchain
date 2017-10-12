@@ -144,6 +144,18 @@ public class BlockChain<T> {
         this.amountZeroes = amountZeroes;
         this.tree = tree;
     }
+    public List<Block> getChain(){
+        return chain;
+    }
+    public Integer getIndex(){
+        return index;
+    }
+    public Integer getAmountZeroes(){
+        return amountZeroes;
+    }
+    public Comparator<T> getCmp(){
+        return cmp;
+    }
 
     public void resetChain() {
         chain = new ArrayList<>();
