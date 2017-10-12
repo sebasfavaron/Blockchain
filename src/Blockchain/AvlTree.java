@@ -3,6 +3,7 @@ package src.Blockchain;
 import org.omg.CORBA.PUBLIC_MEMBER;
 
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -14,7 +15,7 @@ public class AvlTree<T> {
     private AvlNode root;
     private Comparator <T> cmp;
     private String hash;
-
+    private HashSet<T> affected;
     public AvlTree(Comparator<T> cmp){
         this.cmp=cmp;
     }
@@ -48,13 +49,15 @@ public class AvlTree<T> {
     // A utility function to right rotate subtree rooted with y
     // See the diagram given above.
     private AvlNode rightRotate(AvlNode y) {
+
         AvlNode x = y.left;
         AvlNode T2 = x.right;
 
         // Perform rotation
         x.right = y;
         y.left = T2;
-
+        this.affected.add(y.elem);
+        this.affected.add(x.elem);
         // Update heights
         y.height = max(height(y.left), height(y.right)) + 1;
         x.height = max(height(x.left), height(x.right)) + 1;
@@ -77,7 +80,8 @@ public class AvlTree<T> {
         // Perform rotation
         y.left = x;
         x.right = T2;
-
+        this.affected.add(x.elem);
+        this.affected.add(y.elem);
         //  Update heights
         x.height = max(height(x.left), height(x.right)) + 1;
         y.height = max(height(y.left), height(y.right)) + 1;
@@ -143,17 +147,20 @@ public class AvlTree<T> {
      * @param elem generic element being inserted.
      * @author
      */
-    public void insert(T elem){
+    public HashSet<T> insert(T elem){
+        affected=new HashSet<>();
+        affected.add(elem);
         root=insertR(root,elem);
         this.hash="";
         preOrderHash(root);
+        return affected;
     }
     private AvlNode insertR(AvlNode node, T key) {
 
         /* 1.  Perform the normal BST insertion */
-        if (node == null)
+        if (node == null) {
             return (new AvlNode(key));
-
+        }
         if (cmp.compare(key,node.elem)>0)  //key is bigger than node, add it to the right subtree
             node.right = insertR(node.right, key);
         else if (cmp.compare(key,node.elem)<0) //key is smaller than node, add it to the left subtree
@@ -201,10 +208,13 @@ public class AvlTree<T> {
      * @param elem generic element being removed.
      * @author
      */
-    public void remove(T elem) {
+    public HashSet<T> remove(T elem) {
+        affected=new HashSet<>();
+        affected.add(elem);
         root = removeR(root,elem);
         this.hash = "";
         preOrderHash(root);
+        return affected;
     }
 
 

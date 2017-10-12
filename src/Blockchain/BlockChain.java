@@ -8,10 +8,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.security.NoSuchAlgorithmException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Comparator;
-import java.util.Scanner;
+import java.util.*;
 
 /**
  * This class is an implementation of a Block Chain which is a is a continuously growing list of records, called blocks,
@@ -62,7 +59,7 @@ public class BlockChain<T> {
     public ArrayList<Integer> getBlockIndexes(int elem) {
         ArrayList<Integer> ret = new ArrayList<>();
         for (Block each: chain) {
-            if (each.elem.equals(elem)) {
+            if (each.elem.contains(elem)) {
                 ret.add(each.indice);
             }
         }
@@ -77,15 +74,15 @@ public class BlockChain<T> {
         this.amountZeroes = amountZeroes;
     }
 
-    public void add(T elem, String data, AvlTree<T> tree){
+    public void add(HashSet<T> elem, String data, AvlTree<T> tree){
         if(chain.size() == 0){
-            chain.add(new Block("0", data, elem, tree));
+            chain.add(new Block(elem,"0", data, tree));
         } else {
-            chain.add(new Block(chain.get(chain.size() - 1).hash.getHexaNumber(), data, elem, tree));
+            chain.add(new Block(elem,chain.get(chain.size() - 1).hash.getHexaNumber(), data, tree));
         }
     }
     
-    public void add(T elem, String data, AvlTree<T> tree, Integer nonce, String hexa, String prevHexa){
+    public void add(HashSet<T> elem, String data, AvlTree<T> tree, Integer nonce, String hexa, String prevHexa){
         if(chain.size() == 0){
             chain.add(new Block("0", data, elem, tree, nonce, hexa));
         } else {
@@ -144,8 +141,14 @@ public class BlockChain<T> {
         this.amountZeroes = amountZeroes;
         this.tree = tree;
     }
-    public List<Block> getChain(){
-        return chain;
+    public String getBlockData(int i){
+        return chain.get(i-1).getData();
+    }
+    public String getBlockHash(int i){
+        return chain.get(i-1).hash.concatData;
+    }
+    public String getBlockPrevious(int i){
+        return chain.get(i-1).prevHexa;
     }
     public Integer getIndex(){
         return index;
@@ -168,10 +171,10 @@ public class BlockChain<T> {
         private String prevHexa;
         private Hexa hash;
         private AvlTree<T> tree;
-        private T elem;
+        private HashSet<T> elem;
 
-        public Block(String prevHexa, String data, T elem, AvlTree<T> tree) {
-            this.elem = elem;
+        public Block(HashSet elems,String prevHexa, String data, AvlTree<T> tree) {
+            this.elem = elems;
             this.indice = ++index;
             ////Data stores the type of operation performed
             this.data = data;
@@ -183,7 +186,7 @@ public class BlockChain<T> {
             mine();
         }
         
-        public Block(String prevHexa, String data, T elem, AvlTree<T> tree, Integer nonce, String hexa) {
+        public Block(String prevHexa, String data, HashSet elem, AvlTree<T> tree, Integer nonce, String hexa) {
             this.prevHexa = prevHexa;
             //Data stores the type of operation performed
             this.data = data;
@@ -192,6 +195,14 @@ public class BlockChain<T> {
             this.nonce = nonce;
             this.hash = new Hexa(hexa, nonce);
             this.indice = ++index;
+        }
+
+        /**
+         * This method is used to retrive a data from a block
+         * @return data of a blockchain
+         */
+        public String getData(){
+            return data;
         }
 
         private void mine(){

@@ -5,12 +5,18 @@ import org.junit.Test;
 import src.Blockchain.AvlTree;
 import src.Blockchain.BlockChain;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashSet;
 
 public class MyTest {
     private BlockChain<Integer> blockChain;
     private AvlTree<Integer> avlTree;
     private Comparator<Integer> comparator;
+    private HashSet<Integer> datos;
+
     @Before
     public void testInitializer() {
         comparator=new Comparator<Integer>() {
@@ -73,16 +79,34 @@ public class MyTest {
 
     @Test
     public void addTest(){
-
+        avlTree=new AvlTree<>(comparator);
+        AvlTree<Integer> tree=new AvlTree<>(comparator);
+        datos=tree.insert(1);
+        blockChain.add(datos,"Insert 1",avlTree);
+        assertEquals("Insert 1",blockChain.getBlockData(1));
+        assertEquals(tree.contains(1),blockChain.getTree().contains(1));
+        datos=tree.insert(2);
+        blockChain.add(datos,"Insert 2",avlTree);
+        assertEquals(2,blockChain.getBlockData(2));
+        assertEquals(tree.contains(2),blockChain.getTree().contains(2));
+        assertEquals(blockChain.getBlockHash(1),blockChain.getBlockPrevious(2));
     }
 
-    @Test
-    public void modifyByIndexTest(){
+    @Test(expected = FileNotFoundException.class)
+    public void modifyByIndexTest() throws FileNotFoundException {
+        blockChain.modifyByIndex(1,new File("./test"));
+        assertEquals("tratando de romper el tp",blockChain.getBlockData(1));
+        blockChain.modifyByIndex(1,new File(""));
 
     }
     @Test
     public void getBlockIndexesTest(){
-
+        datos=avlTree.insert(3);
+        blockChain.add(datos,"Insert 3",avlTree);
+        ArrayList<Integer> lista=new ArrayList<>();
+        lista.add(2);
+        lista.add(3);
+        assertEquals(lista,blockChain.getBlockIndexes(5));
     }
 
     @Test

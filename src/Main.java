@@ -9,6 +9,7 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.Scanner;
 
 /**
@@ -99,10 +100,9 @@ public class Main {
 						if (blockChain.getTree().contains(Integer.parseInt(commands[1]))) {
 							System.out.println("Insertion failed, the avl tree already contains the element " + commands[1]);
 							data += " failed";
-						} else {
-							blockChain.getTree().insert(Integer.parseInt(commands[1]));
 						}
-						blockChain.add(Integer.parseInt(commands[1]), data, blockChain.getTree().clone());
+						HashSet<Integer> elems=blockChain.getTree().insert(Integer.parseInt(commands[1]));
+						blockChain.add(elems, data, blockChain.getTree().clone());
 					}
 					break;
 
@@ -119,10 +119,9 @@ public class Main {
 						if (!blockChain.getTree().contains(Integer.parseInt(commands[1]))) {
 							System.out.println("Remove failed, the avl tree does not contain the element " + commands[1]);
 							data += " failed";
-						} else {
-							blockChain.getTree().remove(Integer.parseInt(commands[1]));
 						}
-						blockChain.add(Integer.parseInt(commands[1]), data, blockChain.getTree().clone());
+						HashSet<Integer> elems=blockChain.getTree().remove(Integer.parseInt(commands[1]));
+						blockChain.add(elems, data, blockChain.getTree().clone());
 					}
 					break;
 
@@ -138,7 +137,9 @@ public class Main {
 							// or else use regexp and iterate over the BC which is a bad idea.
 							System.out.println(blockChain.getBlockIndexes(Integer.parseInt(commands[1])));
 							String data = "check " + commands[1] + " - true";
-							blockChain.add(Integer.parseInt(commands[1]), data, blockChain.getTree().clone());
+							HashSet<Integer> elems=new HashSet<>();
+							elems.add(Integer.parseInt(commands[1]));
+							blockChain.add(elems, data, blockChain.getTree().clone());
 						}
 					}
 					break;
@@ -248,13 +249,19 @@ public class Main {
 			AvlTree<Integer> blockTree = bc.getTree().load(blockLines[2].split(" ")[1], bc.getTree().getCmp());
 			String prevHexa = blockLines[3].split(" ")[1];
 			String hexa = blockLines[4].split(" ")[1];
-			Integer elem = Integer.parseInt(blockLines[5].split(" ")[1]);
+			HashSet<Integer> elems=new HashSet<>();
+			String sElem=blockLines[5].split("\\[")[1];
+            sElem=sElem.split("]")[0];
+            String[] toParse=sElem.split(", ");
+            for (String a: toParse){
+                elems.add(Integer.parseInt(a));
+            }
 			String blockData = blockLines[6].substring(blockLines[6].indexOf(" ")+1,blockLines[6].length()); // length - 1?
 			for(int j=7; j<blockLines.length; j++) {
 				blockData += blockLines[j];
 				
 }
-			bc.add(elem, blockData, blockTree, nonce, hexa, prevHexa);
+			bc.add(elems, blockData, blockTree, nonce, hexa, prevHexa);
 		}
 		bc.setProperties(index, amountZeroes, tree);
 	}

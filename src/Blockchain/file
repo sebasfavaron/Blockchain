@@ -1,43 +1,27 @@
 Index: 1
-Nonce: 30819
-Tree: 3
+Nonce: 25552
+Tree: 1
 Previous: 0
-HashCode: 00004ec725276a561e21955b012ba02ca5ab495634f7a3139265bfcc6160736d
-Elem: 3
-Data: Insert 3
--------------------------
-Index: 2
-Nonce: 157719
-Tree: 3(1l)
-Previous: 00004ec725276a561e21955b012ba02ca5ab495634f7a3139265bfcc6160736d
-HashCode: 000012e41f4c7fa0b79ea83764b0c755b504af782d854ec3c8d8b076c532155e
-Elem: 1
+HashCode: 0000809b038e993037efb92bdb784279c5c25ba5b803d6d42d92cb9335bdb78f
+Elem: [1]
 Data: Insert 1
 -------------------------
+Index: 2
+Nonce: 74843
+Tree: 1(2r)
+Previous: 0000809b038e993037efb92bdb784279c5c25ba5b803d6d42d92cb9335bdb78f
+HashCode: 00009c442396dc17785290c731cfd5ea78c216e37dbcd8660c62fbb33d2c8561
+Elem: [2]
+Data: Insert 2
+-------------------------
 Index: 3
-Nonce: 122827
-Tree: 3(1,23)
-Previous: 000012e41f4c7fa0b79ea83764b0c755b504af782d854ec3c8d8b076c532155e
-HashCode: 0000bd8fdc0e6b6249d3fdd038ce1dc60350ccf42d0da4f739c82cd19d59cf79
-Elem: 23
-Data: Insert 23
+Nonce: 36419
+Tree: 2(1,3)
+Previous: 00009c442396dc17785290c731cfd5ea78c216e37dbcd8660c62fbb33d2c8561
+HashCode: 0000fdc514a74b295b2c19fd8978febabe2f3dab20808fe8f574d17eacde5d01
+Elem: [1, 2, 3]
+Data: Insert 3
 -------------------------
-Index: 4
-Nonce: 35876
-Tree: 3(1,23(2031r))
-Previous: 0000bd8fdc0e6b6249d3fdd038ce1dc60350ccf42d0da4f739c82cd19d59cf79
-HashCode: 0000705df8e8fde7cbd68e5427c8001db7f89fa0fe1cab5e6de530978aa61e0e
-Elem: 2031
-Data: Insert 2031
--------------------------
-Index: 5
-Nonce: 17319
-Tree: 3(1,1231(23,2031))
-Previous: 0000705df8e8fde7cbd68e5427c8001db7f89fa0fe1cab5e6de530978aa61e0e
-HashCode: 00001bca47d8f1fe4cb21862e2f0f6c21f8b947671bd600937097f6cf8a44381
-Elem: 1231
-Data: Insert 1231
--------------------------
-Index: 5
+Index: 3
 AmountZeroes: 4
-Tree: 3(1,1231(23,2031))
+Tree: 2(1,3)
