@@ -346,6 +346,9 @@ public class AvlTree<T> {
      * @author
      */
     private AvlNode cloneR(AvlNode tree) {
+        if(tree==null){
+            return tree;
+        }
         AvlNode left = null;
         AvlNode right = null;
         if(tree.left != null)
