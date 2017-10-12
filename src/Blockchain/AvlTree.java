@@ -65,12 +65,6 @@ public class AvlTree<T> {
         // Return new root
         return x;
     }
-
-    /**
-     *
-     * @param x
-     * @return
-     */
     // A utility function to left rotate subtree rooted with x
     // See the diagram given above.
     private AvlNode leftRotate(AvlNode x) {
@@ -101,12 +95,6 @@ public class AvlTree<T> {
 
     }
 
-    /**
-     *
-     * @param current
-     * @param elem
-     * @return
-     */
     private boolean contains(AvlNode current, T elem) {
     	
     	if (current == null) {

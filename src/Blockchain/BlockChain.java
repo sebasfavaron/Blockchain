@@ -145,7 +145,7 @@ public class BlockChain<T> {
         return chain.get(i-1).getData();
     }
     public String getBlockHash(int i){
-        return chain.get(i-1).hash.concatData;
+        return chain.get(i-1).hash.hexaNumber;
     }
     public String getBlockPrevious(int i){
         return chain.get(i-1).prevHexa;
