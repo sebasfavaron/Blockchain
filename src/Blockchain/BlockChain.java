@@ -190,7 +190,7 @@ public class BlockChain<T> {
         }
 
         public void rehash(){
-            String concatData = indice.toString() + data + prevHexa + "." + nonce.toString(); //le pongo un '.' para reemplazar el nonce mas facil
+            String concatData = indice.toString() + data + prevHexa + nonce.toString() + nonce.toString(); //le pongo un '.' para reemplazar el nonce mas facil
             this.hash = new Hexa(concatData);
         }
 
