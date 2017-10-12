@@ -35,14 +35,14 @@ public class Main {
 			}
 		});
 
-        if (args.length == 2 && args[0].equals("zeroes")) {
+        if (args.length == 2 && args[0].equals("zeros")) {
         	// Check if it is passing a number as the second parameter
         	if (args[1].matches("\\d+")) {
                 blockChain.setAmountZeroes(Integer.parseInt(args[1]));
-				System.out.println("Amount of zeroes ("+ args[1] +") set");
+				System.out.println("Amount of zeros ("+ args[1] +") set");
 			}
         }else {
-            System.out.println("Please execute the program in the following format, where N° is the amount of zeroes: ./main zeroes N°");
+            System.out.println("Please execute the program in the following format, where N° is the amount of zeros: ./main zeros N°");
             return;
         }
 
