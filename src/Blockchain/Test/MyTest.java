@@ -64,15 +64,6 @@ public class MyTest {
     }
 
     //BLOCKCHAIN TESTS
-
-    @Test
-    public void modifyByIndexTest(){
-
-    }
-    @Test
-    public void getBlockIndexesTest(){
-
-    }
     @Test
     public void setAmountOfZerosTest(){
 
@@ -82,6 +73,16 @@ public class MyTest {
     public void addTest(){
 
     }
+
+    @Test
+    public void modifyByIndexTest(){
+
+    }
+    @Test
+    public void getBlockIndexesTest(){
+
+    }
+
     @Test
     public void isValidTest(){
 
