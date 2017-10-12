@@ -28,7 +28,9 @@ public class MyTest {
         };
         avlTree=new AvlTree<>(comparator);
         blockChain=new BlockChain<>(comparator);
+        blockChain.setAmountZeros(4);
         tree=new AvlTree<>(comparator);
+        datos=new HashSet<>();
     }
 
     @Test
@@ -99,29 +101,28 @@ public class MyTest {
     }
     @Test
     public void getBlockIndexesTest(){
-        datos=blockChain.getTree().insert(3);
+        datos=avlTree.insert(3);
         blockChain.add(datos,"Insert 3",avlTree);
         ArrayList<Integer> lista=new ArrayList<>();
         lista.add(1);
-        assertEquals(lista,blockChain.getBlockIndexes(2)) ;
+        assertEquals(lista,blockChain.getBlockIndexes(3)) ;
     }
     @Test
     public void toStringTest(){
 
     }
     @Test
-    public void getTreeTest(){
-        AvlTree<Integer> newTree=blockChain.getTree();
-        assertEquals(avlTree,newTree);
-    }
-    @Test(expected = FileNotFoundException.class)
     public void modifyByIndexTest() throws FileNotFoundException {
-        blockChain.modifyByIndex(1,new File("./test"));
+        datos=avlTree.insert(3);
+        blockChain.add(datos,"Insert 3",avlTree);
+        blockChain.modifyByIndex(1,new File("test"));
         assertEquals("tratando de romper el tp",blockChain.getBlockData(1));
-        blockChain.modifyByIndex(1,new File(""));
+
     }
     @Test
     public void isValidTest(){
+        datos=avlTree.insert(3);
+        blockChain.add(datos,"Insert 3",avlTree);
         assertEquals(true,blockChain.isValid());
     }
 

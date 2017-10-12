@@ -143,6 +143,7 @@ public class AvlTree<T> {
         preOrderHash(root);
         return affected;
     }
+
     private AvlNode insertR(AvlNode node, T key) {
 
         /* 1.  Perform the normal BST insertion */
