@@ -104,7 +104,7 @@ public class Main {
 					break;
 
 				case "remove":
-					if (commands.length != 2 || !isNumber(commands[2])) {
+					if (commands.length != 2 ) {
 						System.out.println("Operation failed, please enter a valid command");
 					} else if(!isNumber(commands[1])) {
 						System.out.println("Tree currently only allows integers");
