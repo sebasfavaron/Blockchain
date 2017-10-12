@@ -3,9 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="930ae407-b0d8-4b86-acc9-60505ac48672" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Blockchain/AvlTree.java" afterPath="$PROJECT_DIR$/src/Blockchain/AvlTree.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Blockchain/BlockChain.java" afterPath="$PROJECT_DIR$/src/Blockchain/BlockChain.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Blockchain/Test/MyTest.java" afterPath="$PROJECT_DIR$/src/Blockchain/Test/MyTest.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -1001,7 +998,14 @@
       <option name="project" value="LOCAL" />
       <updated>1507839097233</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="Test Update">
+      <created>1507844115121</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1507844115121</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1037,7 +1041,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="66895000" />
+    <option name="totallyTimeSpent" value="66958000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -1132,7 +1136,8 @@
     <MESSAGE value="ReHash done" />
     <MESSAGE value="More Test Cases" />
     <MESSAGE value="The code really works" />
-    <option name="LAST_COMMIT_MESSAGE" value="The code really works" />
+    <MESSAGE value="Test Update" />
+    <option name="LAST_COMMIT_MESSAGE" value="Test Update" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
