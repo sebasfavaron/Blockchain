@@ -235,6 +235,7 @@ public class Main {
 		Integer index = Integer.parseInt(bcDataLines[bcDataLines.length-3].split(" ")[1]);
 		Integer amountZeroes = Integer.parseInt(bcDataLines[bcDataLines.length-2].split(" ")[1]);
 		AvlTree<Integer> tree = bc.getTree().load(bcDataLines[bcDataLines.length-1].split(" ")[1], bc.getTree().getCmp());
+		bc.resetChain();
 		for(int i=0; i<blockAmount; i++) {
 			String[] blockLines = data[i].trim().split("\n");
 			if(!(blockLines[0].startsWith("Index:") && blockLines[1].startsWith("Nonce:") && blockLines[2].startsWith("Tree:") &&
@@ -251,8 +252,8 @@ public class Main {
 			String blockData = blockLines[6].substring(blockLines[6].indexOf(" ")+1,blockLines[6].length()); // length - 1?
 			for(int j=7; j<blockLines.length; j++) {
 				blockData += blockLines[j];
-			}
-			bc.resetChain();
+				
+}
 			bc.add(elem, blockData, blockTree, nonce, hexa, prevHexa);
 		}
 		bc.setProperties(index, amountZeroes, tree);
