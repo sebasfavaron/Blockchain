@@ -1,66 +1,101 @@
-package Blockchain;
+package src.Blockchain;
 
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Comparator;
+import java.util.Scanner;
 
 /**
- * Created by navi on 23/09/17.
+ * This class is an implementation of a Block Chain which is a is a continuously growing list of records, called blocks,
+ * which are linked and secured using cryptography.
+ * Each block typically contains a hash pointer as a link to a previous block where each block saves a data of type T
  */
 public class BlockChain<T> {
 
-    private ArrayList<Block> cadena;
-    private int index;
-    private Comparator<T> cmp;
+    private List<Block> chain;
+    private Integer index;
     private Integer amountZeroes;
     private AvlTree<T> tree;
-    
+    private Comparator<T> cmp;
+
     public BlockChain(Comparator<T> cmp){
         index = 0;
         this.tree = new AvlTree<>(cmp);
         this.cmp = cmp;
-        this.cadena = new ArrayList<>();
+        this.chain = new ArrayList<>();
     }
-    
-    public boolean modifyByIndex(int index, T file) {
-    	if (index + 1 > cadena.size()) {
+
+    /**
+     * This method is used to modify an specific Block by his index with the data in the file
+     * @param index Index of the block that you want to modify
+     * @param file  File where to take the data
+     * @return Returns true if the block data was successfully changed else false
+     * @throws FileNotFoundException
+     */
+    public boolean modifyByIndex(int index, File file) throws FileNotFoundException {
+    	if (index > chain.size()) {
     		return false;
     	}
-    	
-    	for (int i = 0; i < cadena.size(); i++) {
-    		if (i == index) {
-    			Block aux = cadena.get(index);
-    			cadena.set(index, new Block(file, aux.prev.getHexaNumber(), aux.tree, aux.data));
-    		}
-    		
-    	}
-    	
-    	return true;
+    	try {
+            chain.get(index - 1).data = new String(Files.readAllBytes(Paths.get(file.getAbsolutePath())));
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+        chain.get(index-1).rehash();
+        return true;
     }
-    
+
+    /**
+     *  (gabriel completar)
+     * @param elem
+     * @return
+     */
     public ArrayList<Integer> getBlockIndexes(int elem) {
-    	ArrayList<Integer> ret = new ArrayList<>();
-    	
-    	for (Block each: cadena) {
-    		if (each.elem.equals(elem)) {
-    			ret.add(each.indice);
-    		}
-    	}
-    	
-    	return ret;
+        ArrayList<Integer> ret = new ArrayList<>();
+        for (Block each: chain) {
+            if (each.elem.equals(elem)) {
+                ret.add(each.indice);
+            }
+        }
+        return ret;
     }
-    
-    public void setAmountZeroes(Integer amountZeroes){
+
+    /**
+     * This method is used to set the amount of zeros that his hexa has to have at the beginning
+     * @param amountZeroes Number of zeros to set
+     */
+    public void setAmountZeros(Integer amountZeroes){
         this.amountZeroes = amountZeroes;
     }
 
-    public void add(T elem, String data){
-        if(cadena.size() == 0){
-            cadena.add(new Block(elem,"0", tree, data));
+    public void add(T elem, String data, AvlTree<T> tree){
+        if(chain.size() == 0){
+            chain.add(new Block("0", data, elem, tree));
         } else {
-            cadena.add(new Block(elem, Integer.toHexString(cadena.get(cadena.size() - 1).hashCode()), tree, data));
+            chain.add(new Block(chain.get(chain.size() - 1).hash.getHexaNumber(), data, elem, tree));
         }
     }
     
+    public void add(T elem, String data, AvlTree<T> tree, Integer nonce, String hexa, String prevHexa){
+        if(chain.size() == 0){
+            chain.add(new Block("0", data, elem, tree, nonce, hexa));
+        } else {
+            chain.add(new Block(prevHexa, data, elem, tree, nonce, hexa));
+        }
+    }
+
+    /**
+     *  This method is used to check if all block's hashes have the amount of zeros requested
+     * @return True if has the amount of zeros requested else false
+     */
     public boolean isValid() {
     	String ref = "0";
     	String zeroes = "";
@@ -69,77 +104,171 @@ public class BlockChain<T> {
     		zeroes += "0";
     	}
     	
-    	for (Block each: cadena) {
-    		if (!each.hash.getHexaNumber().startsWith(zeroes)) {
+    	for (Block block: chain) {
+    		if (!block.hash.getHexaNumber().startsWith(zeroes)) {
     			return false;
     		}
-    		if (!each.prev.getHexaNumber().equals(ref)) {
+    		if (!block.prevHexa.equals(ref)) {
     			return false;
     		}
-    		ref = each.hash.getHexaNumber();
-    		
+    		ref = block.hash.getHexaNumber();
     	}
     	
     	return true;
     }
-    
-    public void print(){
-    	tree.print();
-        for (Block a:cadena) {
-            a.print();
-            System.out.println("-------------------------");
+
+    /**
+     *
+     */
+    public String toString() {
+        StringBuilder ret = new StringBuilder();
+        for(Block block : chain) {
+            ret.append(block.toString()).append("-------------------------\n");
         }
+        ret.append("Index: "+index+"\n").append("AmountZeroes: "+amountZeroes+"\n").append("Tree: " + tree.print());
+        return ret.toString();
     }
 
+    /**
+     *  Return the AvlTree created
+     * @return AvlTree
+     */
     public AvlTree<T> getTree() {
         return tree;
+    }
+    
+    // Overwrites all previous data
+    public void setProperties(Integer index, Integer amountZeroes, AvlTree<T> tree) {
+        this.index = index;
+        this.amountZeroes = amountZeroes;
+        this.tree = tree;
+    }
+
+    public void resetChain() {
+        chain = new ArrayList<>();
     }
 
     private class Block {
         private Integer indice;
         private Integer nonce;
-        //private String datos;
-        //En data se guarda la info de la operacion
         private String data;
-        //En elem se guarda el dato concreto
-        private T elem;
-        private Hexa prev;
+        private String prevHexa;
         private Hexa hash;
         private AvlTree<T> tree;
+        private T elem;
 
-        //todo: el arbol esta hard-codeado para insertar solamente. No podemos buscar ni remover. Podriamos hacer una u otra
-        // en base a la data que nos entra (si dice Removed algo hacemos remove)
-        public Block(T elem, String prev, AvlTree<T> tree, String data) {
-            this.indice = ++index;
-            this.data = data; //queremos poner al elem directo o un mensaje onda "insert 'elem'"?
-            this.tree = tree;
+        public Block(String prevHexa, String data, T elem, AvlTree<T> tree) {
             this.elem = elem;
-            //Por ahora comentado hasta que se decida que hacer
-            //this.tree.insert(elem);
-            this.prev = new Hexa(prev);
+            this.indice = ++index;
+            ////Data stores the type of operation performed
+            this.data = data;
+            this.prevHexa = prevHexa;
             this.nonce = 0;
-            this.hash = new Hexa((int) (Math.pow(2,(double)indice.hashCode())*Math.pow(5,tree.hashCode())*Math.pow(7,data.hashCode())*Math.pow(11,prev.hashCode())));
+            this.tree = tree;
+            String concatData = indice.toString() + data + prevHexa + "." + nonce.toString(); //le pongo un '.' para reemplazar el nonce mas facil
+            this.hash = new Hexa(concatData);
             mine();
         }
-        public void mine(){
+        
+        public Block(String prevHexa, String data, T elem, AvlTree<T> tree, Integer nonce, String hexa) {
+            this.prevHexa = prevHexa;
+            //Data stores the type of operation performed
+            this.data = data;
+            this.elem = elem;
+            this.tree = tree;
+            this.nonce = nonce;
+            this.hash = new Hexa(hexa, nonce);
+            this.indice = ++index;
+        }
+
+        private void mine(){
             //checks if hash starts with the required amount of zeroes, updates it if it doesn't
-            while (hash.check(amountZeroes)){
+            while (!hash.check(amountZeroes)){
                 hash.inc();
             }
             nonce = hash.getNonce();
-            System.out.println("Found!");
         }
-        //Calculates the hash
-        public int hashCode(){
-            return hash.getIntNumber();
+
+        private void rehash(){
+            String concatData = indice.toString() + data + prevHexa + nonce.toString() + nonce.toString(); //le pongo un '.' para reemplazar el nonce mas facil
+            this.hash = new Hexa(concatData);
         }
-        public void print(){
-            System.out.println("Index = "+ indice);
-            System.out.println("Nonce = "+ nonce);
-            System.out.println("Data = "+ data);
-            System.out.println("Previous = "+ prev);
-            System.out.println("HashCode = "+ hash);
-            //tree.print();
+
+        public String toString(){
+            return "Index: "+ indice.toString() + '\n' +
+                   "Nonce: "+ nonce.toString() + '\n' +
+                   "Tree: "+ tree.print()+ '\n' +
+                   "Previous: "+ prevHexa+ '\n' +
+                   "HashCode: "+ hash.getHexaNumber()+ '\n' +
+                   "Elem: "+ elem.toString() + '\n' +
+                   "Data: "+ data + '\n';
         }
     }
+    private class Hexa {
+        private String concatData;
+        private String hexaNumber;
+        private int nonce;
+
+        public Hexa(String concatData) {
+            nonce = 1;
+            this.concatData = concatData;
+            hexaNumber = sha256(concatData);
+        }
+        
+        //For the load operation
+        public Hexa(String hexaNumber, Integer nonce) {
+            this.hexaNumber = hexaNumber;
+            this.nonce = nonce;
+        }
+
+        private void inc() {
+            nonce++;
+            // To replace nonce just replace what's after the '.' with the new nonce
+            concatData = concatData.substring(0, concatData.lastIndexOf(".") + 1) + nonce;
+            hexaNumber = sha256(concatData);
+        }
+
+        private boolean check(int zeros) {
+            char[] number = hexaNumber.toCharArray();
+            for (int i=0; i<zeros; i++){
+                if (number[i] != '0'){
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        private String sha256(String base) {
+            try{
+                java.security.MessageDigest digest = java.security.MessageDigest.getInstance("SHA-256");
+                byte[] hash = digest.digest(base.getBytes("UTF-8"));
+                StringBuilder hexString = new StringBuilder();
+
+                for (byte b : hash) {
+                    String hex = Integer.toHexString(0xff & b);
+                    if(hex.length() == 1)
+                        hexString.append('0');
+                    hexString.append(hex);
+                }
+
+                return hexString.toString();
+            } catch(Exception ex){
+                throw new RuntimeException(ex);
+            }
+        }
+
+        private int getNonce() {
+            return nonce;
+        }
+
+        public String toString(){
+            return "HEXA = " + hexaNumber;
+        }
+
+        private String getHexaNumber(){
+            return this.hexaNumber;
+        }
+
+    }
+
 }

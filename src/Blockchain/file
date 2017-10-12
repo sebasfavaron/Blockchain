@@ -1,0 +1,83 @@
+Index: 1
+Nonce: 25552
+Tree: 1
+Previous: 0
+HashCode: 0000809b038e993037efb92bdb784279c5c25ba5b803d6d42d92cb9335bdb78f
+Elem: 1
+Data: Insert 1
+-------------------------
+Index: 2
+Nonce: 74843
+Tree: 1(2r)
+Previous: 0000809b038e993037efb92bdb784279c5c25ba5b803d6d42d92cb9335bdb78f
+HashCode: 00009c442396dc17785290c731cfd5ea78c216e37dbcd8660c62fbb33d2c8561
+Elem: 2
+Data: Insert 2
+-------------------------
+Index: 3
+Nonce: 19526
+Tree: 2(1,5)
+Previous: 00009c442396dc17785290c731cfd5ea78c216e37dbcd8660c62fbb33d2c8561
+HashCode: 00006a4315770f76a5d729b064c0ce1dedafc98476ace7d07d4b3fb081675d09
+Elem: 5
+Data: Insert 5
+-------------------------
+Index: 4
+Nonce: 100201
+Tree: 2(1,5(9r))
+Previous: 00006a4315770f76a5d729b064c0ce1dedafc98476ace7d07d4b3fb081675d09
+HashCode: 00002ed87a29654cc4265cd0395b60d2edebeb6ab77aa495da066a9dc9426d7d
+Elem: 9
+Data: Insert 9
+-------------------------
+Index: 5
+Nonce: 21391
+Tree: 2(1,5(9r))
+Previous: 00002ed87a29654cc4265cd0395b60d2edebeb6ab77aa495da066a9dc9426d7d
+HashCode: 0000fa9a7fc388b2ca42c168e8072045d162163dd9ee8337c53c06b7d7dc226c
+Elem: 1
+Data: Insert 1 failed
+-------------------------
+Index: 6
+Nonce: 46847
+Tree: 2(1,9)
+Previous: 0000fa9a7fc388b2ca42c168e8072045d162163dd9ee8337c53c06b7d7dc226c
+HashCode: 0000170386591b34341d96840bd19ca908c4b489b93a7fd0a4e609c1f64e090a
+Elem: 5
+Data: Remove 5
+-------------------------
+Index: 7
+Nonce: 95335
+Tree: 2(1,9(18r))
+Previous: 0000170386591b34341d96840bd19ca908c4b489b93a7fd0a4e609c1f64e090a
+HashCode: 00009606fa840349c0cb5b798e0f9202176059b04c1cb321bd893c38bbf50b14
+Elem: 18
+Data: Insert 18
+-------------------------
+Index: 8
+Nonce: 3076
+Tree: 2(1,9(18r))
+Previous: 00009606fa840349c0cb5b798e0f9202176059b04c1cb321bd893c38bbf50b14
+HashCode: 0000e2a018ff0595a85a5ae7b00bced06135c298976f10a6e8c0598c1a0b4c0e
+Elem: 3
+Data: Remove 3 failed
+-------------------------
+Index: 9
+Nonce: 94033
+Tree: 2(1,9(3,18))
+Previous: 0000e2a018ff0595a85a5ae7b00bced06135c298976f10a6e8c0598c1a0b4c0e
+HashCode: 000078b21ebbbca381f4495b23a434808d9823b5f0622274cecb3e9d8f2b88f4
+Elem: 3
+Data: Insert 3
+-------------------------
+Index: 10
+Nonce: 32120
+Tree: 9(2(3r),18)
+Previous: 000078b21ebbbca381f4495b23a434808d9823b5f0622274cecb3e9d8f2b88f4
+HashCode: 0000d3c39520f83af2c119ffc89e3bda6be9ee83ea3bb6cf8d78f99510f2324d
+Elem: 1
+Data: Remove 1
+-------------------------
+Index: 10
+AmountZeroes: 4
+Tree: 9(2(3r),18)

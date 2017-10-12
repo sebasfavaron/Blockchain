@@ -7,7 +7,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * Created by navi on 23/09/17.
+ * This class is a binary tree-type data structure which has the function of auto balancing in insertions and removals
+ * ensuring a temporal complexity of at least log(N) for searches additions and removals
  */
 public class AvlTree<T> {
     private AvlNode root;
@@ -18,13 +19,27 @@ public class AvlTree<T> {
         this.cmp=cmp;
     }
 
-    public int height(AvlNode N) {
+    /**
+     * This method is used to determine the height of each node. Height is measured in a bottom-top method, leaf nodes
+     * have a height of 0 all other nodes are 1 unit higher than their highest child node.
+     * @param N node who's height is being determined.
+     * @return 0 if the node is a leaf (null node), else returns the height.
+     * @author
+     */
+    private int height(AvlNode N) {
         if (N == null)
             return 0;
 
         return N.height;
     }
 
+    /**
+     * This method is used to get maximum of two integers.
+     * @param a Integer being compared.
+     * @param b Integer being compared.
+     * @return a if a is bigger than b, else returns b.
+     * @author
+     */
     // A utility function to get maximum of two integers
     private int max(int a, int b) {
         return (a > b) ? a : b;
@@ -48,6 +63,11 @@ public class AvlTree<T> {
         return x;
     }
 
+    /**
+     *
+     * @param x
+     * @return
+     */
     // A utility function to left rotate subtree rooted with x
     // See the diagram given above.
     private AvlNode leftRotate(AvlNode x) {
@@ -66,11 +86,23 @@ public class AvlTree<T> {
         return y;
     }
 
+    /**
+     * This method is used to determine if a given element is contained in the data-structure.
+     * @param elem generic element that is being consulted.
+     * @return true if it is contained, else false.
+     * @author
+     */
     public boolean contains(T elem) {
     	return contains(root, elem);
 
     }
-    
+
+    /**
+     *
+     * @param current
+     * @param elem
+     * @return
+     */
     private boolean contains(AvlNode current, T elem) {
     	
     	if (current == null) {
@@ -86,19 +118,35 @@ public class AvlTree<T> {
     		return true;
     	}
     }
+
+    public Comparator<T> getCmp() {
+        return cmp;
+    }
+
+    /**
+     * This method is used to assign a given node its balance value. The balance value is used to ensure that every node
+     * in the data-structure mantains the balancing criteria.
+     * @param N node being consulted.
+     * @return an int that represents the balance value.
+     * @author
+     */
     // Get Balance factor of node N
-    public int getBalance(AvlNode N) {
+    private int getBalance(AvlNode N) {
         if (N == null)
             return 0;
 
         return height(N.left) - height(N.right);
     }
+
+    /**
+     * This method is used to insert a generic element into the data-structure.
+     * @param elem generic element being inserted.
+     * @author
+     */
     public void insert(T elem){
         root=insertR(root,elem);
         this.hash="";
         preOrderHash(root);
-        System.out.println("HASH: "+this.hash);
-        System.out.println("INTEGER: "+Long.parseLong(this.hash, 16));
     }
     private AvlNode insertR(AvlNode node, T key) {
 
@@ -148,11 +196,15 @@ public class AvlTree<T> {
         return node;
     }
 
-    public void remove(T elem){
-        root=removeR(root,elem);
-        this.hash="";
+    /**
+     * This method is used to remove a generic element into the data-structure.
+     * @param elem generic element being removed.
+     * @author
+     */
+    public void remove(T elem) {
+        root = removeR(root,elem);
+        this.hash = "";
         preOrderHash(root);
-        System.out.println(this.hash);
     }
 
 
@@ -160,7 +212,7 @@ public class AvlTree<T> {
 
         /* 1.  Perform the normal BST delete */
         if (node == null)
-            return node;
+            return null;
 
         if (cmp.compare(key,node.elem)>0) {
             node.right = removeR(node.right, key);
@@ -233,6 +285,12 @@ public class AvlTree<T> {
             preOrder(node.right);
         }
     }
+
+    /**
+     * This method is used to assign the data-structure its hashcode.
+     * @param node root of tree.
+     * @author
+     */
     public void preOrderHash(AvlNode node) {
         if (node != null) {
             Integer aux=node.elem.hashCode();
@@ -242,47 +300,141 @@ public class AvlTree<T> {
         }
     }
 
-    public void print() {
-        printRec(this.root);
-        System.out.println();
+    /**
+     * This method is used to print the current state of the data-structure
+     * @return "empty" if no nodes have been instantiated, else returns the data-structure's state
+     * @author
+     */
+    public String print() {
+        if(this.root == null)
+            return "empty";
+        return printRec(this.root);
     }
 
-    private void printRec(AvlNode tree) {
+    private String printRec(AvlNode tree) {
+        String ret = "";
         if(tree == null)
-            return;
-        System.out.print(tree.elem);
+            return ret;
+        ret += tree.elem;
+        String left = printRec(tree.left);
+        String right = printRec(tree.right);
         if(tree.left != null || tree.right != null)
-            System.out.print("(");
-        printRec(tree.left);
-        if(tree.left != null && tree.right != null)
-            System.out.print(",");
-        printRec(tree.right);
+            ret += "(";
+        ret += left;
+        if(!left.equals("") && right.equals(""))
+            ret += "l";
+        else if(!left.equals("") && !right.equals(""))
+            ret += ",";
+        ret += right;
+        if(!right.equals("") && left.equals(""))
+            ret += "r";
         if(tree.left != null || tree.right != null)
-            System.out.print(")");
+            ret += ")";
+        return ret;
     }
 
+    public AvlTree<T> clone() {
+        AvlTree<T> tree = new AvlTree<>(cmp);
+        tree.root = cloneR(root);
+        return tree;
+    }
+
+    /**
+     * TODO TUYO SEBAS
+     * @param tree
+     * @return
+     * @author
+     */
+    private AvlNode cloneR(AvlNode tree) {
+        if(tree==null){
+            return tree;
+        }
+        AvlNode left = null;
+        AvlNode right = null;
+        if(tree.left != null)
+            left = cloneR(tree.left);
+        if(tree.right != null)
+            right = cloneR(tree.right);
+        return new AvlNode(tree.elem, left, right);
+    }
+
+    /**
+     * This method is used to consult the hashcode of the data-structure.
+     * @return
+     * @author
+     */
     public int hashCode(){
         return Integer.parseInt(this.hash, 16);
+    }
+    
+    // Generates a tree of integers from a string
+    public AvlTree<Integer> load(String s, Comparator<Integer> cmp) {
+        AvlTree<Integer> tree = new AvlTree<>(cmp);
+        tree.root = loadR(s);
+        return tree;
+    }
+
+    private AvlTree<Integer>.AvlNode loadR(String s) {
+        if(s.length() <= 0)
+            return null;
+        AvlTree<Integer>.AvlNode left = null, right = null;
+        if(s.contains("(")) {
+            int commaIndex = commaSearch(s);
+            if (commaIndex == -1) {
+                String child = s.substring(s.indexOf('(')+1, s.indexOf(')'));
+                if (child.charAt(child.length() - 1) == 'l')
+                    left = loadR(child.substring(0,child.length()-1));
+                else
+                    right = loadR(child.substring(0,child.length()-1));
+            }
+            else {
+                String lChild = s.substring(s.indexOf('(')+1,commaIndex);
+                String rChild = s.substring(commaIndex+1, s.lastIndexOf(')'));
+                left = loadR(lChild);
+                right = loadR(rChild);
+            }
+        }
+        int parenIndex = s.indexOf('(');
+        int elem = Integer.parseInt(s.substring(0,parenIndex == -1? s.length() : parenIndex));
+        AvlTree<Integer>.AvlNode node = new AvlTree<Integer>.AvlNode(elem, left, right);
+        return node;
+    }
+
+    //Searches for the comma dividing the greater sons in the tree represented in s
+    private int commaSearch(String s) {
+        int parenthesisWeight = 0;
+        char[] c = s.toCharArray();
+        for(int i=0; i<s.length(); i++) {
+            // weight of 1 means the index is looking at the first children
+            // (ex: 4(2(1),5) weight is 1 when looking at the 2, the comma and 5)
+            if(parenthesisWeight == 1 && c[i]==',')
+                return i;
+            if(c[i] == '(')
+                parenthesisWeight++;
+            if(c[i] == ')')
+                parenthesisWeight--;
+        }
+        return -1;
     }
 
     private class AvlNode {
 
         AvlNode left, right;
-
         T elem;
-
         int height;
 
-        public AvlNode(T n) {
-
+        public AvlNode(T elem) {
             left = null;
-
             right = null;
-
-            elem = n;
-
+            this.elem = elem;
             height = 1;
+        }
 
+        public AvlNode(T elem, AvlNode left, AvlNode right) {
+            this.left = left;
+            this.right = right;
+            this.elem = elem;
+            height = 1;
         }
         public String toString(){
             return elem.toString();
