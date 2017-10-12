@@ -26,7 +26,7 @@ public class AvlTree<T> {
      * @return 0 if the node is a leaf (null node), else returns the height.
      * @author
      */
-    public int height(AvlNode N) {
+    private int height(AvlNode N) {
         if (N == null)
             return 0;
 
@@ -131,7 +131,7 @@ public class AvlTree<T> {
      * @author
      */
     // Get Balance factor of node N
-    public int getBalance(AvlNode N) {
+    private int getBalance(AvlNode N) {
         if (N == null)
             return 0;
 

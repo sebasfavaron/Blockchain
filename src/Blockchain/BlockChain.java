@@ -72,7 +72,7 @@ public class BlockChain<T> {
      * This method is used to set the amount of zeros that his hexa has to have at the beginning
      * @param amountZeroes Number of zeros to set
      */
-    public void setAmountZeroes(Integer amountZeroes){
+    public void setAmountZeros(Integer amountZeroes){
         this.amountZeroes = amountZeroes;
     }
 
@@ -181,7 +181,7 @@ public class BlockChain<T> {
             this.indice = ++index;
         }
 
-        public void mine(){
+        private void mine(){
             //checks if hash starts with the required amount of zeroes, updates it if it doesn't
             while (!hash.check(amountZeroes)){
                 hash.inc();
@@ -189,13 +189,9 @@ public class BlockChain<T> {
             nonce = hash.getNonce();
         }
 
-        public void rehash(){
+        private void rehash(){
             String concatData = indice.toString() + data + prevHexa + nonce.toString() + nonce.toString(); //le pongo un '.' para reemplazar el nonce mas facil
             this.hash = new Hexa(concatData);
-        }
-
-        public AvlTree<T> getTree() {
-            return tree;
         }
 
         public String toString(){
@@ -225,14 +221,14 @@ public class BlockChain<T> {
             this.nonce = nonce;
         }
 
-        public void inc() {
+        private void inc() {
             nonce++;
             // To replace nonce just replace what's after the '.' with the new nonce
             concatData = concatData.substring(0, concatData.lastIndexOf(".") + 1) + nonce;
             hexaNumber = sha256(concatData);
         }
 
-        public boolean check(int zeros) {
+        private boolean check(int zeros) {
             char[] number = hexaNumber.toCharArray();
             for (int i=0; i<zeros; i++){
                 if (number[i] != '0'){
@@ -242,7 +238,7 @@ public class BlockChain<T> {
             return true;
         }
 
-        public String sha256(String base) {
+        private String sha256(String base) {
             try{
                 java.security.MessageDigest digest = java.security.MessageDigest.getInstance("SHA-256");
                 byte[] hash = digest.digest(base.getBytes("UTF-8"));
@@ -261,7 +257,7 @@ public class BlockChain<T> {
             }
         }
 
-        public int getNonce() {
+        private int getNonce() {
             return nonce;
         }
 
@@ -269,12 +265,8 @@ public class BlockChain<T> {
             return "HEXA = " + hexaNumber;
         }
 
-        public String getHexaNumber(){
+        private String getHexaNumber(){
             return this.hexaNumber;
-        }
-
-        public String getConcatData() {
-            return this.concatData;
         }
 
     }

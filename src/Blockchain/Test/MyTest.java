@@ -55,4 +55,48 @@ public class MyTest {
         avlTree.remove(6);
         assertEquals("2(1,5(4l))",avlTree.print());
     }
+    @Test
+    public void containsTest(){
+        avlTree.insert(3);
+        assertEquals(true, avlTree.contains(3));
+        avlTree.remove(3);
+        assertEquals(false, avlTree.contains(3));
+    }
+
+    //BLOCKCHAIN TESTS
+
+    @Test
+    public void modifyByIndexTest(){
+
+    }
+    @Test
+    public void getBlockIndexesTest(){
+
+    }
+    @Test
+    public void setAmountOfZerosTest(){
+
+    }
+
+    @Test
+    public void addTest(){
+
+    }
+    @Test
+    public void isValidTest(){
+
+    }
+    @Test
+    public void toStringTest(){
+
+    }
+    @Test
+    public void getTreeTest(){
+
+    }
+    @Test
+    public void setPropertiesTest(){
+
+    }
+
 }

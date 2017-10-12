@@ -38,7 +38,7 @@ public class Main {
 		if (args.length == 2 && args[0].equals("zeros")) {
 			// Check if it is passing a number as the second parameter
 			if (args[1].matches("\\d+")) {
-				blockChain.setAmountZeroes(Integer.parseInt(args[1]));
+				blockChain.setAmountZeros(Integer.parseInt(args[1]));
 				System.out.println("Amount of zeros ("+ args[1] +") set");
 			}
 		}else {
