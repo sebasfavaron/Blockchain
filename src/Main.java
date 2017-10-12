@@ -1,7 +1,7 @@
 package src;
 
-import src.Blockchain.BlockChain;
-import src.Blockchain.AvlTree;
+import Blockchain.BlockChain;
+import Blockchain.AvlTree;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -15,13 +15,16 @@ import java.util.Scanner;
  * Created by navi on 23/09/17.
  */
 public class Main {
+	
 	public static void main(String[]args){
 
 		paramsManager(args);
 	}
 
 
-	// Separate method to avoid messing up the main
+    /**
+     * This method is responsible of the console commands functionality
+     */
 	private static void paramsManager(String[] args) {
 
 		boolean isRunning = true;

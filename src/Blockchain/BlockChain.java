@@ -54,9 +54,10 @@ public class BlockChain<T> {
     }
 
     /**
-     *  (gabriel completar)
+     * This method returns a list with all the blocks from the blockchain
+     * that are related with the elem
      * @param elem
-     * @return
+     * @return ret which contains all the blocks that satisfies the condition
      */
     public ArrayList<Integer> getBlockIndexes(int elem) {
         ArrayList<Integer> ret = new ArrayList<>();
