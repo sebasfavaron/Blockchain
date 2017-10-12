@@ -15,47 +15,47 @@ import java.util.Scanner;
  * Created by navi on 23/09/17.
  */
 public class Main {
-    public static void main(String[]args){
+	public static void main(String[]args){
 
-    	paramsManager(args);
-    }
+		paramsManager(args);
+	}
 
 
-    // Separate method to avoid messing up the main
-    private static void paramsManager(String[] args) {
+	// Separate method to avoid messing up the main
+	private static void paramsManager(String[] args) {
 
-        boolean isRunning = true;
+		boolean isRunning = true;
 
-        // Using integer as standard up to new requirements
-        // The data of the block isn't always a string?
-        BlockChain<Integer> blockChain = new BlockChain<>(new Comparator<Integer>() {
+		// Using integer as standard up to new requirements
+		// The data of the block isn't always a string?
+		BlockChain<Integer> blockChain = new BlockChain<>(new Comparator<Integer>() {
 			@Override
 			public int compare(Integer o1, Integer o2) {
 				return o1-o2;
 			}
 		});
 
-        if (args.length == 2 && args[0].equals("zeros")) {
-        	// Check if it is passing a number as the second parameter
-        	if (args[1].matches("\\d+")) {
-                blockChain.setAmountZeroes(Integer.parseInt(args[1]));
+		if (args.length == 2 && args[0].equals("zeros")) {
+			// Check if it is passing a number as the second parameter
+			if (args[1].matches("\\d+")) {
+				blockChain.setAmountZeroes(Integer.parseInt(args[1]));
 				System.out.println("Amount of zeros ("+ args[1] +") set");
 			}
-        }else {
-            System.out.println("Please execute the program in the following format, where N° is the amount of zeros: ./main zeros N°");
-            return;
-        }
+		}else {
+			System.out.println("Please execute the program in the following format, where N° is the amount of zeros: ./main zeros N°");
+			return;
+		}
 
-        System.out.println("To operate the Blockchain you must use the following commands:");
-        System.out.println("help\nquit\nprint state\nadd N°\nremove N°\nlookup N°\nvalidate\n");
+		System.out.println("To operate the Blockchain you must use the following commands:");
+		System.out.println("help\nquit\nprint state\nadd N°\nremove N°\nlookup N°\nvalidate\n");
 
 
-        Scanner sc = new Scanner(System.in);
+		Scanner sc = new Scanner(System.in);
 
-        while(isRunning) {
-            System.out.println("What do you want to do next?(insert command)");
-        	String[] commands = sc.nextLine().split(" ");
-        	String command = commands[0];
+		while(isRunning) {
+			System.out.println("What do you want to do next?(insert command)");
+			String[] commands = sc.nextLine().split(" ");
+			String command = commands[0];
 
 			switch (command) {
 				case "help":
@@ -65,7 +65,7 @@ public class Main {
 						System.out.println("Command list:");
 						System.out.println("help\nquit\nprint state\nadd N°\nremove N°\nlookup N°\nvalidate\n");
 					}
-				break;
+					break;
 
 				case "quit":
 					if (commands.length != 1) {
@@ -73,7 +73,7 @@ public class Main {
 					}else {
 						isRunning = false;
 					}
-				break;
+					break;
 
 				case "print":
 					if(commands.length<=1 || !commands[1].equals("state")){
@@ -81,12 +81,16 @@ public class Main {
 					}
 					else
 						System.out.println(blockChain);
-				break;
+					break;
 
 				case "add":
-					if (commands.length != 2) {
+					if (commands.length != 2 ) {
 						System.out.println("Operation failed, please enter a valid command");
-					} else {
+					} else if(!isNumber(commands[1])) {
+						System.out.println("Tree currently only allows integers");
+					}
+					else
+					{
 						String data = "Insert " + commands[1];
 						// This could be modified to support generic classes
 						if (blockChain.getTree().contains(Integer.parseInt(commands[1]))) {
@@ -97,12 +101,16 @@ public class Main {
 						}
 						blockChain.add(Integer.parseInt(commands[1]), data, blockChain.getTree().clone());
 					}
-	            break;
+					break;
 
 				case "remove":
-					if (commands.length != 2) {
+					if (commands.length != 2 || !isNumber(commands[2])) {
 						System.out.println("Operation failed, please enter a valid command");
-					} else {
+					} else if(!isNumber(commands[1])) {
+						System.out.println("Tree currently only allows integers");
+					}
+					else
+					{
 						String data = "Remove " + commands[1];
 						// This could be modified to support generic classes
 						if (!blockChain.getTree().contains(Integer.parseInt(commands[1]))) {
@@ -113,7 +121,7 @@ public class Main {
 						}
 						blockChain.add(Integer.parseInt(commands[1]), data, blockChain.getTree().clone());
 					}
-	            break;
+					break;
 
 				case "lookup":
 					if (commands.length != 2) {
@@ -138,30 +146,30 @@ public class Main {
 					}else {
 						System.out.println(blockChain.isValid());
 					}
-	            break;
+					break;
 
 				case "modify":
 					if (commands.length < 3) {
 						System.out.println("Operation failed, not a valid command");
 					} else {
-                        {
-                            int index = Integer.parseInt(commands[1]);
+						{
+							int index = Integer.parseInt(commands[1]);
 
-                            File file = new File(commands[2]);
-                            boolean success = false;
-                            try {
-                                success = blockChain.modifyByIndex(index, file);
-                            } catch (FileNotFoundException e) {
-                                System.out.println(e);
-                            }
-                            if (success) {
-                                System.out.println("Block data modified successfully");
-                            } else {
-                                System.out.println("The blockchain could not reach the required index");
-                            }
-                        }
-                    }
-	            break;
+							File file = new File(commands[2]);
+							boolean success = false;
+							try {
+								success = blockChain.modifyByIndex(index, file);
+							} catch (FileNotFoundException e) {
+								System.out.println(e);
+							}
+							if (success) {
+								System.out.println("Block data modified successfully");
+							} else {
+								System.out.println("The blockchain could not reach the required index");
+							}
+						}
+					}
+					break;
 
 				case "save":
 					try {
@@ -173,7 +181,7 @@ public class Main {
 					} catch (UnsupportedEncodingException e) {
 						System.out.println(e + ". Not a valid encoding");
 					}
-				break;
+					break;
 
 				case "load":
 					try {
@@ -181,14 +189,32 @@ public class Main {
 					} catch (IOException e) {
 						System.out.println(e);
 					}
-				break;
+					break;
 
-			default:
-				System.out.println("Wrong command, please try again");
+				default:
+					System.out.println("Wrong command, please try again");
 
 			}
-        }
-    }
+		}
+	}
+
+	private static boolean isNumber(String str) {
+		char[] array= str.toCharArray();
+		int i=0, length=str.length();
+		Character c= new Character('c');
+		boolean ret=true;
+		if(array[0]=='-') {
+			if (length > 1) {
+				i++;
+			} else {
+				return false;
+			}
+		}
+		for(;i<str.length();i++){
+			ret=ret&& c.isDigit(array[i]);
+		}
+		return ret;
+	}
 
 	// Loads data from file and overwrites previous data (made for Integers, could be modified easily to support more object types)
 	public static void load(BlockChain<Integer> bc, String fileName) throws IOException {
