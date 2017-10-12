@@ -333,18 +333,19 @@ public class AvlTree<T> {
         return ret;
     }
 
+    /**
+     * Makes a deep copy of the tree
+     *
+     * @return new tree equal to the instance that calls it
+     * @author 
+     */
     public AvlTree<T> clone() {
         AvlTree<T> tree = new AvlTree<>(cmp);
         tree.root = cloneR(root);
         return tree;
     }
 
-    /**
-     * TODO TUYO SEBAS
-     * @param tree
-     * @return
-     * @author
-     */
+
     private AvlNode cloneR(AvlNode tree) {
         if(tree==null){
             return tree;
