@@ -5,17 +5,9 @@
     <option name="CUSTOM_SCOPE_NAME" value="Module 'Blockchain'" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="930ae407-b0d8-4b86-acc9-60505ac48672" name="Default" comment="Bug Fixed">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Blockchain/src/Blockchain/AvlTree$AvlNode.class" afterPath="$PROJECT_DIR$/out/production/Blockchain/src/Blockchain/AvlTree$AvlNode.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Blockchain/src/Blockchain/AvlTree.class" afterPath="$PROJECT_DIR$/out/production/Blockchain/src/Blockchain/AvlTree.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Blockchain/src/Blockchain/BlockChain$Block.class" afterPath="$PROJECT_DIR$/out/production/Blockchain/src/Blockchain/BlockChain$Block.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Blockchain/src/Blockchain/Test/AvlTreeTest.class" afterPath="$PROJECT_DIR$/out/production/Blockchain/src/Blockchain/Test/AvlTreeTest.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Blockchain/src/Blockchain/Test/BlockChainTest.class" afterPath="$PROJECT_DIR$/out/production/Blockchain/src/Blockchain/Test/BlockChainTest.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Blockchain/src/Blockchain/Test/HexaTest.class" afterPath="$PROJECT_DIR$/out/production/Blockchain/src/Blockchain/Test/HexaTest.class" />
+    <list default="true" id="930ae407-b0d8-4b86-acc9-60505ac48672" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Blockchain/.idea/libraries/Arquillian_JUnit_Release.xml" afterPath="$PROJECT_DIR$/out/production/Blockchain/.idea/libraries/Arquillian_JUnit_Release.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Blockchain/.idea/workspace.xml" afterPath="$PROJECT_DIR$/out/production/Blockchain/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Blockchain/BlockChain.java" afterPath="$PROJECT_DIR$/src/Blockchain/BlockChain.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Blockchain/Test/MyTest.java" afterPath="$PROJECT_DIR$/src/Blockchain/Test/MyTest.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -33,17 +25,17 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="MyTest.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="MyTest.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Blockchain/Test/MyTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="452">
-              <caret line="48" column="56" lean-forward="false" selection-start-line="48" selection-start-column="56" selection-end-line="48" selection-end-column="56" />
+            <state relative-caret-position="611">
+              <caret line="55" column="51" lean-forward="true" selection-start-line="55" selection-start-column="51" selection-end-line="55" selection-end-column="51" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="BlockChain.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="BlockChain.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Blockchain/BlockChain.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="401">
@@ -121,9 +113,9 @@
         <option value="$PROJECT_DIR$/src/Blockchain/AvlTreeTest.java" />
         <option value="$PROJECT_DIR$/src/Blockchain/Hexa.java" />
         <option value="$PROJECT_DIR$/src/Main.java" />
-        <option value="$PROJECT_DIR$/src/Blockchain/Test/MyTest.java" />
         <option value="$PROJECT_DIR$/src/Blockchain/AvlTree.java" />
         <option value="$PROJECT_DIR$/src/Blockchain/BlockChain.java" />
+        <option value="$PROJECT_DIR$/src/Blockchain/Test/MyTest.java" />
       </list>
     </option>
   </component>
@@ -190,6 +182,10 @@
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="Blockchain" type="462c0819:PsiDirectoryNode" />
               <item name="Test" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Blockchain" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
             </path>
           </expand>
           <select />
@@ -568,7 +564,7 @@
       <workItem from="1507768233583" duration="315000" />
       <workItem from="1507769012866" duration="184000" />
       <workItem from="1507769200671" duration="1312000" />
-      <workItem from="1507770931361" duration="443000" />
+      <workItem from="1507770931361" duration="1750000" />
     </task>
     <task id="LOCAL-00001" summary="ola">
       <created>1506360960625</created>
@@ -850,11 +846,18 @@
       <option name="project" value="LOCAL" />
       <updated>1507770984894</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="ReHash done">
+      <created>1507771410337</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1507771410337</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="48337000" />
+    <option name="totallyTimeSpent" value="49644000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -867,7 +870,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="75" y="6" width="1857" height="1092" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32985386" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -882,7 +884,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32753164" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2652291" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2652291" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -925,7 +927,8 @@
     <MESSAGE value="Java Doc" />
     <MESSAGE value="Test" />
     <MESSAGE value="Bug Fixed" />
-    <option name="LAST_COMMIT_MESSAGE" value="Bug Fixed" />
+    <MESSAGE value="ReHash done" />
+    <option name="LAST_COMMIT_MESSAGE" value="ReHash done" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1123,18 +1126,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Blockchain/Test/MyTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="452">
-          <caret line="48" column="56" lean-forward="false" selection-start-line="48" selection-start-column="56" selection-end-line="48" selection-end-column="56" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Blockchain/BlockChain.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="401">
           <caret line="192" column="86" lean-forward="false" selection-start-line="192" selection-start-column="86" selection-end-line="192" selection-end-column="86" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Blockchain/Test/MyTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="611">
+          <caret line="55" column="51" lean-forward="true" selection-start-line="55" selection-start-column="51" selection-end-line="55" selection-end-column="51" />
           <folding />
         </state>
       </provider>

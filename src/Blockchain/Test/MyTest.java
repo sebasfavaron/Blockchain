@@ -48,4 +48,11 @@ public class MyTest {
         avlTree.insert(1);
         assertEquals("3(2(1l),5(4,6))",avlTree.print());
     }
+    @Test
+    public void removeTest(){
+        avlTree.remove(3);
+        assertEquals("2(1,5(4,6))",avlTree.print());
+        avlTree.remove(6);
+        assertEquals("2(1,5(4l))",avlTree.print());
+    }
 }
