@@ -8,6 +8,7 @@ import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Comparator;
 import java.util.Scanner;
@@ -23,6 +24,7 @@ public class BlockChain<T> {
     private Integer index;
     private Integer amountZeroes;
     private AvlTree<T> tree;
+    private Comparator<T> cmp;
 
     public BlockChain(Comparator<T> cmp){
         index = 0;

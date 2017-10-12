@@ -42,7 +42,7 @@ public class HexaTest {
     @Deployment
     public static JavaArchive createDeployment() {
         return ShrinkWrap.create(JavaArchive.class)
-                .addClass(Hexa.class)
+              //  .addClass(Hexa.class)
                 .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
     }
 
