@@ -70,7 +70,8 @@ public class Main {
 						System.out.println("Operation failed, please enter a valid command");
 					}else {
 						System.out.println("Command list:");
-						System.out.println("help\nquit\nprint state\nadd N°\nremove N°\nlookup N°\nvalidate\nmodify N° file/path\nsave\nload\n");
+						System.out.println("help\nquit\nprint state\nadd N°\nremove N°\nlookup N°\n" +
+                                            "validate\nmodify N° file/path\nsave\nload\n");
 					}
 					break;
 
@@ -98,13 +99,14 @@ public class Main {
 					}
 					else
 					{
-						String data = "Insert " + commands[1];
+					    int number = Integer.parseInt(commands[1]);
+						String data = "Insert " + number;
 						// This could be modified to support generic classes
-						if (blockChain.getTree().contains(Integer.parseInt(commands[1]))) {
-							System.out.println("Insertion failed, the avl tree already contains the element " + commands[1]);
+						if (blockChain.getTree().contains(number)) {
+							System.out.println("Insertion failed, the avl tree already contains the element " + number);
 							data += " failed";
 						}
-						HashSet<Integer> elems=blockChain.getTree().insert(Integer.parseInt(commands[1]));
+						HashSet<Integer> elems=blockChain.getTree().insert(number);
 						blockChain.add(elems, data, blockChain.getTree().clone());
 					}
 					break;
@@ -117,13 +119,14 @@ public class Main {
 					}
 					else
 					{
-						String data = "Remove " + commands[1];
+                        int number = Integer.parseInt(commands[1]);
+                        String data = "Remove " + number;
 						// This could be modified to support generic classes
-						if (!blockChain.getTree().contains(Integer.parseInt(commands[1]))) {
-							System.out.println("Remove failed, the avl tree does not contain the element " + commands[1]);
+						if (!blockChain.getTree().contains(number)) {
+							System.out.println("Remove failed, the avl tree does not contain the element " + number);
 							data += " failed";
 						}
-						HashSet<Integer> elems=blockChain.getTree().remove(Integer.parseInt(commands[1]));
+						HashSet<Integer> elems=blockChain.getTree().remove(number);
 						blockChain.add(elems, data, blockChain.getTree().clone());
 					}
 					break;
@@ -133,18 +136,17 @@ public class Main {
 						System.out.println("Operation failed, please enter a valid command");
 					} else {
 						// This could be modified to support generic classes
-						if (!blockChain.getTree().contains(Integer.parseInt(commands[1]))) {
-							System.out.println("The avl tree does not contains the element " + commands[1]);
-							String data = "check " + commands[1] + " - false";
+                        int number = Integer.parseInt(commands[1]);
+						if (!blockChain.getTree().contains(number)) {
+							System.out.println("The avl tree does not contain the element " + number);
+							String data = "check " + number + " - false";
                             HashSet<Integer> elems=new HashSet<>();
                             blockChain.add(elems, data, blockChain.getTree().clone());
 						} else {
-							// It is necessary to modify the block/blockchain class to support a data field for fast search,
-							// or else use regexp and iterate over the BC which is a bad idea.
-							System.out.println(blockChain.getBlockIndexes(Integer.parseInt(commands[1])));
-							String data = "check " + commands[1] + " - true";
+							System.out.println("Blocks that modified " + number + ": " + blockChain.getBlockIndexes(number));
+							String data = "check " + number + " - true";
 							HashSet<Integer> elems=new HashSet<>();
-							elems.add(Integer.parseInt(commands[1]));
+							elems.add(number);
 							blockChain.add(elems, data, blockChain.getTree().clone());
 						}
 					}
@@ -160,11 +162,10 @@ public class Main {
 
 				case "modify":
 					if (commands.length < 3) {
-						System.out.println("Operation failed, not a valid command");
+						System.out.println("Operation failed, please enter a valid command");
 					} else {
 						{
 							int index = Integer.parseInt(commands[1]);
-
 							File file = new File(commands[2]);
 							boolean success = false;
 							success = blockChain.modifyByIndex(index, file);
@@ -188,14 +189,14 @@ public class Main {
 					break;
 
 				case "load":
-				    boolean succes=false;
+				    boolean success=false;
 					try {
-						succes=load(blockChain, "./src/Blockchain/file");
+						success = load(blockChain, "./src/Blockchain/file");
 					} catch (IOException e) {
 						System.out.println("Save file not found");
 					}
-					if (!succes){
-                        blockChain=new BlockChain<>(comparator);
+					if (!success){
+                        blockChain = new BlockChain<>(comparator);
                         blockChain.setAmountZeros(amountZeros);
                     }
 					break;
@@ -265,18 +266,18 @@ public class Main {
 			AvlTree<Integer> blockTree = bc.getTree().load(blockLines[2].split(" ")[1], bc.getTree().getCmp());
 			String prevHexa = blockLines[3].split(" ")[1];
 			String hexa = blockLines[4].split(" ")[1];
-			HashSet<Integer> elems=new HashSet<>();
-			String sElem=blockLines[5].split("\\[")[1];
-            sElem=sElem.split("]")[0];
-            String[] toParse=sElem.split(", ");
+			HashSet<Integer> elems = new HashSet<>();
+			String sElem = blockLines[5].split("\\[")[1];
+            sElem = sElem.split("]")[0];
+            String[] toParse = sElem.split(", ");
             for (String a: toParse){
                 elems.add(Integer.parseInt(a));
             }
-			String blockData = blockLines[6].substring(blockLines[6].indexOf(" ")+1,blockLines[6].length()); // length - 1?
+			String blockData = blockLines[6].substring(blockLines[6].indexOf(" ")+1,blockLines[6].length());
 			for(int j=7; j<blockLines.length; j++) {
 				blockData += blockLines[j];
 				
-}
+            }
 			bc.add(elems, blockData, blockTree, nonce, hexa, prevHexa);
 		}
 		bc.setProperties(index, amountZeroes, tree);

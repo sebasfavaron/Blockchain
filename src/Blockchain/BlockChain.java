@@ -175,7 +175,7 @@ public class BlockChain<T> {
         private AvlTree<T> tree;
         private HashSet<T> elem;
 
-        public Block(HashSet elems,String prevHexa, String data, AvlTree<T> tree) {
+        public Block(HashSet<T> elems, String prevHexa, String data, AvlTree<T> tree) {
             this.elem = elems;
             this.indice = ++index;
             ////Data stores the type of operation performed
