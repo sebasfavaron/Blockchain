@@ -51,7 +51,7 @@ public class Main {
 		}
 
 		System.out.println("To operate the Blockchain you must use the following commands:");
-		System.out.println("help\nquit\nprint state\nadd N°\nremove N°\nlookup N°\nvalidate\n");
+		System.out.println("help\nquit\nprint state\nadd N°\nremove N°\nlookup N°\nvalidate\nmodify N° file/path\nsave\nload\n");
 
 
 		Scanner sc = new Scanner(System.in);
@@ -67,7 +67,7 @@ public class Main {
 						System.out.println("Operation failed, please enter a valid command");
 					}else {
 						System.out.println("Command list:");
-						System.out.println("help\nquit\nprint state\nadd N°\nremove N°\nlookup N°\nvalidate\n");
+						System.out.println("help\nquit\nprint state\nadd N°\nremove N°\nlookup N°\nvalidate\nmodify N° file/path\nsave\nload\n");
 					}
 					break;
 
