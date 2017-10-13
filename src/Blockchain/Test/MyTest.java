@@ -33,6 +33,7 @@ public class MyTest {
         datos=new HashSet<>();
     }
 
+    //AVL TREE TESTS
     @Test
     public void insertTest(){
         avlTree.insert(1);
@@ -108,27 +109,18 @@ public class MyTest {
         assertEquals(lista,blockChain.getBlockIndexes(3)) ;
     }
     @Test
-    public void toStringTest(){
-
-    }
-    @Test
     public void modifyByIndexTest() throws FileNotFoundException {
         datos=avlTree.insert(3);
         blockChain.add(datos,"Insert 3",avlTree);
         blockChain.modifyByIndex(1,new File("test"));
         assertEquals("tratando de romper el tp",blockChain.getBlockData(1));
-
     }
     @Test
-    public void isValidTest(){
+    public void isValidTest()throws FileNotFoundException{
         datos=avlTree.insert(3);
         blockChain.add(datos,"Insert 3",avlTree);
         assertEquals(true,blockChain.isValid());
+        blockChain.modifyByIndex(1,new File("test"));
+        assertEquals(false,blockChain.isValid());
     }
-
-    @Test
-    public void setPropertiesTest(){
-
-    }
-
 }
