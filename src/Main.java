@@ -132,6 +132,9 @@ public class Main {
 						// This could be modified to support generic classes
 						if (!blockChain.getTree().contains(Integer.parseInt(commands[1]))) {
 							System.out.println("The avl tree does not contains the element " + commands[1]);
+							String data = "check " + commands[1] + " - false";
+                            HashSet<Integer> elems=new HashSet<>();
+                            blockChain.add(elems, data, blockChain.getTree().clone());
 						} else {
 							// It is necessary to modify the block/blockchain class to support a data field for fast search,
 							// or else use regexp and iterate over the BC which is a bad idea.
