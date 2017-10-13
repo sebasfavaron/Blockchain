@@ -12,9 +12,6 @@ import java.util.Comparator;
 import java.util.HashSet;
 import java.util.Scanner;
 
-/**
- * Created by navi on 23/09/17.
- */
 public class Main {
 	
 	public static void main(String[]args){
