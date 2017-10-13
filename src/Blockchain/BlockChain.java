@@ -4,10 +4,8 @@ package src.Blockchain;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
-import java.security.NoSuchAlgorithmException;
 import java.util.*;
 
 /**
@@ -35,7 +33,6 @@ public class BlockChain<T> {
      * @param index Index of the block that you want to modify
      * @param file  File where to take the data
      * @return Returns true if the block data was successfully changed else false
-     * @throws FileNotFoundException
      */
     public boolean modifyByIndex(int index, File file){
     	if (index > chain.size()) {
@@ -55,7 +52,6 @@ public class BlockChain<T> {
     /**
      * This method returns a list with all the blocks from the blockchain
      * that are related with the elem
-     * @param elem
      * @return ret which contains all the blocks that satisfies the condition
      */
     public ArrayList<Integer> getBlockIndexes(int elem) {
@@ -158,9 +154,6 @@ public class BlockChain<T> {
     public Integer getAmountZeroes(){
         return amountZeroes;
     }
-    public Comparator<T> getCmp(){
-        return cmp;
-    }
 
     public void resetChain() {
         chain = new ArrayList<>();
@@ -188,11 +181,11 @@ public class BlockChain<T> {
             mine();
         }
         
-        public Block(String prevHexa, String data, HashSet elem, AvlTree<T> tree, Integer nonce, String hexa) {
+        public Block(String prevHexa, String data, HashSet<T> elems, AvlTree<T> tree, Integer nonce, String hexa) {
             this.prevHexa = prevHexa;
             //Data stores the type of operation performed
             this.data = data;
-            this.elem = elem;
+            this.elem = elems;
             this.tree = tree;
             this.nonce = nonce;
             this.hash = new Hexa(hexa, nonce);

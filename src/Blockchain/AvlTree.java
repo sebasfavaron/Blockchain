@@ -1,11 +1,7 @@
 package src.Blockchain;
 
-import org.omg.CORBA.PUBLIC_MEMBER;
-
 import java.util.Comparator;
 import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
 
 /**
  * This class is a binary tree-type data structure which has the function of auto balancing in insertions and removals
@@ -277,7 +273,7 @@ public class AvlTree<T> {
     // A utility function to print preorder traversal
     // of the tree.
     // The function also prints height of every node
-    public void preOrder(AvlNode node) {
+    private void preOrder(AvlNode node) {
         if (node != null) {
             System.out.print(node.elem + " ");
             preOrder(node.left);
@@ -290,7 +286,7 @@ public class AvlTree<T> {
      * @param node root of tree.
      * @author
      */
-    public void preOrderHash(AvlNode node) {
+    private void preOrderHash(AvlNode node) {
         if (node != null) {
             Integer aux=node.elem.hashCode();
             this.hash=hash+Integer.toHexString(aux);
@@ -347,7 +343,7 @@ public class AvlTree<T> {
 
     private AvlNode cloneR(AvlNode tree) {
         if(tree==null){
-            return tree;
+            return null;
         }
         AvlNode left = null;
         AvlNode right = null;
@@ -360,7 +356,6 @@ public class AvlTree<T> {
 
     /**
      * This method is used to consult the hashcode of the data-structure.
-     * @return
      * @author
      */
     public int hashCode(){
@@ -396,8 +391,7 @@ public class AvlTree<T> {
         }
         int parenIndex = s.indexOf('(');
         int elem = Integer.parseInt(s.substring(0,parenIndex == -1? s.length() : parenIndex));
-        AvlTree<Integer>.AvlNode node = new AvlTree<Integer>.AvlNode(elem, left, right);
-        return node;
+        return new AvlTree<Integer>.AvlNode(elem, left, right);
     }
 
     //Searches for the comma dividing the greater sons in the tree represented in s

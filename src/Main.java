@@ -33,12 +33,7 @@ public class Main {
         Integer amountZeros = 0;
 		// Using integer as standard up to new requirements
 		// The data of the block isn't always a string?
-        Comparator<Integer> comparator=new Comparator<Integer>() {
-            @Override
-            public int compare(Integer o1, Integer o2) {
-                return o1-o2;
-            }
-        };
+        Comparator<Integer> comparator= (o1, o2) -> o1-o2;
 		BlockChain<Integer> blockChain = new BlockChain<>(comparator);
 
 		if (args.length == 2 && args[0].equals("zeros")) {
@@ -167,8 +162,7 @@ public class Main {
 						{
 							int index = Integer.parseInt(commands[1]);
 							File file = new File(commands[2]);
-							boolean success = false;
-							success = blockChain.modifyByIndex(index, file);
+							boolean success = blockChain.modifyByIndex(index, file);
 							if (success) {
 								System.out.println("Block data modified successfully");
 							}
@@ -211,7 +205,6 @@ public class Main {
 	private static boolean isNumber(String str) {
 		char[] array= str.toCharArray();
 		int i=0, length=str.length();
-		Character c= new Character('c');
 		boolean ret=true;
 		if(array[0]=='-') {
 			if (length > 1) {
@@ -221,13 +214,13 @@ public class Main {
 			}
 		}
 		for(;i<str.length();i++){
-			ret=ret&& c.isDigit(array[i]);
+			ret=ret&& Character.isDigit(array[i]);
 		}
 		return ret;
 	}
 
 	// Loads data from file and overwrites previous data (made for Integers, could be modified easily to support more object types)
-	public static boolean load(BlockChain<Integer> bc, String fileName) throws IOException {
+	private static boolean load(BlockChain<Integer> bc, String fileName) throws IOException {
 		String bcString = new String(Files.readAllBytes(Paths.get(fileName)));
 		if (bcString.isEmpty()){
 			System.out.println("Could not load");
