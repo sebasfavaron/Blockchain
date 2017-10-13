@@ -26,20 +26,22 @@ public class Main {
 	private static void paramsManager(String[] args) {
 
 		boolean isRunning = true;
-
+        Integer amountZeros = 0;
 		// Using integer as standard up to new requirements
 		// The data of the block isn't always a string?
-		BlockChain<Integer> blockChain = new BlockChain<>(new Comparator<Integer>() {
-			@Override
-			public int compare(Integer o1, Integer o2) {
-				return o1-o2;
-			}
-		});
+        Comparator<Integer> comparator=new Comparator<Integer>() {
+            @Override
+            public int compare(Integer o1, Integer o2) {
+                return o1-o2;
+            }
+        };
+		BlockChain<Integer> blockChain = new BlockChain<>(comparator);
 
 		if (args.length == 2 && args[0].equals("zeros")) {
 			// Check if it is passing a number as the second parameter
 			if (args[1].matches("\\d+")) {
-				blockChain.setAmountZeros(Integer.parseInt(args[1]));
+			    amountZeros=Integer.parseInt(args[1]);
+				blockChain.setAmountZeros(amountZeros);
 				System.out.println("Amount of zeros ("+ args[1] +") set");
 			}
 		}else {
@@ -182,11 +184,16 @@ public class Main {
 					break;
 
 				case "load":
+				    boolean succes=false;
 					try {
-						load(blockChain, "./src/Blockchain/file"); //todo: el file es una variable y ellos deciden de donde cargar
+						succes=load(blockChain, "./src/Blockchain/file");
 					} catch (IOException e) {
 						System.out.println("Save file not found");
 					}
+					if (!succes){
+                        blockChain=new BlockChain<>(comparator);
+                        blockChain.setAmountZeros(amountZeros);
+                    }
 					break;
 
 				default:
@@ -215,11 +222,11 @@ public class Main {
 	}
 
 	// Loads data from file and overwrites previous data (made for Integers, could be modified easily to support more object types)
-	public static void load(BlockChain<Integer> bc, String fileName) throws IOException {
+	public static boolean load(BlockChain<Integer> bc, String fileName) throws IOException {
 		String bcString = new String(Files.readAllBytes(Paths.get(fileName)));
 		if (bcString.isEmpty()){
 			System.out.println("Could not load");
-			return;
+			return false;
 		}
 		// All elements are blocks except for the last one that has the other blockChain info
 		String[] data = bcString.split("-------------------------");
@@ -228,11 +235,11 @@ public class Main {
 		String[] bcDataLines = bcData.split("\n");
 		if(bcDataLines.length<3){
 		    System.out.println("Could not load");
-		    return;
+		    return false;
         }
 		if (!(bcDataLines[bcDataLines.length-3].startsWith("Index:") && bcDataLines[bcDataLines.length-2].startsWith("AmountZeroes:") && bcDataLines[bcDataLines.length-1].startsWith("Tree:"))) {
 			System.out.println("Wrong file format");
-			return;
+			return false;
 		}
 		Integer index = Integer.parseInt(bcDataLines[bcDataLines.length-3].split(" ")[1]);
 		Integer amountZeroes = Integer.parseInt(bcDataLines[bcDataLines.length-2].split(" ")[1]);
@@ -242,13 +249,13 @@ public class Main {
 			String[] blockLines = data[i].trim().split("\n");
 			if(blockLines.length<7){
 			    System.out.println("Could not load");
-			    return;
+			    return false;
             }
 			if(!(blockLines[0].startsWith("Index:") && blockLines[1].startsWith("Nonce:") && blockLines[2].startsWith("Tree:") &&
 					blockLines[3].startsWith("Previous:") && blockLines[4].startsWith("HashCode:") && blockLines[5].startsWith("Elem:") && blockLines[6].startsWith("Data:"))) {
 				System.out.println("Wrong file format2 in block " + i);
 				System.out.println(data[i]);
-				return;
+				return false;
 			}
 			Integer nonce = Integer.parseInt(blockLines[1].split(" ")[1]);
 			AvlTree<Integer> blockTree = bc.getTree().load(blockLines[2].split(" ")[1], bc.getTree().getCmp());
@@ -269,5 +276,7 @@ public class Main {
 			bc.add(elems, blockData, blockTree, nonce, hexa, prevHexa);
 		}
 		bc.setProperties(index, amountZeroes, tree);
+        System.out.println("The load amount of zeros: "+ amountZeroes);
+		return true;
 	}
 }

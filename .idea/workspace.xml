@@ -1,14 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="930ae407-b0d8-4b86-acc9-60505ac48672" name="Default" comment="Pre Load Fix">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Blockchain/src/Blockchain/BlockChain$Hexa.class" afterPath="$PROJECT_DIR$/out/production/Blockchain/src/Blockchain/BlockChain$Hexa.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Blockchain/src/Blockchain/Test/MyTest.class" afterPath="$PROJECT_DIR$/out/production/Blockchain/src/Blockchain/Test/MyTest.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Blockchain/src/Main$1.class" afterPath="$PROJECT_DIR$/out/production/Blockchain/src/Main$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Blockchain/src/Main.class" afterPath="$PROJECT_DIR$/out/production/Blockchain/src/Main.class" />
+    <list default="true" id="930ae407-b0d8-4b86-acc9-60505ac48672" name="Default" comment="Load complete fix">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Blockchain/.classpath" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Blockchain/.gitignore" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Blockchain/.idea/compiler.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Blockchain/.idea/copyright/profiles_settings.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Blockchain/.idea/libraries/Arquillian_JUnit_Release.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Blockchain/.idea/misc.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Blockchain/.idea/modules.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Blockchain/.idea/uiDesigner.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Blockchain/.idea/vcs.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Blockchain/.idea/workspace.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Blockchain/.project" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Blockchain/.settings/org.eclipse.jdt.core.prefs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Blockchain/Blockchain.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Blockchain/README.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Blockchain/build.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Blockchain/src/Blockchain/BlockChain$Hexa.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Blockchain/src/Blockchain/Blockchain.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Blockchain/src/Blockchain/Test/MyTest$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Blockchain/src/Blockchain/Test/MyTest.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Blockchain/src/Blockchain/file" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Blockchain/src/Main$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Blockchain/src/Main.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Blockchain/test" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Blockchain/.idea/workspace.xml" afterPath="$PROJECT_DIR$/out/production/Blockchain/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Blockchain/README.md" afterPath="$PROJECT_DIR$/out/production/Blockchain/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Blockchain/file" afterPath="$PROJECT_DIR$/src/Blockchain/file" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main.java" afterPath="$PROJECT_DIR$/src/Main.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -38,7 +56,7 @@
       <file leaf-file-name="BlockChain.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Blockchain/BlockChain.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2925">
+            <state relative-caret-position="612">
               <caret line="41" column="47" lean-forward="false" selection-start-line="41" selection-start-column="47" selection-end-line="41" selection-end-column="47" />
               <folding />
             </state>
@@ -48,19 +66,12 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="593">
-              <caret line="243" column="53" lean-forward="false" selection-start-line="243" selection-start-column="53" selection-end-line="243" selection-end-column="53" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="file" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Blockchain/file">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="8" lean-forward="true" selection-start-line="0" selection-start-column="8" selection-end-line="0" selection-end-column="8" />
-              <folding />
+            <state relative-caret-position="306">
+              <caret line="188" column="73" lean-forward="false" selection-start-line="188" selection-start-column="73" selection-end-line="188" selection-end-column="73" />
+              <folding>
+                <element signature="e#836#837#0" expanded="true" />
+                <element signature="e#880#881#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -545,14 +556,7 @@
       <workItem from="1507911868694" duration="63000" />
       <workItem from="1507911957555" duration="8203000" />
       <workItem from="1507929428542" duration="2099000" />
-      <workItem from="1507932114490" duration="1681000" />
-    </task>
-    <task id="LOCAL-00004" summary="ola">
-      <created>1506362222020</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1506362222020</updated>
+      <workItem from="1507932114490" duration="3575000" />
     </task>
     <task id="LOCAL-00005" summary="ola">
       <created>1506362456774</created>
@@ -890,7 +894,14 @@
       <option name="project" value="LOCAL" />
       <updated>1507932335529</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="Pre Load Fix">
+      <created>1507933805380</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1507933805380</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -926,9 +937,9 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="82730000" />
+    <option name="totallyTimeSpent" value="84624000" />
   </component>
-  <component name="TodoView">
+  <component name="TodoView" selected-index="4">
     <todo-panel id="selected-file">
       <is-autoscroll-to-source value="true" />
     </todo-panel>
@@ -942,7 +953,7 @@
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32985386" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32924336" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32924336" sideWeight="0.49380055" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -956,6 +967,7 @@
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26361185" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -970,7 +982,6 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32991913" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -1006,7 +1017,8 @@
     <MESSAGE value="Comments erased" />
     <MESSAGE value="More Clarity in code" />
     <MESSAGE value="Pre Load Fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="Pre Load Fix" />
+    <MESSAGE value="Load complete fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="Load complete fix" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1146,7 +1158,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Blockchain/BlockChain.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2925">
+        <state relative-caret-position="612">
           <caret line="41" column="47" lean-forward="false" selection-start-line="41" selection-start-column="47" selection-end-line="41" selection-end-column="47" />
           <folding />
         </state>
@@ -1154,17 +1166,20 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Blockchain/file">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="8" lean-forward="true" selection-start-line="0" selection-start-column="8" selection-end-line="0" selection-end-column="8" />
+        <state relative-caret-position="252">
+          <caret line="14" column="14" lean-forward="true" selection-start-line="14" selection-start-column="14" selection-end-line="14" selection-end-column="14" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="593">
-          <caret line="243" column="53" lean-forward="false" selection-start-line="243" selection-start-column="53" selection-end-line="243" selection-end-column="53" />
-          <folding />
+        <state relative-caret-position="306">
+          <caret line="188" column="73" lean-forward="false" selection-start-line="188" selection-start-column="73" selection-end-line="188" selection-end-column="73" />
+          <folding>
+            <element signature="e#836#837#0" expanded="true" />
+            <element signature="e#880#881#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
