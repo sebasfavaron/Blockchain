@@ -109,14 +109,14 @@ public class MyTest {
         assertEquals(lista,blockChain.getBlockIndexes(3)) ;
     }
     @Test
-    public void modifyByIndexTest() throws FileNotFoundException {
+    public void modifyByIndexTest(){
         datos=avlTree.insert(3);
         blockChain.add(datos,"Insert 3",avlTree);
         blockChain.modifyByIndex(1,new File("test"));
         assertEquals("tratando de romper el tp",blockChain.getBlockData(1));
     }
     @Test
-    public void isValidTest()throws FileNotFoundException{
+    public void isValidTest(){
         datos=avlTree.insert(3);
         blockChain.add(datos,"Insert 3",avlTree);
         assertEquals(true,blockChain.isValid());

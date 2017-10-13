@@ -161,15 +161,9 @@ public class Main {
 
 							File file = new File(commands[2]);
 							boolean success = false;
-							try {
-								success = blockChain.modifyByIndex(index, file);
-							} catch (FileNotFoundException e) {
-								System.out.println(e);
-							}
+							success = blockChain.modifyByIndex(index, file);
 							if (success) {
 								System.out.println("Block data modified successfully");
-							} else {
-								System.out.println("Error found.");
 							}
 						}
 					}

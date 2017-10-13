@@ -37,8 +37,9 @@ public class BlockChain<T> {
      * @return Returns true if the block data was successfully changed else false
      * @throws FileNotFoundException
      */
-    public boolean modifyByIndex(int index, File file) throws FileNotFoundException {
+    public boolean modifyByIndex(int index, File file){
     	if (index > chain.size()) {
+    	    System.out.println("Index not found");
     		return false;
     	}
     	try {
