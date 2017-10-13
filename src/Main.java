@@ -169,7 +169,7 @@ public class Main {
 							if (success) {
 								System.out.println("Block data modified successfully");
 							} else {
-								System.out.println("The blockchain could not reach the required index");
+								System.out.println("Error found.");
 							}
 						}
 					}

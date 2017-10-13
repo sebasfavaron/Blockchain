@@ -44,7 +44,8 @@ public class BlockChain<T> {
     	try {
             chain.get(index - 1).data = new String(Files.readAllBytes(Paths.get(file.getAbsolutePath())));
         } catch (IOException e) {
-            System.out.println(e);
+            System.out.println("File not found.");
+            return false;
         }
         chain.get(index-1).rehash();
         return true;
