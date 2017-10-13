@@ -16,14 +16,18 @@ public class Main {
 	
 	public static void main(String[]args){
 
-		paramsManager(args);
+		try {
+			paramsManager(args);
+		} catch (NumberFormatException e) {
+			System.out.println("Error: "+e+"\nWrong number format");
+		}
 	}
 
 
     /**
      * This method is responsible of the console commands functionality
      */
-	private static void paramsManager(String[] args) {
+	private static void paramsManager(String[] args) throws NumberFormatException {
 
 		boolean isRunning = true;
         Integer amountZeros = 0;
