@@ -112,7 +112,7 @@ public class MyTest {
     public void modifyByIndexTest() throws FileNotFoundException {
         datos=avlTree.insert(3);
         blockChain.add(datos,"Insert 3",avlTree);
-        blockChain.modifyByIndex(1,new File("src/Blockchain/Test/test"));
+        blockChain.modifyByIndex(1,new File("test"));
         assertEquals("tratando de romper el tp",blockChain.getBlockData(1));
     }
     @Test
