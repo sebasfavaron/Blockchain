@@ -185,7 +185,7 @@ public class Main {
 					try {
 						load(blockChain, "./src/Blockchain/file"); //todo: el file es una variable y ellos deciden de donde cargar
 					} catch (IOException e) {
-						System.out.println(e);
+						System.out.println("Save file not found");
 					}
 					break;
 
@@ -217,12 +217,19 @@ public class Main {
 	// Loads data from file and overwrites previous data (made for Integers, could be modified easily to support more object types)
 	public static void load(BlockChain<Integer> bc, String fileName) throws IOException {
 		String bcString = new String(Files.readAllBytes(Paths.get(fileName)));
-
+		if (bcString.isEmpty()){
+			System.out.println("Could not load");
+			return;
+		}
 		// All elements are blocks except for the last one that has the other blockChain info
 		String[] data = bcString.split("-------------------------");
 		String bcData = data[data.length - 1];
 		int blockAmount = data.length - 1;
 		String[] bcDataLines = bcData.split("\n");
+		if(bcDataLines.length<3){
+		    System.out.println("Could not load");
+		    return;
+        }
 		if (!(bcDataLines[bcDataLines.length-3].startsWith("Index:") && bcDataLines[bcDataLines.length-2].startsWith("AmountZeroes:") && bcDataLines[bcDataLines.length-1].startsWith("Tree:"))) {
 			System.out.println("Wrong file format");
 			return;
@@ -233,6 +240,10 @@ public class Main {
 		bc.resetChain();
 		for(int i=0; i<blockAmount; i++) {
 			String[] blockLines = data[i].trim().split("\n");
+			if(blockLines.length<7){
+			    System.out.println("Could not load");
+			    return;
+            }
 			if(!(blockLines[0].startsWith("Index:") && blockLines[1].startsWith("Nonce:") && blockLines[2].startsWith("Tree:") &&
 					blockLines[3].startsWith("Previous:") && blockLines[4].startsWith("HashCode:") && blockLines[5].startsWith("Elem:") && blockLines[6].startsWith("Data:"))) {
 				System.out.println("Wrong file format2 in block " + i);

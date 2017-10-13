@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="930ae407-b0d8-4b86-acc9-60505ac48672" name="Default" comment="">
+    <list default="true" id="930ae407-b0d8-4b86-acc9-60505ac48672" name="Default" comment="Pre Load Fix">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Blockchain/src/Blockchain/BlockChain$Hexa.class" afterPath="$PROJECT_DIR$/out/production/Blockchain/src/Blockchain/BlockChain$Hexa.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Blockchain/src/Blockchain/Test/MyTest.class" afterPath="$PROJECT_DIR$/out/production/Blockchain/src/Blockchain/Test/MyTest.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Blockchain/src/Main$1.class" afterPath="$PROJECT_DIR$/out/production/Blockchain/src/Main$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Blockchain/src/Main.class" afterPath="$PROJECT_DIR$/out/production/Blockchain/src/Main.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Blockchain/BlockChain.java" afterPath="$PROJECT_DIR$/src/Blockchain/BlockChain.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Blockchain/Test/MyTest.java" afterPath="$PROJECT_DIR$/src/Blockchain/Test/MyTest.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Blockchain/.idea/workspace.xml" afterPath="$PROJECT_DIR$/out/production/Blockchain/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Blockchain/README.md" afterPath="$PROJECT_DIR$/out/production/Blockchain/README.md" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main.java" afterPath="$PROJECT_DIR$/src/Main.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -34,24 +38,34 @@
       <file leaf-file-name="BlockChain.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Blockchain/BlockChain.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="293">
+            <state relative-caret-position="-2925">
               <caret line="41" column="47" lean-forward="false" selection-start-line="41" selection-start-column="47" selection-end-line="41" selection-end-column="47" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="553">
-              <caret line="166" column="29" lean-forward="false" selection-start-line="166" selection-start-column="29" selection-end-line="166" selection-end-column="29" />
+            <state relative-caret-position="593">
+              <caret line="243" column="53" lean-forward="false" selection-start-line="243" selection-start-column="53" selection-end-line="243" selection-end-column="53" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MyTest.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="file" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/Blockchain/file">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="8" lean-forward="true" selection-start-line="0" selection-start-column="8" selection-end-line="0" selection-end-column="8" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="MyTest.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Blockchain/Test/MyTest.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="573">
@@ -100,8 +114,8 @@
         <option value="$PROJECT_DIR$/build.xml" />
         <option value="$PROJECT_DIR$/src/Blockchain/AvlTree.java" />
         <option value="$PROJECT_DIR$/src/Blockchain/BlockChain.java" />
-        <option value="$PROJECT_DIR$/src/Main.java" />
         <option value="$PROJECT_DIR$/src/Blockchain/Test/MyTest.java" />
+        <option value="$PROJECT_DIR$/src/Main.java" />
       </list>
     </option>
   </component>
@@ -212,7 +226,7 @@
       </extension>
       <option name="MAIN_CLASS_NAME" value="src.Main" />
       <option name="VM_PARAMETERS" value="" />
-      <option name="PROGRAM_PARAMETERS" value="zeros 1" />
+      <option name="PROGRAM_PARAMETERS" value="zeros 4" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
@@ -531,14 +545,7 @@
       <workItem from="1507911868694" duration="63000" />
       <workItem from="1507911957555" duration="8203000" />
       <workItem from="1507929428542" duration="2099000" />
-      <workItem from="1507932114490" duration="204000" />
-    </task>
-    <task id="LOCAL-00003" summary="ola">
-      <created>1506361175832</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1506361175832</updated>
+      <workItem from="1507932114490" duration="1681000" />
     </task>
     <task id="LOCAL-00004" summary="ola">
       <created>1506362222020</created>
@@ -876,7 +883,14 @@
       <option name="project" value="LOCAL" />
       <updated>1507924867834</updated>
     </task>
-    <option name="localTasksCounter" value="52" />
+    <task id="LOCAL-00052" summary="More Clarity in code">
+      <created>1507932335529</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1507932335529</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -912,7 +926,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="81253000" />
+    <option name="totallyTimeSpent" value="82730000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -990,7 +1004,9 @@
     <MESSAGE value="Commands added" />
     <MESSAGE value="Code improvement" />
     <MESSAGE value="Comments erased" />
-    <option name="LAST_COMMIT_MESSAGE" value="Comments erased" />
+    <MESSAGE value="More Clarity in code" />
+    <MESSAGE value="Pre Load Fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="Pre Load Fix" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1044,7 +1060,6 @@
     <entry file="file://$PROJECT_DIR$/src/Blockchain/AvlTreeTest.java" />
     <entry file="file://$PROJECT_DIR$/src/Blockchain/Test/BlockChainTest.java" />
     <entry file="file://$PROJECT_DIR$/src/Blockchain/Hexa.java" />
-    <entry file="file://$PROJECT_DIR$/src/Blockchain/file" />
     <entry file="file://$PROJECT_DIR$/src/Blockchain/Test/AvlTreeTest.java" />
     <entry file="jar:///usr/lib/jvm/java-1.8.0-openjdk-amd64/jre/lib/rt.jar!/java/util/List.class">
       <provider selected="true" editor-type-id="text-editor">
@@ -1121,26 +1136,34 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/Blockchain/Test/MyTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="573">
+          <caret line="111" column="35" lean-forward="false" selection-start-line="111" selection-start-column="35" selection-end-line="111" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Blockchain/BlockChain.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
+        <state relative-caret-position="-2925">
           <caret line="41" column="47" lean-forward="false" selection-start-line="41" selection-start-column="47" selection-end-line="41" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Blockchain/file">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="8" lean-forward="true" selection-start-line="0" selection-start-column="8" selection-end-line="0" selection-end-column="8" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="553">
-          <caret line="166" column="29" lean-forward="false" selection-start-line="166" selection-start-column="29" selection-end-line="166" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Blockchain/Test/MyTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="573">
-          <caret line="111" column="35" lean-forward="false" selection-start-line="111" selection-start-column="35" selection-end-line="111" selection-end-column="35" />
+        <state relative-caret-position="593">
+          <caret line="243" column="53" lean-forward="false" selection-start-line="243" selection-start-column="53" selection-end-line="243" selection-end-column="53" />
           <folding />
         </state>
       </provider>
